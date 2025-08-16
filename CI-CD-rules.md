@@ -1,9 +1,10 @@
 * Use environments & environment credentials from configuration file under a private repo. Repo is configured via. ecrets.
 * NestJS React App.: Keep repos separate; unify at build/deploy time
-* NestJS React App.: Client base URL: set it to “/” at build timefor Vite.
+* NestJS React App.: Client base URL: set it to “/” at build timefor Vite. Pass REACT_APP_API_BASE=/api (or Vite’s VITE_API_BASE=/api) at build time.
 * NestJS React App.: Single Web Service => Deploy this unified Node.js app as a single Web Service. Eg: - Single Render Web Service
 * NestJS React App.: Orchestration: Supabase → GitHub Actions → Render => Supabase as router/orchestrator, Actions as executors, Render as runtime.
-* NestJS React App.: Single webhook for API, Web & App. Repos: Maintain a config map (repo → service(s), branches, environments), route by repo and branch.
+* NestJS React App.: Single Supabase webhook for API, Web & App. Repos => Central config: repo → services, branches, environments, notification rules.. Route by repo and branch. Store delivery IDs to avoid duplicates.
+* NestJS React App.: API deploys only when both API and web criteria pass.
 
 * NestJS React App. on Render Cloud Application Platform: Build → (optionally publish artifact) → Trigger Render deploy → Fail fast on errors → Post logs on failure.
 
@@ -31,3 +32,4 @@
 * Code review automation: Static analysis and quality gates => Sonar (needs org/repo app install) or run OSS analyzers in Actions.
 * Code review automation: AI assist => Run a PR job that summarizes changes, flags risks, and posts a structured comment.
 * Code review automation: Do a lot purely with secrets and CLI/API calls where tokens suffice.
+* Code review automation: auto-request reviewers.
