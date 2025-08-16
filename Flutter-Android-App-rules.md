@@ -1,3 +1,1 @@
-* Artifact Management for Flutter App - GitHub Actions Artifacts: Use for short-term storage (expires after 90 days). Eg:- For frequent feature branches: short-lived testing - Set retention to a small number of days to save storage.
-* Artifact Management for Flutter App - GitHub Releases: Use for long-term versioning and distribution. Eg:- store publishing process, For client-specific branches (customizations) - to version and distribute stable client builds (React bundles, APKs, etc.). Tag with a naming convention per client and environment.
-* Artifact Management for Flutter App: automate tagging and uploading via Actions.
+
