@@ -22,7 +22,10 @@
 * Flutter App.: Shipping builds to testers, Android: use Firebase App Distribution or Internal/App Bundle tracks in Google Play (fast propagation); share link in WhatsApp.
 * Flutter App.: Shipping builds to testers, iOS: TestFlight invites via email; post release notes link in WhatsApp.
 * Flutter App.: App Store Publishing via CI/CD.
-
+* Flutter App. Artifact Management: automate tagging and uploading via Actions.
+* Flutter App. Artifact Management - GitHub Actions Artifacts: Use for short-term storage (expires after 90 days). Eg:- For frequent feature branches: short-lived testing - Set retention to a small number of days to save storage. Use a scheduled cleanup job to prune old artifacts.
+* Flutter App. Artifact Management - GitHub Releases: Use for long-term versioning and distribution. Eg:- store publishing process, For client-specific branches (customizations) - to version and distribute stable client builds (React bundles, APKs, etc.). Tag with a naming convention per client and environment. Mark “pre‑release” for tester‑only channels; tag per client/version.
+  
 * Google Sheets tracking (code review requests, PR states, merges): Use a service account JSON (stored as a secret) and call the Sheets API from Actions to append rows for: PR opened, reviewer assigned, review outcome, requested changes, merge time, release tag, etc. Keep a single “Ops” sheet with tabs per repo.
 * Google Sheets tracking (code review requests, PR states, merges): Idempotency => use PR number + commit SHA as keys.
 
