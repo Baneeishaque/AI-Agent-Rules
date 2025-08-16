@@ -1,4 +1,6 @@
-* Use environments & environment credentials from configuration file under a private repo. Repo is configured via. ecrets.
+* Use environments & environment credentials from configuration file under a private repo. Repo is configured via. secrets.
+* Deployment branches (main, store guidelines branches) - Protect them; require checks.
+
 * NestJS React App.: Keep repos separate; unify at build/deploy time
 * NestJS React App.: Client base URL: set it to “/” at build timefor Vite. Pass REACT_APP_API_BASE=/api (or Vite’s VITE_API_BASE=/api) at build time.
 * NestJS React App.: Single Web Service => Deploy this unified Node.js app as a single Web Service. Eg: - Single Render Web Service
