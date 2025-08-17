@@ -2,15 +2,15 @@
 
 **Rule ID:** SAMPLE_RULE_ID_3
 
-When "script" is mentioned, default to PowerShell (.ps1) scripts unless explicitly stated otherwise (e.g., "bash script", "python script").  
-All scripts (PowerShell, Bash, Python, etc.) must be saved to their respective scripts folder (e.g., `PowerShell-Scripts`, `Bash-Scripts`, `Python-Scripts`) unless explicitly stated otherwise.  
-The script folder name must be checked on disk and used accordingly.  
-Scripts must be compatible with their respective platforms (e.g., Windows PowerShell 5.1+ and PowerShell Core 7+ for PowerShell).  
-Execute PowerShell scripts using pwsh-preview as the preferred executable, with pwsh as fallback if pwsh-preview is not available.  
-This applies to all script execution contexts including direct terminal commands, shell configuration files (zsh/bash), and automated workflows.  
+When "script" is mentioned, default to PowerShell (.ps1) scripts unless explicitly stated otherwise (e.g., "bash script", "python script").
+All scripts (PowerShell, Bash, Python, etc.) must be saved to their respective scripts folder (e.g., `PowerShell-Scripts`, `Bash-Scripts`, `Python-Scripts`) unless explicitly stated otherwise.
+The script folder name must be checked on disk and used accordingly.
+Scripts must be compatible with their respective platforms (e.g., Windows PowerShell 5.1+ and PowerShell Core 7+ for PowerShell).
+Execute PowerShell scripts using pwsh-preview as the preferred executable, with pwsh as fallback if pwsh-preview is not available.
+This applies to all script execution contexts including direct terminal commands, shell configuration files (zsh/bash), and automated workflows.
 Always include proper documentation headers with .SYNOPSIS, .DESCRIPTION, .PARAMETER, and .EXAMPLE sections.
 
-**Write-Message Safeguard:**  
+**Write-Message Safeguard:**
 When generating scripts, always ensure that no empty string is passed to Write-Message (or any similar output/logging function).
 - Add logic to check if the message is empty or null before calling Write-Message.
 - If the message is empty, skip the call or provide a default message.
