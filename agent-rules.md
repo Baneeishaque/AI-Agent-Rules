@@ -12,6 +12,14 @@ This file serves as the central index for all rule files in this repository. Eac
 | Rule Domain                | File Name                                   | Description |
 |----------------------------|---------------------------------------------|-------------|
 | Flutter Build Logging      | [Flutter-Build-rules.md](./Flutter-Build-rules.md) | Maximum logging for Flutter builds |
+| Flutter Android App        | [Flutter-Android-App-rules.md](./Flutter-Android-App-rules.md) | (empty) |
+| Flutter App                | [Flutter-App-rules.md](./Flutter-App-rules.md) | (empty) |
+| NestJS React App           | [NestJS-React-App-rules.md](./NestJS-React-App-rules.md) | (empty) |
+| NestJS React App with Flutter Client | [NestJS-React-App-with-Flutter-Client-rules.md](./NestJS-React-App-with-Flutter-Client-rules.md) | (empty) |
+| Render Cloud Application Platform | [Render-Cloud-Application-Platform-rules.md](./Render-Cloud-Application-Platform-rules.md) | Use env vars, custom domains |
+| Warp                      | [Warp-rules.md](./Warp-rules.md) | Backup/reference for Warp AI Agent configs |
+| CI/CD                     | [CI-CD-rules.md](./CI-CD-rules.md) | CI/CD environment, branch protection, notifications |
+| GitHub Actions            | [GitHub-Actions-rules.md](./GitHub-Actions-rules.md) | Supabase/GitHub webhook triggers |
 | Git Repository Creation    | [Git-Repository-rules.md](./Git-Repository-rules.md) | Standard structure, naming, and documentation |
 | Script Management          | [Script-Management-rules.md](./Script-Management-rules.md) | Script standards, folder usage, and safeguards |
 | Git Repo Indexing          | [Git-Repository-Indexing-rules.md](./Git-Repository-Indexing-rules.md) | Auto-index codebases in git repos |
@@ -20,7 +28,7 @@ This file serves as the central index for all rule files in this repository. Eac
 | Rule Management Workflow   | [Rule-Management-rules.md](./Rule-Management-rules.md) | Documentation sync and update workflow |
 | Repository Search          | [Repository-Search-rules.md](./Repository-Search-rules.md) | Multi-platform repo discovery and smart cloning |
 | Android App Launch         | [Android-App-Launch-rules.md](./Android-App-Launch-rules.md) | Automated emulator setup and deployment |
-| Agent Planning             | [Agent-Planning-rules.md](./Agent-Planning-rules.md) | Agents must present a plan before implementation |
+| Agent Planning             | [AI-Agent-rules.md](./AI-Agent-rules.md) | Agents must present a plan before implementation |
 
 ## Adding New Rules
 1. Create a new markdown file named `<Domain>-rules.md`.
