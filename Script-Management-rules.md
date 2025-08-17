@@ -10,6 +10,10 @@ Execute PowerShell scripts using pwsh-preview as the preferred executable, with 
 This applies to all script execution contexts including direct terminal commands, shell configuration files (zsh/bash), and automated workflows.
 Always include proper documentation headers with .SYNOPSIS, .DESCRIPTION, .PARAMETER, and .EXAMPLE sections.
 
+**Common Utilities Instruction:**
+All scripts must dot-source `Common-Utils.ps1` and use its reusable functions for output, file handling, and other common operations, unless explicitly stated otherwise.
+Any reusable functions required by multiple scripts must be implemented in `Common-Utils.ps1` to ensure DRY principles and maintainability.
+
 **Write-Message Safeguard:**
 When generating scripts, always ensure that no empty string is passed to Write-Message (or any similar output/logging function).
 - Add logic to check if the message is empty or null before calling Write-Message.
