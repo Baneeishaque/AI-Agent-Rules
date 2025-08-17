@@ -13,13 +13,14 @@ This file serves as the central index for all rule files in this repository. Eac
 |----------------------------|---------------------------------------------|-------------|
 | Flutter Build Logging      | [Flutter-Build-rules.md](./Flutter-Build-rules.md) | Maximum logging for Flutter builds |
 | Git Repository Creation    | [Git-Repository-rules.md](./Git-Repository-rules.md) | Standard structure, naming, and documentation |
-| Script Management          | [Script-Management-rules.md](./Script-Management-rules.md) | PowerShell script standards and safeguards |
+| Script Management          | [Script-Management-rules.md](./Script-Management-rules.md) | Script standards, folder usage, and safeguards |
 | Git Repo Indexing          | [Git-Repository-Indexing-rules.md](./Git-Repository-Indexing-rules.md) | Auto-index codebases in git repos |
 | Git Repo Cloning           | [Git-Repo-Cloning-rules.md](./Git-Repo-Cloning-rules.md) | CLI-based cloning, submodule support |
 | Brew Install Preferences   | [Brew-Install-rules.md](./Brew-Install-rules.md) | Prefer head/source builds, verbose logging |
 | Rule Management Workflow   | [Rule-Management-rules.md](./Rule-Management-rules.md) | Documentation sync and update workflow |
 | Repository Search          | [Repository-Search-rules.md](./Repository-Search-rules.md) | Multi-platform repo discovery and smart cloning |
 | Android App Launch         | [Android-App-Launch-rules.md](./Android-App-Launch-rules.md) | Automated emulator setup and deployment |
+| Agent Planning             | [Agent-Planning-rules.md](./Agent-Planning-rules.md) | Agents must present a plan before implementation |
 
 ## Adding New Rules
 1. Create a new markdown file named `<Domain>-rules.md`.
