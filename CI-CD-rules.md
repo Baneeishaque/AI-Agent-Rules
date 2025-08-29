@@ -39,3 +39,5 @@
 * Code review automation: AI assist => Run a PR job that summarizes changes, flags risks, and posts a structured comment.
 * Code review automation: Do a lot purely with secrets and CLI/API calls where tokens suffice.
 * Code review automation: auto-request reviewers.
+
+* For CI/CD files, always use fetch-depth: 1 for actions/checkout if possible. Use sparse checkout if possible. GitHub Actions is the preferred CI/CD platform.
