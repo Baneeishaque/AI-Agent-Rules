@@ -20,6 +20,7 @@ This file serves as the central index for all rule files in this repository. Eac
 | Warp                      | [Warp-rules.md](./Warp-rules.md) | Backup/reference for Warp AI Agent configs |
 | CI/CD                     | [CI-CD-rules.md](./CI-CD-rules.md) | CI/CD environment, branch protection, notifications |
 | GitHub Actions            | [GitHub-Actions-rules.md](./GitHub-Actions-rules.md) | Supabase/GitHub webhook triggers |
+| GitHub CLI Permission      | [GitHub-CLI-Permission-rules.md](./GitHub-CLI-Permission-rules.md) | Explicit permission required before running `gh` commands |
 | Git Repository Creation    | [Git-Repository-rules.md](./Git-Repository-rules.md) | Standard structure, naming, and documentation |
 | Script Management          | [Script-Management-rules.md](./Script-Management-rules.md) | Script standards, folder usage, and safeguards |
 | Git Repo Indexing          | [Git-Repository-Indexing-rules.md](./Git-Repository-Indexing-rules.md) | Auto-index codebases in git repos |
@@ -29,6 +30,7 @@ This file serves as the central index for all rule files in this repository. Eac
 | Repository Search          | [Repository-Search-rules.md](./Repository-Search-rules.md) | Multi-platform repo discovery and smart cloning |
 | Android App Launch         | [Android-App-Launch-rules.md](./Android-App-Launch-rules.md) | Automated emulator setup and deployment |
 | Agent Planning             | [AI-Agent-rules.md](./AI-Agent-rules.md) | Agents must present a plan before implementation |
+| Shell Execution            | [Shell-Execution-rules.md](./Shell-Execution-rules.md) | Always show full shell command output to the user |
 
 ## Adding New Rules
 1. Create a new markdown file named `<Domain>-rules.md`.
