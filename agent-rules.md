@@ -19,6 +19,7 @@ This file serves as the central index for all rule files in this repository. Eac
 | Render Cloud Application Platform | [Render-Cloud-Application-Platform-rules.md](./Render-Cloud-Application-Platform-rules.md) | Use env vars, custom domains |
 | Warp                      | [Warp-rules.md](./Warp-rules.md) | Backup/reference for Warp AI Agent configs |
 | CI/CD                     | [CI-CD-rules.md](./CI-CD-rules.md) | CI/CD environment, branch protection, notifications |
+| Docker Build              | [Docker-rules.md](./Docker-rules.md) | Explicitly write context on build scripts |
 | GitHub Actions            | [GitHub-Actions-rules.md](./GitHub-Actions-rules.md) | Supabase/GitHub webhook triggers |
 | GitHub CLI Permission      | [GitHub-CLI-Permission-rules.md](./GitHub-CLI-Permission-rules.md) | Explicit permission required before running `gh` commands |
 | Git Repository Creation    | [Git-Repository-rules.md](./Git-Repository-rules.md) | Standard structure, naming, and documentation |
