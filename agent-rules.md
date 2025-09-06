@@ -38,6 +38,3 @@ This file serves as the central index for all rule files in this repository. Eac
 2. Add your rule(s) with clear descriptions and examples.
 3. Update the table above with the new file and a short description.
 4. Commit changes with a conventional commit message.
-
----
-_Last updated: 2025-08-17_
