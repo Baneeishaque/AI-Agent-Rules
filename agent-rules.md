@@ -31,7 +31,7 @@ This file serves as the central index for all rule files in this repository. Eac
 | Repository Search          | [Repository-Search-rules.md](./Repository-Search-rules.md) | Multi-platform repo discovery and smart cloning |
 | Android App Launch         | [Android-App-Launch-rules.md](./Android-App-Launch-rules.md) | Automated emulator setup and deployment |
 | Agent Planning             | [AI-Agent-rules.md](./AI-Agent-rules.md) | Agents must present a plan before implementation |
-| AI Tools Output Visibility | [AI-Tools-rules.md](./AI-Tools-rules.md) | Ensures all tool outputs are fully displayed for transparency and debugging |
+| AI Tools Output Visibility | [AI-Tools-rules.md](./AI-Tools-rules.md) | Ensures full tool output visibility and requires user confirmation before file write operations |
 | Shell Execution            | [Shell-Execution-rules.md](./Shell-Execution-rules.md) | Guidelines for shell command execution, including output, safety, and interactive commands |
 
 ## Adding New Rules
