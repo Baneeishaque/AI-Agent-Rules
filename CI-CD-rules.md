@@ -2,7 +2,7 @@
 * Deployment branches (main, store guidelines branches) - Protect them; require checks.
 
 * NestJS React App.: Keep repos separate; unify at build/deploy time
-* NestJS React App.: Client base URL: set it to “/” at build timefor Vite. Pass REACT_APP_API_BASE=/api (or Vite’s VITE_API_BASE=/api) at build time.
+* NestJS React App.: Client base URL: set it to “/” at build time for Vite. Pass REACT_APP_API_BASE=/api (or Vite’s VITE_API_BASE=/api) at build time.
 * NestJS React App.: Single Web Service => Deploy this unified Node.js app as a single Web Service. Eg: - Single Render Web Service
 * NestJS React App.: Orchestration: Supabase → GitHub Actions → Render => Supabase as router/orchestrator, Actions as executors, Render as runtime.
 * NestJS React App.: Single Supabase webhook for API, Web & App. Repos => Central config: repo → services, branches, environments, notification rules.. Route by repo and branch. Store delivery IDs to avoid duplicates.
@@ -28,7 +28,7 @@
 * Flutter App. Artifact Management - Supabase Storage: For short-lived testing (frequent feature branches) - Set retention to a small number of days to save storage. Use a scheduled cleanup job to prune old artifacts.
 * Flutter App. Artifact Management - Supabase Storage: For long-term versioning and distribution, Eg:- store publishing process. For client-specific branches (customizations). To version and distribute stable client builds (React bundles, APKs, etc.). Tag with a naming convention per client and environment. Mark “pre‑release” for tester‑only channels; tag per client/version.
 * Flutter App. Artifact Management - Upload from Actions, generate pre‑signed links for testers, apply lifecycle policies to auto‑expire old builds.
-  
+
 * Google Sheets tracking (code review requests, PR states, merges): Use a service account JSON (stored as a secret) and call the Sheets API from Actions to append rows for: PR opened, reviewer assigned, review outcome, requested changes, merge time, release tag, etc. Keep a single “Ops” sheet with tabs per repo.
 * Google Sheets tracking (code review requests, PR states, merges): Idempotency => use PR number + commit SHA as keys.
 
