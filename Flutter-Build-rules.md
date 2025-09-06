@@ -1,7 +1,5 @@
 # Flutter Build: Maximum Logging
 
-**Rule ID:** SAMPLE_RULE_ID_1
-
 When running Flutter build commands (flutter build), always use maximum logging by adding --verbose flag to see detailed build process information.
 
 **Usage Examples:**

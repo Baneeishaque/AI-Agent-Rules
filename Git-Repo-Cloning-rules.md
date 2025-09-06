@@ -1,7 +1,5 @@
 # Git Repos: Auto-clone to sample/path with CLI tools (with Submodule Support)
 
-**Rule ID:** SAMPLE_RULE_ID_5
-
 When cloning repositories, always use platform-specific CLI tools instead of 'git clone' to leverage authentication and features. For GitHub repositories, use 'gh repo clone'. For GitLab repositories, use 'glab repo clone'. Clone all repositories to ~/sample/path/ directory following the hyphenated naming convention (matching the original repo name). Use respective search commands ('gh repo list', 'gh search repos', 'glab repo list', 'glab repo search') to find repositories before cloning.
 
 **Submodule Handling:**

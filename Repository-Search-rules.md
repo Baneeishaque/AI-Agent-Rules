@@ -1,7 +1,5 @@
 # Repository Search: Multi-Platform Discovery and Smart Cloning
 
-**Rule ID:** SAMPLE_RULE_ID_8
-
 When asked to clone repositories (without a specified provider), always follow this search order:
 
 1. User GitHub Repositories:

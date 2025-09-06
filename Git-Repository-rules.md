@@ -1,7 +1,5 @@
 # Git Repository Creation: Standard Structure and Documentation
 
-**Rule ID:** SAMPLE_RULE_ID_2
-
 When creating new git repositories, use hyphenated folder names (e.g., Sample-Repo, My-Project-Name) unless explicitly stated otherwise (some tools like Dart packages may require different naming strategies). Always create repositories in ~/sample/path/ directory unless specified otherwise. When creating a repository, automatically generate a comprehensive README.md file following GitHub standards with maximum details about the repository/project, and commit it with a proper conventional commit message.
 
 **Naming Convention:**

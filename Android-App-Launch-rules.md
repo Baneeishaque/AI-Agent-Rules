@@ -1,7 +1,5 @@
 # Android App Launch: Automated Emulator Setup and Deployment
 
-**Rule ID:** SAMPLE_RULE_ID_9
-
 When user asks to run a Flutter app (with Android support) or native Android app, follow this protocol:
 
 1. CHECK AVD STATUS

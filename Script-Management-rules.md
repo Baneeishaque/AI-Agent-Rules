@@ -1,7 +1,5 @@
 # Scripts: Management, Standards, and Execution (with Write-Message Safeguard)
 
-**Rule ID:** SAMPLE_RULE_ID_3
-
 When "script" is mentioned, default to PowerShell (.ps1) scripts unless explicitly stated otherwise (e.g., "bash script", "python script").
 All scripts (PowerShell, Bash, Python, etc.) must be saved to their respective scripts folder (e.g., `PowerShell-Scripts`, `Bash-Scripts`, `Python-Scripts`) unless explicitly stated otherwise.
 The script folder name must be checked on disk and used accordingly.

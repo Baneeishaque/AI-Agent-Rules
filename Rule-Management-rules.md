@@ -1,8 +1,6 @@
 # Rule Management: Documentation Sync Workflow
 
-**Rule ID:** SAMPLE_RULE_ID_7
-
-Whenever the user mentions adding or modifying a Warp AI rule, always remind them to update the agent-rules.md documentation. The workflow is: 1) Help craft the rule name and description, 2) User adds/modifies rule in Warp first, 3) Remind user to say "Update agent-rules.md with the new/modified rule", 4) Update the markdown file and commit with conventional commit message. This ensures documentation stays synchronized with actual Warp rules.
+Whenever the user mentions adding or modifying a AI rule, always remind them to update the agent-rules.md documentation. The workflow is: 1) Help craft the rule name and description, 2) User adds/modifies rule in Warp first, 3) Remind user to say "Update agent-rules.md with the new/modified rule", 4) Update the markdown file and commit with conventional commit message. This ensures documentation stays synchronized with actual Warp rules.
 
 **Workflow Steps:**
 1. Rule Creation/Modification - Help craft proper rule name and description
