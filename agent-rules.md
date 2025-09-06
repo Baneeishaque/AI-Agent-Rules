@@ -32,7 +32,7 @@ This file serves as the central index for all rule files in this repository. Eac
 | Android App Launch         | [Android-App-Launch-rules.md](./Android-App-Launch-rules.md) | Automated emulator setup and deployment |
 | Agent Planning             | [AI-Agent-rules.md](./AI-Agent-rules.md) | Agents must present a plan before implementation |
 | AI Tools Output Visibility | [AI-Tools-rules.md](./AI-Tools-rules.md) | Ensures all tool outputs are fully displayed for transparency and debugging |
-| Shell Execution            | [Shell-Execution-rules.md](./Shell-Execution-rules.md) | Always show full shell command output to the user |
+| Shell Execution            | [Shell-Execution-rules.md](./Shell-Execution-rules.md) | Guidelines for shell command execution, including output, safety, and interactive commands |
 
 ## Adding New Rules
 1. Create a new markdown file named `<Domain>-rules.md`.
