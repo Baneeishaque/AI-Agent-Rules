@@ -7,7 +7,4 @@
 
 ---
 
-## Last Updated
-**Date:** 2025-08-15
-**By:** sample-user
 **Total Rules:** 9
