@@ -11,7 +11,6 @@ This file serves as the central index for all rule files in this repository. Eac
 
 | Rule Domain                | File Name                                   | Description |
 |----------------------------|---------------------------------------------|-------------|
-| Flutter Build Logging      | [Flutter-Build-rules.md](./Flutter-Build-rules.md) | Maximum logging for Flutter builds |
 | Flutter Android App        | [Flutter-Android-App-rules.md](./Flutter-Android-App-rules.md) | (empty) |
 | Flutter App                | [Flutter-App-rules.md](./Flutter-App-rules.md) | (empty) |
 | NestJS React App           | [NestJS-React-App-rules.md](./NestJS-React-App-rules.md) | (empty) |

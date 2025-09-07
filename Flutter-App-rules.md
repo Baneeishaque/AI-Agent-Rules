@@ -168,7 +168,17 @@ This document outlines the rules and best practices for developing Flutter appli
 
 -----
 
-### 8\. General Guidelines
+### 8\. Build Process
+
+  - **Maximum Logging:** When running Flutter build commands, always use maximum logging by adding the `--verbose` flag to see detailed build process information.
+      - **Usage Examples:**
+          * `flutter build apk → flutter build apk --verbose`
+          * `flutter build ios → flutter build ios --verbose`
+          * `flutter build web → flutter build web --verbose`
+
+-----
+
+### 9\. General Guidelines
 
   - **Error Handling:** Implement a robust error handling and logging strategy.
       - **Detail:** Errors should be handled gracefully to prevent application crashes and provide meaningful feedback to users. Use a logging framework like `Sentry` or `Firebase Crashlytics` to capture and report errors for debugging and monitoring.
@@ -191,7 +201,7 @@ This document outlines the rules and best practices for developing Flutter appli
 
 -----
 
-### 9\. Debugging Flutter Apps
+### 10\. Debugging Flutter Apps
 
 A systematic approach to debugging is essential for productivity:
 
@@ -201,7 +211,7 @@ A systematic approach to debugging is essential for productivity:
 
 -----
 
-### 10\. Dependency Management
+### 11\. Dependency Management
 
 Effective dependency management is a cornerstone of a healthy Flutter project:
 
@@ -240,7 +250,7 @@ Effective dependency management is a cornerstone of a healthy Flutter project:
 
 -----
 
-### 11\. Documentation and Knowledge Sharing
+### 12\. Documentation and Knowledge Sharing
 
 Clear and comprehensive documentation is a mandatory component of a healthy project. It reduces friction for new team members and ensures that architectural decisions and project conventions are not lost.
 
