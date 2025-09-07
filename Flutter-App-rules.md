@@ -187,6 +187,8 @@ This document outlines the rules and best practices for developing Flutter appli
       - **AgentQL, Firecrawl, GitHub MCPs:** Utilize these Multi-Capability Platforms for advanced tasks such as data extraction, web scraping, or GitHub API interactions when necessary.
   - **Adherence to General Rules:** The team is expected to adhere to all general rule documents, including `AI-Agent-rules.md`, `AI-Tools-rules.md`, and `Shell-Execution-rules.md`, to ensure a unified and secure development environment.
 
+  - **Sensitive Information:** **Never** store sensitive data (API keys, tokens, credentials) directly in the codebase. Use environment variables, secure storage solutions (e.g., `flutter_secure_storage`), or a backend service for secure access.
+
 -----
 
 ### 9\. Debugging Flutter Apps
