@@ -12,12 +12,12 @@ This file serves as the central index for all rule files in this repository. Eac
 | Rule Domain                | File Name                                   | Description |
 |----------------------------|---------------------------------------------|-------------|
 | Flutter Android App        | [Flutter-Android-App-rules.md](./Flutter-Android-App-rules.md) | (empty) |
-| Flutter App                | [Flutter-App-rules.md](./Flutter-App-rules.md) | (empty) |
+| Flutter App                | [Flutter-App-rules.md](./Flutter-App-rules.md) | Rules for Flutter app development, including environment setup, dependencies, and testing. |
 | NestJS React App           | [NestJS-React-App-rules.md](./NestJS-React-App-rules.md) | (empty) |
 | NestJS React App with Flutter Client | [NestJS-React-App-with-Flutter-Client-rules.md](./NestJS-React-App-with-Flutter-Client-rules.md) | (empty) |
 | Render Cloud Application Platform | [Render-Cloud-Application-Platform-rules.md](./Render-Cloud-Application-Platform-rules.md) | Use env vars, custom domains |
 | Warp                      | [Warp-rules.md](./Warp-rules.md) | Backup/reference for Warp AI Agent configs |
-| CI/CD                     | [CI-CD-rules.md](./CI-CD-rules.md) | CI/CD environment, branch protection, notifications |
+| CI/CD                     | [CI-CD-rules.md](./CI-CD-rules.md) | CI/CD environment, branch protection, notifications, and security. |
 | Docker Build              | [Docker-rules.md](./Docker-rules.md) | Explicitly write context on build scripts |
 | GitHub Actions            | [GitHub-Actions-rules.md](./GitHub-Actions-rules.md) | Supabase/GitHub webhook triggers |
 | GitHub CLI Permission      | [GitHub-CLI-Permission-rules.md](./GitHub-CLI-Permission-rules.md) | Explicit permission required before running `gh` commands |
@@ -28,8 +28,8 @@ This file serves as the central index for all rule files in this repository. Eac
 | Brew Install Preferences   | [Brew-Install-rules.md](./Brew-Install-rules.md) | Prefer head/source builds, verbose logging |
 | Rule Management Workflow   | [Rule-Management-rules.md](./Rule-Management-rules.md) | Documentation sync and update workflow |
 | Repository Search          | [Repository-Search-rules.md](./Repository-Search-rules.md) | Multi-platform repo discovery and smart cloning |
-| Android App Launch         | [Android-App-Launch-rules.md](./Android-App-Launch-rules.md) | Automated emulator setup and deployment |
-| Agent Planning             | [AI-Agent-rules.md](./AI-Agent-rules.md) | Agents must present a plan before implementation |
+| Android App Launch         | [Android-App-Launch-rules.md](./Android-App-Launch-rules.md) | Automated emulator setup and deployment, optimized for M2 machines. |
+| Agent Planning             | [AI-Agent-rules.md](./AI-Agent-rules.md) | Agents must present a plan before implementation. |
 | AI Tools Output Visibility | [AI-Tools-rules.md](./AI-Tools-rules.md) | Ensures full tool output visibility and requires user confirmation before file write operations |
 | Shell Execution            | [Shell-Execution-rules.md](./Shell-Execution-rules.md) | Guidelines for shell command execution, including output, safety, and interactive commands |
 
