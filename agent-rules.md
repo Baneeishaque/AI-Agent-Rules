@@ -1,4 +1,4 @@
-# Microsoft Copilot AI Rules Index
+# AI Rules Index
 
 This file serves as the central index for all rule files in this repository. Each rule is maintained in a dedicated markdown file for modularity, scalability, and ease of maintenance.
 
