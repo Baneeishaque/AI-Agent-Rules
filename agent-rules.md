@@ -20,7 +20,7 @@ This file serves as the central index for all rule files in this repository. Eac
 | CI/CD | [CI-CD-rules.md](./CI-CD-rules.md) | Principles and practices for CI/CD, including protected branches, security, observability, advanced deployment strategies, and automated rollbacks. |
 | Docker Build | [Docker-rules.md](./Docker-rules.md) | Explicitly write context on build scripts |
 | GitHub Actions | [GitHub-Actions-rules.md](./GitHub-Actions-rules.md) | Rules for GitHub Actions workflows, covering trigger preferences, security, performance, and integrations. |
-| GitHub CLI Permission | [GitHub-CLI-Permission-rules.md](./GitHub-CLI-Permission-rules.md) | Explicit permission required before running `gh` commands |
+| GitHub CLI Permission | [GitHub-CLI-Permission-rules.md](./GitHub-CLI-Permission-rules.md) | Explicit permission protocol for running `gh` commands, ensuring user control and transparency. |
 | Git Repository Creation | [Git-Repository-rules.md](./Git-Repository-rules.md) | Standardized rules for creating new repositories, including naming conventions, essential file generation, and initial commit best practices. |
 | Script Management | [Script-Management-rules.md](./Script-Management-rules.md) | Script standards, folder usage, and safeguards |
 | Git Repo Indexing | [Git-Repository-Indexing-rules.md](./Git-Repository-Indexing-rules.md) | Auto-index codebases in git repos |
