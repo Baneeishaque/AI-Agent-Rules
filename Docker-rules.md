@@ -1,1 +1,0 @@
-* Dockerfiles - Explicitly write context on build scripts, especially in GitHub Actions
