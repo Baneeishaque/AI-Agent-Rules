@@ -178,30 +178,7 @@ This document outlines the rules and best practices for developing Flutter appli
 
 -----
 
-### 9\. General Guidelines
-
-  - **Error Handling:** Implement a robust error handling and logging strategy.
-      - **Detail:** Errors should be handled gracefully to prevent application crashes and provide meaningful feedback to users. Use a logging framework like `Sentry` or `Firebase Crashlytics` to capture and report errors for debugging and monitoring.
-  - **Asset Management:** All assets (images, fonts, translations) must be organized in a clear and consistent directory structure within the `assets/` folder and declared in `pubspec.yaml`.
-  - **Navigation:** For complex applications, use a declarative navigation package like `go_router` with Navigator 2.0.
-      - **Detail:** A clear and well-defined navigation system simplifies deep linking, routing, and URL-based navigation, making the app more robust and easier to maintain.
-  - **Security:**
-      - **Sensitive Information:** **Never** store sensitive data (API keys, tokens, credentials) directly in the codebase. Use environment variables, secure storage solutions (e.g., `flutter_secure_storage`), or a backend service for secure access.
-  - **Performance:**
-      - **`const` Widgets:** Use `const` widgets and constructors wherever possible to optimize performance by preventing unnecessary widget rebuilds.
-      - **Profiling:** Regularly profile the application in **profile mode** using **Flutter DevTools** to identify performance bottlenecks such as UI jank and memory leaks.
-  - **Localization:**
-      - **Detail:** For applications targeting multiple languages, use the built-in `flutter_localizations` package and the `arb` file format for managing translations. This ensures a scalable and maintainable approach to localization.
-  - **Tooling:**
-      - **Context7:** Use `context7` for comprehensive information about the project's tooling, including `mise`, `flutter`, `dart`, and GitHub Actions.
-      - **AgentQL, Firecrawl, GitHub MCPs:** Utilize these Multi-Capability Platforms for advanced tasks such as data extraction, web scraping, or GitHub API interactions when necessary.
-  - **Adherence to General Rules:** The team is expected to adhere to all general rule documents, including `AI-Agent-rules.md`, `AI-Tools-rules.md`, and `Shell-Execution-rules.md`, to ensure a unified and secure development environment.
-
-  - **Sensitive Information:** **Never** store sensitive data (API keys, tokens, credentials) directly in the codebase. Use environment variables, secure storage solutions (e.g., `flutter_secure_storage`), or a backend service for secure access.
-
------
-
-### 10\. Debugging Flutter Apps
+### 9\. Debugging Flutter Apps
 
 A systematic approach to debugging is essential for productivity:
 
@@ -211,7 +188,7 @@ A systematic approach to debugging is essential for productivity:
 
 -----
 
-### 11\. Dependency Management
+### 10\. Dependency Management
 
 Effective dependency management is a cornerstone of a healthy Flutter project:
 
@@ -247,6 +224,29 @@ Effective dependency management is a cornerstone of a healthy Flutter project:
 3.  **Upgrade Dependencies (`flutter pub upgrade`):** While we use exact pinning, this command is still useful for a one-time, manual update of your dependencies. It will update packages to the highest allowed version **within their constraints**.
 4.  **Clean Project (`flutter clean`):** When encountering build-related issues, especially after a Flutter SDK or dependency change, `flutter clean` is the first command to run. It removes the `build/` and `.dart_tool/` directories, forcing Flutter to rebuild the project from scratch. This resolves a wide range of problems caused by corrupted caches or temporary files.
       * **Detail:** `flutter clean` is a reset button for your build environment. It ensures that the next build process starts with a clean slate, using the exact dependencies specified in your `pubspec.yaml` and `pubspec.lock` files.
+
+-----
+
+### 11\. General Guidelines
+
+  - **Error Handling:** Implement a robust error handling and logging strategy.
+      - **Detail:** Errors should be handled gracefully to prevent application crashes and provide meaningful feedback to users. Use a logging framework like `Sentry` or `Firebase Crashlytics` to capture and report errors for debugging and monitoring.
+  - **Asset Management:** All assets (images, fonts, translations) must be organized in a clear and consistent directory structure within the `assets/` folder and declared in `pubspec.yaml`.
+  - **Navigation:** For complex applications, use a declarative navigation package like `go_router` with Navigator 2.0.
+      - **Detail:** A clear and well-defined navigation system simplifies deep linking, routing, and URL-based navigation, making the app more robust and easier to maintain.
+  - **Security:**
+      - **Sensitive Information:** **Never** store sensitive data (API keys, tokens, credentials) directly in the codebase. Use environment variables, secure storage solutions (e.g., `flutter_secure_storage`), or a backend service for secure access.
+  - **Performance:**
+      - **`const` Widgets:** Use `const` widgets and constructors wherever possible to optimize performance by preventing unnecessary widget rebuilds.
+      - **Profiling:** Regularly profile the application in **profile mode** using **Flutter DevTools** to identify performance bottlenecks such as UI jank and memory leaks.
+  - **Localization:**
+      - **Detail:** For applications targeting multiple languages, use the built-in `flutter_localizations` package and the `arb` file format for managing translations. This ensures a scalable and maintainable approach to localization.
+  - **Tooling:**
+      - **Context7:** Use `context7` for comprehensive information about the project's tooling, including `mise`, `flutter`, `dart`, and GitHub Actions.
+      - **AgentQL, Firecrawl, GitHub MCPs:** Utilize these Multi-Capability Platforms for advanced tasks such as data extraction, web scraping, or GitHub API interactions when necessary.
+  - **Adherence to General Rules:** The team is expected to adhere to all general rule documents, including `AI-Agent-rules.md`, `AI-Tools-rules.md`, and `Shell-Execution-rules.md`, to ensure a unified and secure development environment.
+
+  - **Sensitive Information:** **Never** store sensitive data (API keys, tokens, credentials) directly in the codebase. Use environment variables, secure storage solutions (e.g., `flutter_secure_storage`), or a backend service for secure access.
 
 -----
 
