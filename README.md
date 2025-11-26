@@ -5,9 +5,8 @@
 **A comprehensive, modular framework of rules and best practices for AI agents and development workflows**
 
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-blue?logo=github)](https://github.com/Baneeishaque/AI-Agent-Rules)
-[![License](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![Markdown](https://img.shields.io/badge/Format-Markdown-lightgrey?logo=markdown)](https://daringfireball.net/projects/markdown/)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](https://github.com/Baneeishaque/AI-Agent-Rules/pulls)
 
 *Establish trust, transparency, and consistency in AI-assisted development*
 
@@ -102,16 +101,16 @@ Follow the guidelines in:
 | Rule File | Purpose |
 |-----------|---------|
 | [`Flutter-App-rules.md`](./Flutter-App-rules.md) | Comprehensive Flutter development guidelines |
-| [`Flutter-Android-App-rules.md`](./Flutter-Android-App-rules.md) | Android-specific Flutter rules |
-| [`NestJS-React-App-rules.md`](./NestJS-React-App-rules.md) | NestJS + React application rules |
-| [`NestJS-React-App-with-Flutter-Client-rules.md`](./NestJS-React-App-with-Flutter-Client-rules.md) | Full-stack with Flutter client |
+| [`Flutter-Android-App-rules.md`](./Flutter-Android-App-rules.md) | Android-specific Flutter rules *(placeholder)* |
+| [`NestJS-React-App-rules.md`](./NestJS-React-App-rules.md) | NestJS + React application rules *(placeholder)* |
+| [`NestJS-React-App-with-Flutter-Client-rules.md`](./NestJS-React-App-with-Flutter-Client-rules.md) | Full-stack with Flutter client *(placeholder)* |
 
 ### CI/CD & DevOps
 | Rule File | Purpose |
 |-----------|---------|
 | [`CI-CD-rules.md`](./CI-CD-rules.md) | CI/CD principles, deployment strategies, notifications |
 | [`GitHub-Actions-rules.md`](./GitHub-Actions-rules.md) | Workflow structure, optimization, security |
-| [`Docker-rules.md`](./Docker-rules.md) | Container configuration guidelines |
+| [`Docker-rules.md`](./Docker-rules.md) | Container configuration guidelines *(placeholder)* |
 | [`Render-Cloud-Application-Platform-rules.md`](./Render-Cloud-Application-Platform-rules.md) | Render deployment configurations |
 
 ### Git & Repository Management
@@ -353,18 +352,24 @@ brew upgrade --greedy --verbose gh node ollama discord@ptb postman
 
 ### With VS Code
 
-Recommended extensions are pre-configured in `.vscode/extensions.json`:
+Recommended extensions are pre-configured in `.vscode/extensions.json`. Key extensions include:
 
 ```json
 {
   "recommendations": [
-    "github.copilot",
-    "github.copilot-chat",
     "eamodio.gitlens",
-    "mhutchie.git-graph"
+    "mhutchie.git-graph",
+    "github.vscode-pull-request-github",
+    "semanticdiff.semanticdiff"
+  ],
+  "onlyVscodeSupported": [
+    "github.copilot",
+    "github.copilot-chat"
   ]
 }
 ```
+
+> **Note**: See `.vscode/extensions.json` for the complete list of recommended extensions organized by platform support.
 
 ### With Custom AI Assistants
 
@@ -505,11 +510,15 @@ The repository includes pre-configured settings:
 | Metric | Count |
 |--------|-------|
 | Total Rule Files | 24 |
+| Fully Documented Rules | 17 |
+| Placeholder/Empty Rules | 4 |
 | Core Agent Rules | 4 |
 | Development Framework Rules | 4 |
 | CI/CD & DevOps Rules | 4 |
 | Repository Management Rules | 4 |
 | Other Domain Rules | 8 |
+
+> **Note**: Some rule files are placeholders awaiting documentation. Check the rule categories table for current status.
 
 ---
 
@@ -525,7 +534,7 @@ The repository includes pre-configured settings:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is open source. License information will be added soon.
 
 ---
 
