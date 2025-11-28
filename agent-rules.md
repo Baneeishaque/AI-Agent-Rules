@@ -50,6 +50,7 @@ This repository contains structured rules and guidelines for AI agents and codin
 | Agent Planning | [AI-Agent-rules.md](./AI-Agent-rules.md) | Guidelines for agent planning, including the core directive to plan before acting and a protocol for iterative plan revisions. |
 | AI Tools Output Visibility | [AI-Tools-rules.md](./AI-Tools-rules.md) | Comprehensive rules for AI tool usage, including mandates for output visibility, explicit user confirmation for file writes, and integration with agent planning and security protocols. |
 | Shell Execution | [Shell-Execution-rules.md](./Shell-Execution-rules.md) | Guidelines for shell command execution, ensuring transparency, user control, and adherence to security protocols. |
+| Mise Plugin Backend Management | [Mise-Plugin-Backend-Management-rules.md](./Mise-Plugin-Backend-Management-rules.md) | Intelligent backend selection for mise plugin installations with fallback handling and user prompts. |
 
 ## Adding New Rules
 1. Create a new markdown file named `<Domain>-rules.md`.
