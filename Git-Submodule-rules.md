@@ -39,9 +39,12 @@ When you need to add files, update rules, or modify content within a submodule:
 5.  **Update Parent Repository**:
     -   Return to the parent root: `cd ..`
     -   Stage the submodule folder: `git add <submodule-path>`
-    -   Commit the pointer update:
+    -   Commit the pointer update (describe what changed, not just that it updated):
         ```bash
-        git commit -m "chore(submodule): update <submodule-name> to latest commit"
+        git commit -m "chore(submodule): update <submodule-name> with <change-summary>
+
+        - Describe specific changes made in the submodule
+        - Follow standard commit message rules"
         ```
 
 ***
