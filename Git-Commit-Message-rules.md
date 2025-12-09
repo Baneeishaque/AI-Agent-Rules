@@ -20,6 +20,7 @@ This document outlines the strict rules for generating Git commit messages. Thes
 The first line is the most important part of the commit message.
 
 -   **Content**: A strong, concise summary of the *entire* change.
+-   **Context**: Include critical contextual information (e.g., dates for meetings, releases, or time-sensitive changes).
 -   **Length**:
     -   **Ideal**: < 50 characters.
     -   **Hard Limit**: 72 characters.
@@ -38,6 +39,7 @@ The body provides the detailed context.
 -   **Content**:
     -   Focus on **What** changed and **Why**.
     -   Summarize the impact of the changes.
+-   **No Redundancy**: Do not repeat information already stated in the title. Provide supplementary details only.
 
 ***
 
