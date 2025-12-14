@@ -70,3 +70,11 @@ It uses a new service and I also updated the interceptor.
 * `RefreshToken` service
 * Tests
 ```
+
+### 5. Submodule Sync Commits (Parent Repository)
+
+- Title must summarize the submodule update and its impact (e.g., chore(submodule): sync [submodule-name] with [key change]).
+- Body must list key changes introduced by the submodule update, based on the submodule’s commit messages.
+- Do not include only the commit SHA; always summarize the actual changes.
+- Do not repeat information from the title in the body.
+- Use bullet points for all details, wrap at 72 characters, and follow all other formatting and style rules.
