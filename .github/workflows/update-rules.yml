@@ -1,0 +1,56 @@
+name: Update Rule Indices
+
+on:
+  push:
+    paths:
+      - '*-rules.md'
+      - 'scripts/sync-rules.py'
+      - 'templates/**'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync-rules:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Run Sync Script
+        id: sync
+        run: |
+          chmod +x scripts/sync-rules.py
+          ./scripts/sync-rules.py
+        continue-on-error: true
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+
+      - name: Generate Commit Message
+        id: msg
+        env:
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: ./scripts/run_gemini_commit.bash
+
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: ${{ env.COMMIT_MSG }}
+          file_pattern: "README.md agent-rules.md"
+          skip_dirty_check: false
+          skip_fetch: true
+
+      - name: Check Script Status
+        if: steps.sync.outcome == 'failure'
+        run: |
+          echo "::error::Metadata validation failed! Please check the logs above and fix missing metadata in the rule files."
+          exit 1
