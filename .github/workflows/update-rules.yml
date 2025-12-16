@@ -18,11 +18,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Set up Python with mise
+        uses: jdx/mise-action@v3
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          version: '2025.12.9'
+          install: true
+          cache: true
+          working_directory: scripts
 
       - name: Run Sync Script
         id: sync
@@ -33,7 +35,7 @@ jobs:
 
       - name: Install Dependencies
         run: |
-          pip install -r requirements.txt
+          pip install -r scripts/requirements.txt
 
       - name: Generate Commit Message
         id: msg
