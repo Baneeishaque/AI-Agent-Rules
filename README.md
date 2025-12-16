@@ -465,6 +465,10 @@ We welcome contributions! Please follow these guidelines:
 4. Run spell check (VS Code cSpell is configured)
 5. Submit a pull request with a clear description
 
+### Repository Topics
+
+Please tag your PR/Repository with relevant topics. See [GITHUB_TOPICS.md](./GITHUB_TOPICS.md) for the complete list and guidelines.
+
 ---
 
 ## 🛠️ Development Setup

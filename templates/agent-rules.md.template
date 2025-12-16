@@ -1,61 +1,11 @@
-# AI Agent Rules
+# AI Agent Rules Index
 
-[![GitHub topics](https://img.shields.io/badge/topics-20-blue)](./GITHUB_TOPICS.md)
-[![Documentation](https://img.shields.io/badge/docs-markdown-green)](./agent-rules.md)
+This file is a comprehensive, flat index of all rule files in this repository.
 
-A comprehensive collection of AI agent rules and guidelines for various AI coding assistants including Warp Terminal, GitHub Copilot, Cursor, and Claude Code. Covers Flutter, CI/CD, DevOps, Git workflows, and development best practices.
+> **Note**: For categorized views, usage examples, and architecture details, please see the [Main README](./README.md).
 
-## About This Repository
+## Rule List
 
-This repository contains structured rules and guidelines for AI agents and coding assistants to follow. Each rule is maintained in a dedicated markdown file for modularity, scalability, and ease of maintenance.
-
-### Key Features
-
-- 🤖 **AI Agent Planning** - Core principles for agent behavior and planning
-- 🛠️ **Tool Usage Guidelines** - Rules for AI tool execution and transparency
-- 📱 **Flutter Development** - Comprehensive Flutter app development rules
-- 🚀 **CI/CD & DevOps** - GitHub Actions, deployment strategies, and automation
-- 🔐 **Security** - Permission protocols and secure execution guidelines
-- 📂 **Git & Repository Management** - Version control best practices
-
-## How to Use
-
-- **Browse:** Find the rule domain below and follow the link to its file.
-- **Add/Modify Rules:** Create or update the appropriate domain file, then update this index.
-- **Sync:** Always keep this index up-to-date when rules are added or changed.
-- **Topics:** See [GITHUB_TOPICS.md](./GITHUB_TOPICS.md) for recommended repository topics.
-
-## Rule Files
-
+| Rule Domain | File Name | Description |
+|---|---|---|
 <!-- RULES_INDEX -->
-
-## Adding New Rules
-1. Create a new markdown file named `<Domain>-rules.md`.
-2. Add your rule(s) with clear descriptions and examples.
-3. Update the table above with the new file and a short description.
-4. Commit changes with a conventional commit message.
-
-## Repository Topics
-
-This repository is tagged with topics for better discoverability. For a complete list of recommended topics and instructions on how to add them, see:
-
-📋 **[GITHUB_TOPICS.md](./GITHUB_TOPICS.md)** - Complete topic list and setup instructions
-
-### Quick Topic Categories
-
-| Category | Topics |
-|----------|--------|
-| AI/Agent | `ai-agent-rules`, `ai-rules`, `ai-coding-assistant`, `agent-guidelines` |
-| Tools | `warp-terminal`, `github-copilot`, `cursor-rules`, `claude-code` |
-| Development | `flutter`, `github-actions`, `devops`, `cicd` |
-| Practices | `best-practices`, `coding-guidelines`, `automation` |
-
-## Contributing
-
-Contributions are welcome! Please follow these steps:
-
-1. Fork the repository
-2. Create a new branch for your rule domain
-3. Add or modify rule files following the naming convention
-4. Update this index file
-5. Submit a pull request
