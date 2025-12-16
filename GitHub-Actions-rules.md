@@ -138,9 +138,22 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
     * **PR Summaries**: Set `add-job-summary-as-pr-comment: 'always'`.
 * **Artifacts**: Upload build reports (e.g., `**/build/reports/**`, `**/build/test-results/**`, `**/build/jacoco/**`).
 
+### 7. Workflow Verification & Linting 🔍
+
+*   **Static Analysis (Linting)**:
+    *   **Mandatory**: All repositories should implement **Actionlint** to catch syntax errors, missing keys, and security issues in workflow files *before* they fail at runtime.
+    *   **Tool**: Use `reviewdog/action-actionlint`.
+    *   **Configuration**: Set `fail_level: error` to ensure the build fails on issues.
+    ```yaml
+    - name: Run actionlint
+      uses: reviewdog/action-actionlint@v1
+      with:
+        fail_level: error
+    ```
+
 ---
 
-### 7. Mise Tool Management 🔧
+### 8. Mise Tool Management 🔧
 
 #### Action
 * Use `jdx/mise-action@v3` to manage tool versions via mise.
@@ -171,7 +184,7 @@ python = "3.11"
 
 ---
 
-### 8. Migration, Verification & Secrets 🕵️
+### 9. Migration, Verification & Secrets 🕵️
 
 #### Secret Management
 * **Secret Creation (Non-Interactive)**:

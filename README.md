@@ -129,6 +129,11 @@ Follow the guidelines in:
 | [`Git-Submodule-rules.md`](./Git-Submodule-rules.md) | Protocols for managing submodules, preventing detached HEAD states, proper branch tracking, and descriptive parent commit messages. |
 | [`Repository-Search-rules.md`](./Repository-Search-rules.md) | Multi-platform repository discovery and smart cloning workflows. |
 
+### GitHub Actions
+| Rule File | Purpose |
+|-----------|---------|
+| [`GitHub-Action-Creation-rules.md`](./GitHub-Action-Creation-rules.md) | Strict guidelines for creating, structuring, and publishing GitHub Composite Actions to the Marketplace. enforce "Industrial" standards. |
+
 ### Package Management
 | Rule File | Purpose |
 |-----------|---------|
