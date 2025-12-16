@@ -25,13 +25,21 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 #### Workflow File Naming
 * All GitHub Actions workflow files must be located in the `.github/workflows/` directory.
-* File names must be descriptive and end with `.yml` or `.yaml`.
+* **Naming**: File names must be descriptive (e.g., `gradle-build.yml` instead of `ci.yml`) and end with `.yml` or `.yaml`, reflecting the specific technology and purpose.
 
 #### Triggers
-* Workflows should be triggered by specific events.
-* The preferred trigger for GitHub Actions is using **Supabase Functions**.
-* The secondary preference is to use **GitHub's native webhook triggers**.
-* This approach is favored because it allows for highly specific, event-driven workflows that are not limited to standard GitHub events like `push` or `pull_request`, enabling a more flexible and powerful CI/CD system.
+* **Event-Driven Priorities**:
+    * The preferred trigger for complex, event-driven workflows is **Supabase Functions**, followed by **GitHub's native webhook triggers**. This allows for highly specific workflows not limited to standard events.
+* **Standard CI Triggers**:
+    * `push`: Trigger on main branches (e.g., `master`, `main`).
+    * `workflow_dispatch`: Always include for manual runs.
+    * **No Redundant PR Triggers**: Do NOT enable `pull_request` trigger if `push` configuration already covers PR branches/commits to avoid double execution, unless specific PR-only logic is needed.
+
+#### Permissions
+* Define explicit permissions for the `GITHUB_TOKEN` to adhere to the principle of least privilege.
+* Common requirements:
+    * `contents: write` (Required for dependency submission and git operations).
+    * `pull-requests: write` (Required for PR comments).
 
 #### Jobs and Steps
 * **Jobs**: A workflow is composed of one or more jobs. Each job runs in a separate virtual environment.
@@ -42,8 +50,14 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 ### 3. Optimization and Best Practices 🚀
 
-* **Checkout Action**: Always use `actions/checkout` with `fetch-depth: 1`. This retrieves only the latest commit, significantly reducing the amount of data to download and speeding up the workflow. Where applicable, use `sparse-checkout` to retrieve only necessary directories.
-* **Caching**: Implement caching for dependencies (e.g., `pub cache` for Flutter, `npm cache` for Node.js) to drastically reduce build times. Caches should be configured to be invalidated when the dependency manifest file changes (`pubspec.lock`, `package-lock.json`).
+* **Checkout Action**: Always use `actions/checkout` with `fetch-depth: 1` (or sufficient depth for the task). This retrieves only the latest commit, significantly reducing the amount of data to download. Where applicable, use `sparse-checkout` to retrieve only necessary directories.
+* **Caching**:
+    * Implement caching for dependencies (e.g., `pub cache` for Flutter, `npm cache` for Node.js) to drastically reduce build times. Caches should be configured to be invalidated when the dependency manifest file changes (`pubspec.lock`, `package-lock.json`).
+    * **Gradle Caching**:
+        * `cache-cleanup`: Set to `'on-success'`.
+        * `gradle-home-cache-includes`: Explicitly list `'caches,notifications,wrapper'`.
+        * **Configuration Cache**: Enable in `gradle.properties` (`org.gradle.configuration-cache=true`).
+        * **Encryption**: MUST use a GitHub Secret for `cache-encryption-key` (Input: `cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}`).
 * **Reusable Workflows**: For common tasks (e.g., building an app, running a security scan), create reusable workflows to promote the **DRY (Don't Repeat Yourself)** principle and centralize logic.
 * **Docker Builds**: When building Docker images, explicitly write the build context in your scripts, especially in GitHub Actions.
 
@@ -52,7 +66,8 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 ### 4. Security 🛡️
 
 * **Protected Branches**: All deployment branches (e.g., `main`) must be **protected**. This requires that status checks pass and that a minimum number of code reviews are completed before a merge is allowed. This prevents unvetted code from being deployed.
-* **Secrets Management**: All sensitive information, such as API keys and credentials, **must** be stored as encrypted GitHub Secrets and accessed via the `secrets` context in workflows. Do not hardcode secrets in workflow files or use environment variables in plain text.
+* **Secrets Management**:
+    * All sensitive information, such as API keys and credentials, **must** be stored as encrypted GitHub Secrets and accessed via the `secrets` context. Do not hardcode secrets in workflow files or use environment variables in plain text.
 * **Permission Scopes**: Use the principle of least privilege. Grant workflows only the necessary permissions to complete their tasks by defining the `permissions` scope at the job or workflow level.
 * **Token Rotation**: Implement a regular, automated rotation policy for all credentials and secrets.
 
@@ -63,3 +78,90 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 * **Testing**: Workflows for applications (e.g., Flutter apps) must include steps to run `flutter analyze`, `dart format --set-exit-if-changed .`, and `flutter test` on every pull request. This enforces code quality before merging.
 * **Mobile App Workflows**: For mobile apps, workflows should integrate with the `Android-App-Launch-rules.md` to automate emulator setup, testing, and deployment. Workflows for Android should also handle the fallback mechanism for `x86_64` architecture if ARM64 fails.
 * **Logging**: All build and test commands in a workflow should include verbose logging flags (e.g., `--verbose`) where applicable to ensure maximum visibility into the build process.
+
+---
+
+### 6. Java & Gradle Workflow Specifics ☕
+
+#### Runner & Environment
+* **Runner**: Use specific LTS versions (e.g., `ubuntu-24.04`) instead of `ubuntu-latest`.
+* **Java Setup (Conditional)**:
+    * **Identify Version**: Extract the required JDK version from the source Azure pipeline (e.g., `JavaToolInstaller` step).
+    * **Research Runners**: Always verify specific GitHub runner capabilities (e.g., Ubuntu 24.04) online to identify pre-installed JDKs and default `JAVA_HOME`. Do NOT rely on static or historical information.
+    * **Strategy**: Use dynamic checks for the *specific* identified version environment variable. This approach offers significant advantages by ensuring robustness against runner environment changes and pre-installed JDK path variations. It provides time profit by reducing manual maintenance (especially when Java is already pre-installed, avoiding unnecessary installation time), preventing pipeline failures due to incorrect `JAVA_HOME` settings, and accelerating debugging of Java setup issues.
+    * **Scripting**: Use **standalone Bash scripts** (must use `.bash` extension) instead of inline YAML logic for complex checks. This improves readability and testability.
+    * **Distribution**: Prefer `oracle` as the **primary choice**. Fall back to `temurin` ONLY if `oracle` does not support the required version. Always verify availability in `actions/setup-java` documentation.
+    * **Code Example**:
+    ```yaml
+    - name: Ensure Java <VERSION>
+      id: java-setup
+      run: ./.github/scripts/ensure-java.bash
+      env:
+         REQUIRED_VERSION: '<VERSION>'
+      shell: bash
+
+    - name: Install Java <VERSION>
+      if: steps.java-setup.outputs.skipped == 'false'
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'oracle' # First choice. Use 'temurin' only if Oracle misses the version.
+        java-version: '<VERSION>'
+        java-package: 'jdk'
+    ```
+    *Example `ensure-java.bash`:*
+    ```bash
+    #!/bin/bash
+    # Verify variable name online first! (e.g., JAVA_HOME_21_X64)
+    VAR_NAME="JAVA_HOME_${REQUIRED_VERSION}_X64"
+    if [ -n "${!VAR_NAME}" ]; then
+      echo "Java found at ${!VAR_NAME}. Setting JAVA_HOME."
+      echo "JAVA_HOME=${!VAR_NAME}" >> $GITHUB_ENV
+      echo "skipped=true" >> $GITHUB_OUTPUT
+    else
+      echo "Java ${REQUIRED_VERSION} not found. Will install."
+      echo "skipped=false" >> $GITHUB_OUTPUT
+    fi
+    ```
+
+#### Gradle Configuration
+* **Action**: Use `gradle/actions/setup-gradle`.
+* **Versioning**: Explicitly set `gradle-version: 'wrapper'`.
+* **Caching**: Refer to the "Optimization and Best Practices" section for detailed caching configuration (cleanup, includes, encryption).
+* **Reporting & Scans**:
+    * **Build Scans**:
+        * `build-scan-publish: true`
+        * `build-scan-terms-of-use-url: 'https://gradle.com/terms-of-service'`
+        * `build-scan-terms-of-use-agree: 'yes'`
+    * **Dependency Graph**:
+        * `dependency-graph: generate-and-submit`
+        * **Failure Handling**: Use `continue-on-error: ${{ github.event_name == 'pull_request' }}` to prevent PR blocks on submission failure.
+    * **PR Summaries**: Set `add-job-summary-as-pr-comment: 'always'`.
+* **Artifacts**: Upload build reports (e.g., `**/build/reports/**`, `**/build/test-results/**`, `**/build/jacoco/**`).
+
+---
+
+### 7. Migration, Verification & Secrets 🕵️
+
+#### Secret Management
+* **Secret Creation (Non-Interactive)**:
+    * Use `openssl` and `gh secret set` with redirection to avoid interactive prompts and history leaks.
+    ```bash
+    openssl rand -base64 16 > key.txt
+    gh secret set GRADLE_CACHE_ENCRYPTION_KEY < key.txt
+    rm key.txt
+    ```
+
+#### Verification Protocol
+* **Commit & Push Protocol**:
+    * **Commit Message**: MUST follow strict rules defined in `Git-Commit-Message-rules.md` (e.g., `ci(workflow): migrate Azure pipeline...`).
+    * **Action**: Commit and push changes *before* running verification to ensure the remote state matches the workflow being tested.
+* **Automated Monitoring**:
+    * Use `gh run list` with JSON output to dynamically grab the Run ID and `gh run watch` to monitor execution.
+    ```bash
+    # Trigger
+    gh workflow run <WORKFLOW_FILE>
+    
+    # Monitor
+    RUN_ID=$(gh run list --workflow <WORKFLOW_FILE> -L 1 --json databaseId -q '.[0].databaseId')
+    gh run watch $RUN_ID
+    ```
