@@ -140,7 +140,38 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 ---
 
-### 7. Migration, Verification & Secrets 🕵️
+### 7. Mise Tool Management 🔧
+
+#### Action
+* Use `jdx/mise-action@v3` to manage tool versions via mise.
+* **Version Pinning**: Always specify a mise version to avoid surprises (e.g., `version: '2025.12.9'`).
+* **Explicit Install**: Set `install: true` explicitly for clarity.
+
+#### Configuration
+* **Config File**: Place `mise.toml` in the appropriate folder (project root, `scripts/`, or any relevant directory).
+* **Working Directory**: Set `working_directory` to the folder containing `mise.toml`.
+* **Caching**: Enable `cache: true` for faster subsequent runs.
+
+#### Code Example
+```yaml
+- name: Set up tools with mise
+  uses: jdx/mise-action@v3
+  with:
+    version: '2025.12.9'
+    install: true
+    cache: true
+    # working_directory: scripts  # Set if mise.toml is not in project root
+```
+
+*Example `mise.toml`:*
+```toml
+[tools]
+python = "3.11"
+```
+
+---
+
+### 8. Migration, Verification & Secrets 🕵️
 
 #### Secret Management
 * **Secret Creation (Non-Interactive)**:
