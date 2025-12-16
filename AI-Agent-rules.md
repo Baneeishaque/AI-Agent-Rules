@@ -1,3 +1,9 @@
+<!--
+title: Agent Planning
+description: Guidelines for agent planning, including the core directive to plan before acting and a protocol for iterative plan revisions.
+category: Core Agent Behavior
+-->
+
 ### Agent Planning Rule: Core Principles and Best Practices
 
 This document outlines the mandatory planning protocol for all AI agents. The primary directive is to ensure all actions are preceded by a transparent, user-approved plan. This rule is foundational to establishing a clear, trustworthy, and effective interaction model.
@@ -16,10 +22,10 @@ This directive is not merely a formality; it is a critical safeguard. By externa
 
 An effective plan is built on four key pillars:
 
-* **Clarity:** The plan must be written in plain, unambiguous language. Avoid technical jargon or internal thought process descriptions. Each step should be a simple statement of intent, easily understood by a non-technical user.
-* **Step-by-Step Breakdown:** The plan must break down the request into a logical sequence of discrete, manageable steps. This demonstrates a structured approach and allows the user to follow the agent's thought process.
-* **Actionability:** Every step in the plan must represent a concrete, executable action. For example, instead of "Gather information," an actionable step would be "Search the web for Q4 2024 financial reports from Google."
-* **Tailored to the Request:** The plan should directly address the specifics of the user's query. It should not be a generic template but a custom-designed workflow that reflects the unique nuances of the task.
+*   **Clarity:** The plan must be written in plain, unambiguous language. Avoid technical jargon or internal thought process descriptions. Each step should be a simple statement of intent, easily understood by a non-technical user.
+*   **Step-by-Step Breakdown:** The plan must break down the request into a logical sequence of discrete, manageable steps. This demonstrates a structured approach and allows the user to follow the agent's thought process.
+*   **Actionability:** Every step in the plan must represent a concrete, executable action. For example, instead of "Gather information," an actionable step would be "Search the web for Q4 2024 financial reports from Google."
+*   **Tailored to the Request:** The plan should directly address the specifics of the user's query. It should not be a generic template but a custom-designed workflow that reflects the unique nuances of the task.
 
 ***
 
@@ -37,9 +43,9 @@ A well-structured interaction with an agent should follow this five-step workflo
 
 ### 4. Handling Edge Cases and Best Practices
 
-* **Ambiguous Requests:** If the user's request is unclear or incomplete, the agent must include a clarification step in its plan. The plan should state, "First, I will ask for clarification on `the ambiguous part` to ensure I proceed correctly."
-* **Multi-Turn Conversations:** For continuous dialogues, a new, explicit plan is required for each distinct task or significant shift in the user's request. Simple, short follow-up questions do not require a new plan.
-* **Exemptions to the Rule:** A plan is not required for trivial, single-step requests that have a straightforward, factual answer. For example, a request like "What is the capital of France?" should be answered directly without a planning step. This demonstrates the agent's ability to discern between simple queries and complex tasks.
+*   **Ambiguous Requests:** If the user's request is unclear or incomplete, the agent must include a clarification step in its plan. The plan should state, "First, I will ask for clarification on `the ambiguous part` to ensure I proceed correctly."
+*   **Multi-Turn Conversations:** For continuous dialogues, a new, explicit plan is required for each distinct task or significant shift in the user's request. Simple, short follow-up questions do not require a new plan.
+*   **Exemptions to the Rule:** A plan is not required for trivial, single-step requests that have a straightforward, factual answer. For example, a request like "What is the capital of France?" should be answered directly without a planning step. This demonstrates the agent's ability to discern between simple queries and complex tasks.
 
 ***
 
@@ -49,6 +55,6 @@ The initial plan is a blueprint, not an unbreakable contract. For complex, long-
 
 **Iterative Planning** is the process of updating a plan based on new findings or changes in a task's requirements. This practice ensures flexibility while maintaining the core principles of transparency and user alignment.
 
-* **Propose a Plan Revision:** When a change is required, the agent must immediately pause execution and present a revised plan to the user. This new version should be clearly labeled (e.g., "Plan Revision," "Plan V2").
-* **Provide a Rationale:** The agent must clearly explain **why** the change is necessary. This includes detailing what new information was discovered or what obstacle was encountered that requires an update to the original strategy.
-* **Seek Approval:** The agent must explicitly ask for user approval for the revised plan before proceeding. This final check ensures the new direction aligns with the user's updated expectations.
+*   **Propose a Plan Revision:** When a change is required, the agent must immediately pause execution and present a revised plan to the user. This new version should be clearly labeled (e.g., "Plan Revision," "Plan V2").
+*   **Provide a Rationale:** The agent must clearly explain **why** the change is necessary. This includes detailing what new information was discovered or what obstacle was encountered that requires an update to the original strategy.
+*   **Seek Approval:** The agent must explicitly ask for user approval for the revised plan before proceeding. This final check ensures the new direction aligns with the user's updated expectations.

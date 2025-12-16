@@ -1,3 +1,9 @@
+<!--
+title: Android App Launch
+description: Automated protocol for emulator setup and deployment, optimized for M2 machines, with architecture and device fallbacks.
+category: Android Development
+-->
+
 ### Android App Launch Protocol: Advanced Emulator Management and Deployment ⚙️
 
 This document provides a robust, automated protocol for configuring, launching, and deploying an Android application for development and testing. This process is optimized for command-line execution on Apple Silicon (M2) machines.

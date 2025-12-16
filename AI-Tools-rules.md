@@ -1,3 +1,9 @@
+<!--
+title: AI Tools Output Visibility
+description: Comprehensive rules for AI tool usage, including mandates for output visibility, explicit user confirmation for file writes, and integration with agent planning and security protocols.
+category: Core Agent Behavior
+-->
+
 # Enhanced AI Tool Usage Guidelines
 
 This document provides a comprehensive set of rules and best practices for an AI tool's use of its own internal tools, external system tools, or any other tools. The guidelines are designed to ensure transparency, security, and user control throughout every automated process.

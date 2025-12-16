@@ -1,3 +1,9 @@
+<!--
+title: GitHub Actions
+description: Rules for GitHub Actions workflows, covering trigger preferences, security, performance, and integrations.
+category: CI/CD & DevOps
+-->
+
 # Enhanced GitHub Actions Rules
 
 This document provides a comprehensive guide for an AI tool on how to implement and manage GitHub Actions workflows. It expands upon the core principles outlined in the `CI-CD-rules.md` file and serves as a foundational reference for automating development workflows, ensuring code quality, and streamlining the path from code to production.

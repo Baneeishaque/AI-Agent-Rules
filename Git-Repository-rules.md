@@ -1,4 +1,10 @@
-# Enhanced Git Repository Creation Rules
+<!--
+title: Git Repository Creation
+description: Standardized rules for creating new repositories, including naming conventions, essential file generation, and initial commit best practices.
+category: Git & Repository Management
+-->
+
+# Git Repository Creation Rules
 
 This document outlines a comprehensive set of rules and best practices for creating new Git repositories, specifically tailored for an AI tool to ensure consistency, quality, and long-term maintainability. The goal is to establish a foundational, self-documenting, and easily navigable project from its very first commit.
 

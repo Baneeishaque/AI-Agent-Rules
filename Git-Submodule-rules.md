@@ -1,3 +1,9 @@
+<!--
+title: Git Submodule Management
+description: Protocols for managing submodules, preventing detached HEAD states, proper branch tracking, and descriptive parent commit messages.
+category: Git & Repository Management
+-->
+
 # Git Submodule Management Rules
 
 This document outlines the strict protocols for managing Git submodules to prevent "detached HEAD" states, lost commits, and synchronization issues.

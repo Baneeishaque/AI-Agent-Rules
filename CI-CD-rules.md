@@ -1,3 +1,9 @@
+<!--
+title: CI/CD
+description: Principles and practices for CI/CD, including protected branches, security, observability, advanced deployment strategies, and automated rollbacks.
+category: CI/CD & DevOps
+-->
+
 # CI/CD Rules and Best Practices
 
 This document outlines the Continuous Integration and Continuous Deployment (CI/CD) rules and best practices for our projects. It serves as a comprehensive guide for automating development workflows, ensuring code quality, and streamlining the path from code commit to production.

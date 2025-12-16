@@ -1,3 +1,9 @@
+<!--
+title: Git Commit Message Generation
+description: Strict rules for generating git commit messages, enforcing Conventional Commits, contextual information in titles, and no redundancy between title and body.
+category: Git & Repository Management
+-->
+
 # Git Commit Message Generation Rules
 
 This document outlines the strict rules for generating Git commit messages. These rules ensure history is readable, automated tools can parse changes, and the intent of every change is clear.

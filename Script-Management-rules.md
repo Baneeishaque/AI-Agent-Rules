@@ -1,3 +1,9 @@
+<!--
+title: Script Management
+description: Script standards, folder usage, and safeguards for helper scripts.
+category: Tooling & Workflows
+-->
+
 # Scripts: Management, Standards, and Execution (with Write-Message Safeguard)
 
 When "script" is mentioned, default to PowerShell (.ps1) scripts unless explicitly stated otherwise (e.g., "bash script", "python script").

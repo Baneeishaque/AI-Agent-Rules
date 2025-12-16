@@ -1,3 +1,9 @@
+<!--
+title: Repository Search
+description: Multi-platform repository discovery and smart cloning workflows.
+category: Git & Repository Management
+-->
+
 # Repository Search: Multi-Platform Discovery and Smart Cloning
 
 When asked to clone repositories (without a specified provider), always follow this search order:

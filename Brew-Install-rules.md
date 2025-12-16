@@ -1,3 +1,9 @@
+<!--
+title: Brew Install Preferences
+description: Prefer head/source builds and verbose logging for Homebrew installations.
+category: Package Management
+-->
+
 # Brew: Ensure Maximum logs
 
 **Installation Instructions:**

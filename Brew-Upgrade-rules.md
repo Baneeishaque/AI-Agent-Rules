@@ -1,3 +1,9 @@
+<!--
+title: Brew Upgrade with Exclusions
+description: Upgrade all packages except specified ones with explicit command generation.
+category: Package Management
+-->
+
 # Brew Upgrade with Exclusions
 
 ## Rule: brew-upgrade-with-exclusions

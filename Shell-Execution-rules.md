@@ -1,3 +1,9 @@
+<!--
+title: Shell Execution
+description: Guidelines for shell command execution, ensuring transparency, user control, and adherence to security protocols.
+category: Core Agent Behavior
+-->
+
 ### Enhanced Shell Execution Rules
 
 This document provides a comprehensive set of guidelines for an AI agent on the safe, transparent, and effective execution of shell commands. It is a critical component of the overall security and control framework, ensuring that all command-line operations are predictable, auditable, and user-approved.

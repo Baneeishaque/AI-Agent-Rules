@@ -1,3 +1,9 @@
+<!--
+title: GitHub CLI Permission
+description: Explicit permission protocol for running `gh` commands, ensuring user control and transparency.
+category: Core Agent Behavior
+-->
+
 # Enhanced GitHub CLI Permission Rules
 
 This document outlines the mandatory protocol for an AI agent's use of the GitHub CLI (`gh`), emphasizing the need for explicit user permission before executing any command. This rule is a critical safeguard to ensure user control, prevent unintended actions, and uphold the principles of security and transparency.

@@ -1,4 +1,10 @@
-### Flutter Application Development Rules
+<!--
+title: Flutter App
+description: Rules for Flutter app development, including version pinning with `mise`, dependency management, and mandatory documentation.
+category: Development Frameworks
+-->
+
+# Flutter App Development Rules
 
 This document outlines the rules and best practices for developing Flutter applications to ensure high quality, consistency, and long-term maintainability. It serves as a foundational guide for a disciplined and collaborative development workflow, emphasizing a balance between strict reproducibility and staying current.
 

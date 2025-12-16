@@ -89,60 +89,7 @@ Follow the guidelines in:
 
 ## 📚 Rule Categories
 
-### Android Development
-| Rule File | Purpose |
-|-----------|---------|
-| [`Android-App-Launch-rules.md`](./Android-App-Launch-rules.md) | Automated protocol for emulator setup and deployment, optimized for M2 machines, with architecture and device fallbacks. |
-
-### CI/CD & DevOps
-| Rule File | Purpose |
-|-----------|---------|
-| [`CI-CD-rules.md`](./CI-CD-rules.md) | Principles and practices for CI/CD, including protected branches, security, observability, advanced deployment strategies, and automated rollbacks. |
-| [`Docker-rules.md`](./Docker-rules.md) | Guidelines for Docker containerization, best practices for Dockerfiles, and image optimization. |
-| [`GitHub-Actions-rules.md`](./GitHub-Actions-rules.md) | Rules for GitHub Actions workflows, covering trigger preferences, security, performance, and integrations. |
-| [`Render-Cloud-Application-Platform-rules.md`](./Render-Cloud-Application-Platform-rules.md) | Deployment configurations for Render, including environment variables and custom domains. |
-
-### Core Agent Behavior
-| Rule File | Purpose |
-|-----------|---------|
-| [`AI-Agent-rules.md`](./AI-Agent-rules.md) | Guidelines for agent planning, including the core directive to plan before acting and a protocol for iterative plan revisions. |
-| [`AI-Tools-rules.md`](./AI-Tools-rules.md) | Comprehensive rules for AI tool usage, including mandates for output visibility, explicit user confirmation for file writes, and integration with agent planning and security protocols. |
-| [`GitHub-CLI-Permission-rules.md`](./GitHub-CLI-Permission-rules.md) | Explicit permission protocol for running `gh` commands, ensuring user control and transparency. |
-| [`Shell-Execution-rules.md`](./Shell-Execution-rules.md) | Guidelines for shell command execution, ensuring transparency, user control, and adherence to security protocols. |
-
-### Development Frameworks
-| Rule File | Purpose |
-|-----------|---------|
-| [`Flutter-Android-App-rules.md`](./Flutter-Android-App-rules.md) | Specific guidelines for Android configurations within Flutter projects. |
-| [`Flutter-App-rules.md`](./Flutter-App-rules.md) | Rules for Flutter app development, including version pinning with `mise`, dependency management, and mandatory documentation. |
-| [`NestJS-React-App-rules.md`](./NestJS-React-App-rules.md) | Guidelines for developing NestJS backends with React frontends. |
-| [`NestJS-React-App-with-Flutter-Client-rules.md`](./NestJS-React-App-with-Flutter-Client-rules.md) | Full-stack guidelines for NestJS/React web apps with an accompanying Flutter mobile client. |
-
-### Git & Repository Management
-| Rule File | Purpose |
-|-----------|---------|
-| [`Git-Commit-Message-rules.md`](./Git-Commit-Message-rules.md) | Strict rules for generating git commit messages, enforcing Conventional Commits, contextual information in titles, and no redundancy between title and body. |
-| [`Git-Operation-rules.md`](./Git-Operation-rules.md) | Strict protocols for standard Git operations (commits & pushes), mandating explicit user requests and forbidding auto-actions. |
-| [`Git-Repo-Cloning-rules.md`](./Git-Repo-Cloning-rules.md) | CLI-based cloning protocols, supporting submodule initialization and directory management. |
-| [`Git-Repository-Indexing-rules.md`](./Git-Repository-Indexing-rules.md) | Rules for auto-indexing codebases within git repositories for improved agent context. |
-| [`Git-Repository-rules.md`](./Git-Repository-rules.md) | Standardized rules for creating new repositories, including naming conventions, essential file generation, and initial commit best practices. |
-| [`Git-Submodule-rules.md`](./Git-Submodule-rules.md) | Protocols for managing submodules, preventing detached HEAD states, proper branch tracking, and descriptive parent commit messages. |
-| [`Repository-Search-rules.md`](./Repository-Search-rules.md) | Multi-platform repository discovery and smart cloning workflows. |
-
-### Package Management
-| Rule File | Purpose |
-|-----------|---------|
-| [`Brew-Install-rules.md`](./Brew-Install-rules.md) | Prefer head/source builds and verbose logging for Homebrew installations. |
-| [`Brew-Upgrade-rules.md`](./Brew-Upgrade-rules.md) | Upgrade all packages except specified ones with explicit command generation. |
-| [`Mise-Plugin-Backend-Management-rules.md`](./Mise-Plugin-Backend-Management-rules.md) | Intelligent backend selection for mise plugin installations with fallback handling and user prompts. |
-
-### Tooling & Workflows
-| Rule File | Purpose |
-|-----------|---------|
-| [`Rule-Management-rules.md`](./Rule-Management-rules.md) | Documentation sync and update workflow, including metadata management for rule indexing. |
-| [`Script-Management-rules.md`](./Script-Management-rules.md) | Script standards, folder usage, and safeguards for helper scripts. |
-| [`Warp-rules.md`](./Warp-rules.md) | Backup and reference for Warp AI Agent specific configurations. |
-
+<!-- RULES_README -->
 
 ---
 
