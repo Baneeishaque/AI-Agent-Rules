@@ -117,6 +117,7 @@ Follow the guidelines in:
 | Rule File | Purpose |
 |-----------|---------|
 | [`Git-Repository-rules.md`](./Git-Repository-rules.md) | Repository creation standards |
+| [`Git-Operation-rules.md`](./Git-Operation-rules.md) | Standard Git interaction and permission rules |
 | [`Git-Repo-Cloning-rules.md`](./Git-Repo-Cloning-rules.md) | CLI-based cloning with submodule support |
 | [`Git-Repository-Indexing-rules.md`](./Git-Repository-Indexing-rules.md) | Automatic codebase indexing |
 | [`Repository-Search-rules.md`](./Repository-Search-rules.md) | Multi-platform repository discovery |
