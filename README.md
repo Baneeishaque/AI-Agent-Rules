@@ -137,6 +137,7 @@ Follow the guidelines in:
 ### Package Management
 | Rule File | Purpose |
 |-----------|---------|
+| [`Brew-Common-rules.md`](./Brew-Common-rules.md) | Common Homebrew rules and settings shared across install/upgrade operations. |
 | [`Brew-Install-rules.md`](./Brew-Install-rules.md) | Prefer head/source builds and verbose logging for Homebrew installations. |
 | [`Brew-Upgrade-rules.md`](./Brew-Upgrade-rules.md) | Upgrade all packages except specified ones with explicit command generation. |
 | [`Mise-Plugin-Backend-Management-rules.md`](./Mise-Plugin-Backend-Management-rules.md) | Intelligent backend selection for mise plugin installations with fallback handling and user prompts. |

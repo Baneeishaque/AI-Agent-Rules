@@ -13,6 +13,7 @@ This file is a comprehensive, flat index of all rule files in this repository.
 | AI Tools Output Visibility | [AI-Tools-rules.md](./AI-Tools-rules.md) | Comprehensive rules for AI tool usage, including mandates for output visibility, explicit user confirmation for file writes, and integration with agent planning and security protocols. |
 | Agent Planning | [AI-Agent-rules.md](./AI-Agent-rules.md) | Guidelines for agent planning, including the core directive to plan before acting and a protocol for iterative plan revisions. |
 | Android App Launch | [Android-App-Launch-rules.md](./Android-App-Launch-rules.md) | Automated protocol for emulator setup and deployment, optimized for M2 machines, with architecture and device fallbacks. |
+| Brew Common Rules | [Brew-Common-rules.md](./Brew-Common-rules.md) | Common Homebrew rules and settings shared across install/upgrade operations. |
 | Brew Install Preferences | [Brew-Install-rules.md](./Brew-Install-rules.md) | Prefer head/source builds and verbose logging for Homebrew installations. |
 | Brew Upgrade with Exclusions | [Brew-Upgrade-rules.md](./Brew-Upgrade-rules.md) | Upgrade all packages except specified ones with explicit command generation. |
 | CI/CD | [CI-CD-rules.md](./CI-CD-rules.md) | Principles and practices for CI/CD, including protected branches, security, observability, advanced deployment strategies, and automated rollbacks. |
