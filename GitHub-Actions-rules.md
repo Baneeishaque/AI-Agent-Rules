@@ -18,6 +18,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 * **Reproducibility**: Workflows should be deterministic, meaning they produce the same result every time they are run with the same input.
 * **Security**: Workflows must be designed with security in mind, leveraging best practices for handling secrets and permissions.
 * **Performance**: Workflows should be optimized for speed and efficiency to minimize feedback loops and resource consumption.
+* **Verbosity by Default**: All execution commands in workflows **MUST** include verbose flags (e.g., `--verbose`, `-v`, or `--info` for Gradle) to facilitate debugging and ensure maximum transparency. AI Agents **MUST** also use these flags during local verification *before* applying changes to the codebase.
 
 ---
 
@@ -77,7 +78,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 * **Testing**: Workflows for applications (e.g., Flutter apps) must include steps to run `flutter analyze`, `dart format --set-exit-if-changed .`, and `flutter test` on every pull request. This enforces code quality before merging.
 * **Mobile App Workflows**: For mobile apps, workflows should integrate with the `Android-App-Launch-rules.md` to automate emulator setup, testing, and deployment. Workflows for Android should also handle the fallback mechanism for `x86_64` architecture if ARM64 fails.
-* **Logging**: All build and test commands in a workflow should include verbose logging flags (e.g., `--verbose`) where applicable to ensure maximum visibility into the build process.
+* **Logging**: All build and test commands in a workflow **MUST** include verbose logging flags (e.g., `--verbose`, `-v`, or `--info` for Gradle) where applicable to ensure maximum visibility into the build process and facilitate debugging.
 
 ---
 
@@ -222,13 +223,16 @@ For standard application repositories (not standalone Action repos), follow thes
 
 #### 10.2 Industrial Linting
 * **Always** include a `lint` job.
-* **ShellCheck**: Required for all Bash scripts in `.github/scripts/`.
+* **ShellCheck**: **Mandatory** for all Bash scripts (e.g., in `.github/scripts/`). All scripts must pass ShellCheck without errors.
 * **Actionlint**: Required for workflow syntax, set to `fail_level: error`.
 * **Dependencies**: The primary `build` or `deploy` job MUST `need` the `lint` job to ensure quality before execution.
 
 #### 10.3 Version Pinning
-* **Mandatory**: All GitHub Actions (`uses: ...`) MUST be pinned to a specific version or tag (e.g., `@v2`, `@v4.1.0`) instead of `@master` or `@main`. This prevents unexpected pipeline breakages when an action is updated.
-* **Example**: `uses: actions/checkout@v4` instead of `uses: actions/checkout@main`.
+* **Mandatory Semantic Versioning**: All GitHub Actions (`uses: ...`) **MUST** be pinned to a specific, full semantic version (e.g., `@2.0.0`, `@v4.1.7`).
+* **Marketplace Discovery**: Before using any action, the AI Agent **MUST** visit the GitHub Marketplace to identify the absolute latest stable version/tag.
+* **Prohibited Tags**: Do **NOT** use mutable tags such as `@v2`, `@master`, or `@main`. This prevents unexpected breaks.
+* **Version Format**: Be aware that some actions (e.g., `ludeeus/action-shellcheck`) use semantic versions **without** the `v` prefix. Always verify the correct tag format on the Marketplace.
+* **Example**: `uses: actions/checkout@v4.1.7` (latest semantic) instead of `@v4`.
 
 #### 10.4 Configuration Example
 ```yaml
@@ -238,7 +242,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@v2
+        uses: ludeeus/action-shellcheck@2.0.0
         with:
           scandir: './.github/scripts'
       - name: Run actionlint

@@ -19,7 +19,8 @@ This document outlines the **Mandatory Standard Operating Procedure (SOP)** for 
     -   *Constraint*: Must strictly follow **kebab-case** as per `Git-Repository-rules`.
 -   **Action Name**: Kebab-case, concise (e.g., `my-tool-setup`).
     -   *Location*: `action.yml` -> `name:`.
--   **Usage**: `uses: <owner>/<repo-name>@<version>`
+-   **Usage**: `uses: <owner>/<repo-name>@<full-semantic-version>` (e.g., `@2.0.0`, `@v1.0.0`).
+-   **Discovery**: Always check the Marketplace for the latest stable version before implementation.
 
 ---
 
@@ -94,7 +95,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@master
+        uses: ludeeus/action-shellcheck@2.0.0
         with:
           scandir: './src'
       - name: Run actionlint
@@ -157,3 +158,4 @@ Follow this sequence strictly.
 ### 6. Maintenance
 -   **Refactoring**: If moving files, ensure `action.yml` paths are updated.
 -   **Versioning**: Use Semantic Versioning (`v1.0.0`, `v1.1.0`).
+-   **Marketplace Hygiene**: Regularly verify that the latest version recommended in the "Use latest version" popup on the Marketplace matches your implementation.
