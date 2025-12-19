@@ -6,6 +6,9 @@ category: GitHub Actions
 
 # GitHub Action Creation Rules
 
+> [!IMPORTANT]
+> These rules apply **ONLY** to repositories dedicated to creating and publishing **GitHub Actions** (Composite, Docker, or JavaScript actions) to the Marketplace. Standard application repositories using GitHub Actions workflows should follow `GitHub-Actions-rules.md`.
+
 This document outlines the **Mandatory Standard Operating Procedure (SOP)** for creating new GitHub Actions. All Actions created by the AI Agent must follow this structure to ensure maintainability, extensibility, and Marketplace compatibility.
 
 ---

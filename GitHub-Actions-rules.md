@@ -209,3 +209,45 @@ python = "3.11"
     RUN_ID=$(gh run list --workflow <WORKFLOW_FILE> -L 1 --json databaseId -q '.[0].databaseId')
     gh run watch $RUN_ID
     ```
+
+---
+
+### 10. Platinum Standards for Application Workflows 💎
+
+For standard application repositories (not standalone Action repos), follow these "Platinum" practices:
+
+#### 10.1 Folder Structure
+* **Workflows**: `.github/workflows/*.yml`
+* **Scripts**: `.github/scripts/*.bash` (Keep scripts associated with workflows inside the `.github` directory to clearly separate CI logic from application code).
+
+#### 10.2 Industrial Linting
+* **Always** include a `lint` job.
+* **ShellCheck**: Required for all Bash scripts in `.github/scripts/`.
+* **Actionlint**: Required for workflow syntax, set to `fail_level: error`.
+* **Dependencies**: The primary `build` or `deploy` job MUST `need` the `lint` job to ensure quality before execution.
+
+#### 10.3 Version Pinning
+* **Mandatory**: All GitHub Actions (`uses: ...`) MUST be pinned to a specific version or tag (e.g., `@v2`, `@v4.1.0`) instead of `@master` or `@main`. This prevents unexpected pipeline breakages when an action is updated.
+* **Example**: `uses: actions/checkout@v4` instead of `uses: actions/checkout@main`.
+
+#### 10.4 Configuration Example
+```yaml
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run ShellCheck
+        uses: ludeeus/action-shellcheck@v2
+        with:
+          scandir: './.github/scripts'
+      - name: Run actionlint
+        uses: reviewdog/action-actionlint@v1
+        with:
+          fail_level: error
+
+  build:
+    needs: lint
+    runs-on: ubuntu-latest
+    # ...
+```
