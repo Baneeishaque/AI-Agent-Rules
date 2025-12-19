@@ -197,6 +197,10 @@ python = "3.11"
     ```
 
 #### Verification Protocol
+* **Secret Identification & Verification**:
+    * Before triggering a workflow for verification, scan the YAML for all `${{ secrets.<NAME> }}` references.
+    * Verify that **all** identified secrets (e.g., `SERVER_API_ADDRESS`, `GRADLE_CACHE_ENCRYPTION_KEY`) are correctly configured in the target repository. Do not assume any secret is pre-existing unless verified.
+    * For new or missing secrets, follow the "Secret Creation (Non-Interactive)" protocol.
 * **Commit & Push Protocol**:
     * **Commit Message**: MUST follow strict rules defined in `Git-Commit-Message-rules.md` (e.g., `ci(workflow): migrate Azure pipeline...`).
     * **Action**: Commit and push changes *before* running verification to ensure the remote state matches the workflow being tested.
