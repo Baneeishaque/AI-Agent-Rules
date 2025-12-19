@@ -6,6 +6,10 @@ category: Package Management
 
 # Brew Upgrade with Exclusions
 
+> **Prerequisite:** Follow [Brew-Common-rules.md](./Brew-Common-rules.md) for sequential download and verbose logging requirements.
+
+---
+
 ## Rule: brew-upgrade-with-exclusions
 
 When user says to upgrade brew packages except/excluding specific package(s), follow this workflow:

@@ -6,6 +6,10 @@ category: Package Management
 
 # Brew: Ensure Maximum logs
 
+> **Prerequisite:** Follow [Brew-Common-rules.md](./Brew-Common-rules.md) for sequential download and verbose logging requirements.
+
+---
+
 **Installation Instructions:**
 1. Always use verbose logging: --verbose flag
 
