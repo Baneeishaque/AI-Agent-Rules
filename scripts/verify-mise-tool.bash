@@ -36,7 +36,7 @@ if [ -z "$EXPECTED_VERSION" ]; then
 fi
 
 # Verify tool is available via mise
-TOOL_PATH=$(mise which "$TOOL_NAME" 2>/dev/null) || {
+TOOL_PATH=$(MISE_CONFIG_FILE="$MISE_TOML" mise which "$TOOL_NAME" 2>/dev/null) || {
   echo "::error::mise cannot find $TOOL_NAME. Run 'mise install' first."
   exit 1
 }
@@ -51,7 +51,7 @@ fi
 echo "✓ mise $TOOL_NAME verified: $TOOL_PATH (expected version $EXPECTED_VERSION)"
 
 # Verify version matches expected
-ACTUAL_VERSION=$(mise exec -- $VERSION_COMMAND 2>&1 | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -1 || echo "unknown")
+ACTUAL_VERSION=$(MISE_CONFIG_FILE="$MISE_TOML" mise exec -- $VERSION_COMMAND 2>&1 | grep -oE '[0-9]+\.[0-9]+(\.[0-9]+)?' | head -1 || echo "unknown")
 
 if [[ ! "$ACTUAL_VERSION" == "$EXPECTED_VERSION"* ]]; then
   echo "::error::$TOOL_NAME version mismatch. Expected $EXPECTED_VERSION.x, got $ACTUAL_VERSION"

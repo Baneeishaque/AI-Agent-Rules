@@ -40,17 +40,17 @@ jobs:
         id: sync
         run: |
           chmod +x scripts/sync-rules.py
-          mise exec -- ./scripts/sync-rules.py
+          MISE_CONFIG_FILE=scripts/mise.toml mise exec -- ./scripts/sync-rules.py
         continue-on-error: true
 
       - name: Install Dependencies
-        run: mise exec -- pip install -r scripts/requirements.txt
+        run: MISE_CONFIG_FILE=scripts/mise.toml mise exec -- pip install -r scripts/requirements.txt
 
       - name: Generate Commit Message
         id: msg
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
-        run: ./scripts/run_gemini_commit.bash "mise exec -- python"
+        run: ./scripts/run_gemini_commit.bash "MISE_CONFIG_FILE=scripts/mise.toml mise exec -- python"
 
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
