@@ -166,25 +166,33 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 * **Working Directory Context**:
     * The `working_directory` input in `jdx/mise-action` only applies to the **installation phase** of that specific action.
     * It does **NOT** configure `mise` globally for subsequent steps in the same job.
-* **Environment Variable Prefix**:
-    * To use a non-root `mise.toml` in subsequent steps without changing the working directory, always prefix the command with `MISE_CONFIG_FILE=<path/to/mise.toml>`.
-    * **Example**: `MISE_CONFIG_FILE=scripts/mise.toml mise exec -- <command>`
+* **Environment Variable Block**:
+    * To use a non-root `mise.toml` in subsequent steps without changing the working directory, set `MISE_CONFIG_FILE: <path/to/mise.toml>` in the `env:` block (at the job or step level).
+    * **Example**: See "Code Example" below for correct placement in `env:`.
     * This approach is preferred over using the `-C` or `--cd` flag of `mise exec` if the command being executed relies on the repository root context (e.g., finding project templates, metadata, or other rule files).
+    * **Caution**: Avoid inline prefixes (e.g., `VAR=val cmd`) when the command is passed as a string variable in scripts, as bash may not interpret them correctly.
 * **Caching**: Enable `cache: true` for faster subsequent runs.
 
 #### Code Example
 ```yaml
-- name: Set up tools with mise
-  id: mise
-  uses: jdx/mise-action@v3
-  with:
-    version: '2025.12.9'
-    install: true
-    cache: true
-    working_directory: scripts  # Context for installation
+jobs:
+  update-rules:
+    runs-on: ubuntu-latest
+    env:
+      MISE_CONFIG_FILE: scripts/mise.toml
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up tools with mise
+        id: mise
+        uses: jdx/mise-action@v3
+        with:
+          version: '2025.12.9'
+          install: true
+          cache: true
+          working_directory: scripts  # Context for installation
 
-- name: Run script with mise
-  run: MISE_CONFIG_FILE=scripts/mise.toml mise exec -- ./scripts/my-script.py
+      - name: Run script with mise
+        run: mise exec -- ./scripts/my-script.py
 ```
 
 *Example `mise.toml`:*
