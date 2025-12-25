@@ -37,3 +37,30 @@ The workflow `.github/workflows/update-rules.yml` was updated to:
 
 -   `.github/workflows/update-rules.yml`
 -   `scripts/check_changes.bash`
+
+# Workflow Optimization: Reusable Mise Setup Action
+
+## Overview
+
+We replaced manual setup and verification steps in the workflow with a reusable composite action to improve maintainability and standardization.
+
+## Implementation
+
+We integrated the **[Mise Setup & Verification Action](https://github.com/marketplace/actions/mise-setup-verification)** (`Baneeishaque/mise-setup-verification-action`).
+
+### Changes
+- **Replaced**: The separate `jdx/mise-action` step and the custom `scripts/verify-mise-tool.bash` script execution.
+- **Added**: A single step using the composite action:
+    ```yaml
+    - uses: Baneeishaque/mise-setup-verification-action@67c12294802151e1411df79ca0b699cf7b8bc13a
+      with:
+        mise_version: '2025.12.9'
+        working_directory: 'scripts'
+        tool_name: 'python'
+        version_command: 'python -V'
+    ```
+
+### Key Decisions
+1.  **Pinned Commit**: We pinned the action to commit `67c12294802151e1411df79ca0b699cf7b8bc13a` to ensure stability and prevent unexpected changes from upstream main.
+2.  **Script Comparison**: We verified that the action's internal `verify.sh` performs equivalent (and slightly more robust) checks compared to our local `verify-mise-tool.bash`.
+3.  **Preservation**: We kept the local `scripts/verify-mise-tool.bash` for reference/manual usage, even though the workflow no longer uses it.
