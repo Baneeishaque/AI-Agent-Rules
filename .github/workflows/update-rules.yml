@@ -45,17 +45,26 @@ jobs:
           mise exec -- ./scripts/sync-rules.py
         continue-on-error: true
 
+      - name: Check for Changes
+        id: check_changes
+        run: |
+          chmod +x scripts/check_changes.bash
+          ./scripts/check_changes.bash
+
       - name: Install Dependencies
+        if: steps.check_changes.outputs.has_changes == 'true'
         run: mise exec -- pip install -r scripts/requirements.txt
 
       - name: Generate Commit Message
         id: msg
+        if: steps.check_changes.outputs.has_changes == 'true'
         env:
           GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
         run: ./scripts/run_gemini_commit.bash "mise exec -- python"
 
       - name: Commit and Push Changes
         uses: stefanzweifel/git-auto-commit-action@v5
+        if: steps.check_changes.outputs.has_changes == 'true'
         with:
           commit_message: ${{ env.COMMIT_MSG }}
           file_pattern: "README.md agent-rules.md"
