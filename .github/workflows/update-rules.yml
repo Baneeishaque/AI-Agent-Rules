@@ -24,19 +24,15 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Python with mise
+      - name: Set up and Verify Mise
         id: mise
-        uses: jdx/mise-action@v3
+        uses: Baneeishaque/mise-setup-verification-action@9cb335bf029411f216320ecb8e6f6d038c5d444f
         with:
-          version: '2025.12.9'
-          install: true
-          cache: true
-          working_directory: scripts
-        continue-on-error: true
-
-      - name: Verify mise installation
-        run: ./scripts/verify-mise-tool.bash "${{ steps.mise.outcome }}" "scripts/mise.toml" "python" "python -V"
-        shell: bash
+          mise_version: '2025.12.9'
+          working_directory: 'scripts'
+          tool_name: 'python'
+          version_command: 'python -V'
+          mise_file: 'mise.toml'
 
       - name: Run Sync Script
         id: sync
