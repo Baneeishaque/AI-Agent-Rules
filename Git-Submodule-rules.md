@@ -13,9 +13,9 @@ This document outlines the strict protocols for managing Git submodules to preve
 ### 1. Core Principle: Branch Tracking
 
 -   **Never Commit to Detached HEAD**: Submodules often check out a specific commit SHA by default, placing them in a "detached HEAD" state.
--   **Mandatory Checkout**: Before making ANY changes to a submodule, you MUST explicitly check out a branch (usually `main` or `master`).
-    -   Command: `cd <submodule-dir> && git checkout main`
--   **Verification**: Run `git status` inside the submodule to confirm you are "On branch main" before creating files or committing.
+-   **Mandatory Checkout**: Before making ANY changes to a submodule, you MUST explicitly check out a branch (usually `master` or `main`).
+    -   Command: `cd <submodule-dir> && git checkout <branch-name>`
+-   **Verification**: Run `git branch --show-current` inside the submodule to confirm you are on a branch before creating files or committing.
 
 ***
 
@@ -26,11 +26,12 @@ When you need to add files, update rules, or modify content within a submodule:
 1.  **Enter & Checkout**:
     ```bash
     cd <submodule-path>
-    git checkout main  # or master
-    git pull origin main # Ensure you are up to date
+    git checkout <default-branch> # master or main
+    git pull origin <default-branch> # Ensure you are up to date
     ```
 
-2.  **Make Changes**: Create or edit files as needed.
+2.  **Arranged Commit Construction**:
+    - Follow the [Git-Atomic-Commit-Construction-rules.md](./Git-Atomic-Commit-Construction-rules.md) to group and stage related changes logically.
 
 3.  **Commit in Submodule**:
     ```bash
@@ -40,7 +41,7 @@ When you need to add files, update rules, or modify content within a submodule:
 
 4.  **Push Submodule (Optional but Recommended)**:
     -   If you have write access, push the submodule changes immediately to avoid them existing only locally.
-    -   `git push origin main`
+    -   `git push origin <branch-name>`
 
 5.  **Update Parent Repository**:
     -   Return to the parent root: `cd ..`
@@ -60,7 +61,7 @@ When you need to add files, update rules, or modify content within a submodule:
 If you accidentally commit to a detached HEAD:
 
 1.  **Identify the Commit**: Run `git log -1` or `git reflog` to get the SHA of your new commit.
-2.  **Checkout Branch**: `git checkout main`
+2.  **Checkout Branch**: `git checkout <branch-name>` (master or main)
 3.  **Cherry-Pick**: `git cherry-pick <commit-sha>`
 4.  **Push & Sync**: Push the branch and update the parent repository as described above.
 
