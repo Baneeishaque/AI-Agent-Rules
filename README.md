@@ -110,6 +110,7 @@ Follow the guidelines in:
 ### Core Agent Behavior
 | Rule File | Purpose |
 |-----------|---------|
+| [`AI-Agent-Session-Documentation-rules.md`](./AI-Agent-Session-Documentation-rules.md) | Protocol for documenting AI agent sessions or conversations as Markdown, including file attachment references, structured data, and traceability. |
 | [`AI-Agent-rules.md`](./AI-Agent-rules.md) | Guidelines for agent planning, including the core directive to plan before acting and a protocol for iterative plan revisions. |
 | [`AI-Tools-rules.md`](./AI-Tools-rules.md) | Comprehensive rules for AI tool usage, including mandates for output visibility, explicit user confirmation for file writes, and integration with agent planning and security protocols. |
 | [`GitHub-CLI-Permission-rules.md`](./GitHub-CLI-Permission-rules.md) | Explicit permission protocol for running `gh` commands, ensuring user control and transparency. |
@@ -132,6 +133,7 @@ Follow the guidelines in:
 | [`Git-Repository-Indexing-rules.md`](./Git-Repository-Indexing-rules.md) | Rules for auto-indexing codebases within git repositories for improved agent context. |
 | [`Git-Repository-rules.md`](./Git-Repository-rules.md) | Standardized rules for creating new repositories, including naming conventions, essential file generation, and initial commit best practices. |
 | [`Git-Submodule-rules.md`](./Git-Submodule-rules.md) | Protocols for managing submodules, preventing detached HEAD states, proper branch tracking, and descriptive parent commit messages. |
+| [`GitHub-Repository-Metadata-Management-rules.md`](./GitHub-Repository-Metadata-Management-rules.md) | Ultra-Lean Industrial protocols for Metadata-as-Code (MaC), using README.md as the absolute Single Source of Truth with visible markers for automation. |
 | [`Repository-Search-rules.md`](./Repository-Search-rules.md) | Multi-platform repository discovery and smart cloning workflows. |
 
 ### GitHub Actions

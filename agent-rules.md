@@ -10,6 +10,7 @@ This file is a comprehensive, flat index of all rule files in this repository.
 |---|---|---|
 | Rule Domain | File Name | Description |
 |---|---|---|
+| AI Agent Session Documentation | [AI-Agent-Session-Documentation-rules.md](./AI-Agent-Session-Documentation-rules.md) | Protocol for documenting AI agent sessions or conversations as Markdown, including file attachment references, structured data, and traceability. |
 | AI Tools Output Visibility | [AI-Tools-rules.md](./AI-Tools-rules.md) | Comprehensive rules for AI tool usage, including mandates for output visibility, explicit user confirmation for file writes, and integration with agent planning and security protocols. |
 | Agent Planning | [AI-Agent-rules.md](./AI-Agent-rules.md) | Guidelines for agent planning, including the core directive to plan before acting and a protocol for iterative plan revisions. |
 | Android App Launch | [Android-App-Launch-rules.md](./Android-App-Launch-rules.md) | Automated protocol for emulator setup and deployment, optimized for M2 machines, with architecture and device fallbacks. |
@@ -29,6 +30,7 @@ This file is a comprehensive, flat index of all rule files in this repository.
 | GitHub Action Creation Rules | [GitHub-Action-Creation-rules.md](./GitHub-Action-Creation-rules.md) | Strict guidelines for creating, structuring, and publishing GitHub Composite Actions to the Marketplace. enforce "Industrial" standards. |
 | GitHub Actions | [GitHub-Actions-rules.md](./GitHub-Actions-rules.md) | Rules for GitHub Actions workflows, covering trigger preferences, security, performance, and integrations. |
 | GitHub CLI Permission | [GitHub-CLI-Permission-rules.md](./GitHub-CLI-Permission-rules.md) | Explicit permission protocol for running `gh` commands, ensuring user control and transparency. |
+| GitHub Repository Metadata Management | [GitHub-Repository-Metadata-Management-rules.md](./GitHub-Repository-Metadata-Management-rules.md) | Ultra-Lean Industrial protocols for Metadata-as-Code (MaC), using README.md as the absolute Single Source of Truth with visible markers for automation. |
 | Mise Plugin Backend Management | [Mise-Plugin-Backend-Management-rules.md](./Mise-Plugin-Backend-Management-rules.md) | Intelligent backend selection for mise plugin installations with fallback handling and user prompts. |
 | NestJS React App | [NestJS-React-App-rules.md](./NestJS-React-App-rules.md) | Guidelines for developing NestJS backends with React frontends. |
 | NestJS React App with Flutter Client | [NestJS-React-App-with-Flutter-Client-rules.md](./NestJS-React-App-with-Flutter-Client-rules.md) | Full-stack guidelines for NestJS/React web apps with an accompanying Flutter mobile client. |
