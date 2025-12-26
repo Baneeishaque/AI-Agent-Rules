@@ -6,6 +6,14 @@ category: Git & Repository Management
 
 # Git Commit Message Generation Rules
 
+## 0. Operational Protocol for Change Detection and Commit Scope
+
+- Always use git commands to detect unstaged and staged changes in the folder or repository specified by the user.
+- When asked to commit staged files, only consider files that are staged (use git diff --cached or git status --short).
+- Always respect the folder, repository, or submodule specified by the user. If not specified, use the workspace root or known repositories.
+- If the folder is a submodule, follow all submodule commit and branch management rules (see Git-Submodule-rules.md).
+- Do not manually scan or assume file changes; always rely on git for authoritative status.
+
 This document outlines the strict rules for generating Git commit messages. These rules ensure history is readable, automated tools can parse changes, and the intent of every change is clear.
 
 ***
