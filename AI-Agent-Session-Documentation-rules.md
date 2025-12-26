@@ -4,36 +4,43 @@ description: Protocol for documenting AI agent sessions or conversations as Mark
 category: Core Agent Behavior
 -->
 
-# AI Agent Session Documentation Rules
+
+# AI Agent Session Documentation Rules (Sensitive Data & Relevance)
 
 ## 1. Core Principle
 
 All significant AI agent sessions or conversations must be documented in Markdown, with clear references to any files or artifacts involved. This ensures traceability, reproducibility, and context for future reviews or audits.
 
-## 2. Documentation Protocol
+**Sensitive Data & Relevance Principle:**
+Regardless of whether the document is public or private, do not include any unrelated documents, data, or session-irrelevant information. All sensitive data must be redacted or replaced with placeholders (e.g., `[REDACTED]`, `[PLACEHOLDER]`).
+
+
+## 2. Documentation Protocol (Sensitive Data & Relevance)
 
 - **Session Log Location:** Store session logs in a dedicated folder (e.g., `docs/conversations/`).
 - **File Naming:** Use a timestamped, descriptive filename (e.g., `2025-12-27-session-topic.md`).
 - **Session Metadata:** Begin each log with metadata including date, topic/objective, and participants (if relevant).
 - **Conversation Order:** Document the session in strict chronological order, alternating user questions and agent responses. Each entry should be clearly marked as a user or agent message.
-- **Attachment References:** For every file referenced or attached, include the full path and a brief description in a dedicated section.
-- **Structured Data:** Where possible, include structured data (tables, code blocks, configuration blocks, etc.) to summarize key points, requirements, or outcomes.
-- **Cross-References:** Link to related rule files, previous sessions, or relevant documentation for context.
-- **Execution Confirmation:** Clearly log any commands run, their output, and the working directory.
-- **Change Tracking:** If the session results in file changes, document the before/after state, the rationale, and the method used (e.g., `git mv`, two-step rename).
-- **Rule References:** Explicitly list any rules or protocols referenced or followed during the session.
-- **Summary Table:** At the end, provide a summary table of requirements, actions, and references.
+- **Attachment References:** For every file referenced or attached, include the full path and a brief description in a dedicated section. Do not include attachments or references that are not directly relevant to the session.
+- **Structured Data:** Where possible, include structured data (tables, code blocks, configuration blocks, etc.) to summarize key points, requirements, or outcomes. Do not include unrelated or session-irrelevant data.
+- **Cross-References:** Link only to related rule files, previous sessions, or relevant documentation that is directly relevant to the session.
+- **Execution Confirmation:** Clearly log any commands run, their output, and the working directory, but only if directly relevant to the session objective. Omit unrelated execution details.
+- **Change Tracking:** If the session results in file changes, document the before/after state, the rationale, and the method used (e.g., `git mv`, two-step rename), but only for session-relevant changes.
+- **Rule References:** Explicitly list only the rules or protocols referenced or followed during the session.
+- **Summary Table:** At the end, provide a summary table of requirements, actions, and references, but only for session-relevant items.
 
-## 3. Advanced Best Practices (from deep analysis)
+## 3. Advanced Best Practices (Sensitive Data & Relevance)
 
 - **Explicit Sectioning:** Use clear section headers for each major phase: Request, Analysis, Planning, Execution, Confirmation, and Summary.
-- **Problem & Resolution:** If an issue arises (e.g., platform-specific behavior, workflow failure), document the problem, analysis, and the resolution strategy.
-- **Implementation Plan:** For technical changes, include a step-by-step plan and note user approval before execution.
-- **Artifacts:** List all artifacts produced (e.g., scripts, logs, output files) with their paths.
-- **Rule Compliance:** Note compliance with agent planning, tool usage, and commit message rules.
-- **Session Continuity:** If a session is continued or referenced in a later session, link both ways for continuity.
+- **Sensitive Data Review:** Before finalizing, review the document for any sensitive or unrelated data and redact or remove as needed.
+- **Session Relevance:** Exclude unrelated execution logs, attachments, references, or next steps. Only include information directly relevant to the session’s topic and actions.
+- **Problem & Resolution:** If an issue arises (e.g., platform-specific behavior, workflow failure), document the problem, analysis, and the resolution strategy, but only if relevant to the session.
+- **Implementation Plan:** For technical changes, include a step-by-step plan and note user approval before execution, but only if relevant.
+- **Artifacts:** List only artifacts produced that are relevant and non-sensitive.
+- **Rule Compliance:** Note compliance only with rules actually applied in the session.
+- **Session Continuity:** Link sessions only if directly relevant.
 
-## 4. Example Structure
+## 4. Example Structure (Sensitive Data & Relevance)
 
 ```markdown
 # Conversation Log: <Session Topic>
@@ -44,26 +51,25 @@ All significant AI agent sessions or conversations must be documented in Markdow
 ---
 
 ## 1. Request
-> <User's question or request>
+> <User's question or request, with sensitive info replaced by [REDACTED] if needed>
 
 ### Agent Response
-<Agent's answer, including any actions taken or recommendations.>
+<Agent's answer, including any actions taken or recommendations, with sensitive info redacted.>
 
 ---
 
 ## 2. Analysis & Planning
-<Agent's analysis, plan, and any user approvals.>
+<Agent's analysis, plan, and any user approvals, with only session-relevant, non-sensitive content.>
 
 ---
 
 ## 3. Execution
-- Command(s) run, with working directory and exit code.
-- File(s) changed, with before/after state if relevant.
+- [Summary of actions taken, omitting unrelated or sensitive details.]
 
 ---
 
 ## 4. Confirmation & Outcome
-- User confirmation, agent summary, and any follow-up actions.
+- [Session-relevant summary and follow-up actions.]
 
 ---
 
@@ -71,10 +77,9 @@ All significant AI agent sessions or conversations must be documented in Markdow
 
 | File/Artifact | Path | Description |
 |---------------|------|-------------|
-| ...           | ...  | ...         |
+| [REDACTED]    | [REDACTED] | [REDACTED] |
 
 - Related Rule: [AI-Agent-rules.md](../AI-Agent-rules.md)
-- Related Session: [2025-12-16-file-renaming-task.md](./2025-12-16-file-renaming-task.md)
 
 ---
 
@@ -86,16 +91,10 @@ All significant AI agent sessions or conversations must be documented in Markdow
 |-------------|----------------|-----------|
 | ...         | ...            | ...       |
 
-### Example Code Block
-
-```sh
-pdftohtml -xml input.pdf output.xml
-```
-
 ---
 
 ## 7. Summary
-<Concise summary of the session, outcomes, and next steps.>
+<Concise, session-relevant summary. Sensitive or unrelated next steps omitted.>
 ```
 
 ---
