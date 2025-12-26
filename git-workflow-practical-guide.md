@@ -5,10 +5,10 @@
 
 This document is a practical, example-driven workflow guide for managing file and submodule commits, especially with document/PDF context extraction. **All authoritative rules are defined in the following documents:**
 
-- [Git Commit Message Generation Rules](AI-Agent-Rules/Git-Commit-Message-rules.md)
-- [Git Submodule Management Rules](AI-Agent-Rules/Git-Submodule-rules.md)
-- [Git Operation Rules](AI-Agent-Rules/Git-Operation-rules.md)
-- [PDF CLI Extraction Tool Guide](AI-Agent-Rules/docs/conversations/2025-12-26-pdf-cli-extraction-tool.md)
+- [Git Commit Message Generation Rules](./git-commit-message-rules.md)
+- [Git Submodule Management Rules](./git-submodule-rules.md)
+- [Git Operation Rules](./git-operation-rules.md)
+- [PDF CLI Extraction Tool Guide](./docs/conversations/2025-12-26-pdf-cli-extraction-tool.md)
 
 **This file does not duplicate rules.** Instead, it provides:
 - A step-by-step workflow referencing the above rules
@@ -19,17 +19,17 @@ This document is a practical, example-driven workflow guide for managing file an
 
 ## 1. The Commit Compass: Reference Map
 
-This section provides a visual mapping of how to arrange commits using the cardinal directions of the **Commit Compass** (authoritative logic in [Git-Atomic-Commit-Construction-rules.md](./Git-Atomic-Commit-Construction-rules.md)).
+This section provides a visual mapping of how to arrange commits using the cardinal directions of the **Commit Compass** (authoritative logic in [git-atomic-commit-construction-rules.md](./git-atomic-commit-construction-rules.md)).
 
 | Direction | Domain | Authoritative Rule |
 | :--- | :--- | :--- |
-| **North** | Architecture & Global Config | [Git-Operation-rules.md](./Git-Operation-rules.md) |
-| **East** | Logic & Feature Implementation | [Git-Atomic-Commit-Construction-rules.md](./Git-Atomic-Commit-Construction-rules.md) |
-| **West** | Verification & Automated Tests | [Git-Operation-rules.md](./Git-Operation-rules.md) |
-| **South** | Documentation & Rule Sync | [Git-Commit-Message-rules.md](./Git-Commit-Message-rules.md) |
+| **North** | Architecture & Global Config | [git-operation-rules.md](./git-operation-rules.md) |
+| **East** | Logic & Feature Implementation | [git-atomic-commit-construction-rules.md](./git-atomic-commit-construction-rules.md) |
+| **West** | Verification & Automated Tests | [git-operation-rules.md](./git-operation-rules.md) |
+| **South** | Documentation & Rule Sync | [git-commit-message-rules.md](./git-commit-message-rules.md) |
 
 ### Synchronization Workflows
-- **Submodule Pointer Sync**: Follow [Submodule Sync Commits](./Git-Commit-Message-rules.md#5-submodule-sync-commits-parent-repository).
+- **Submodule Pointer Sync**: Follow [Submodule Sync Commits](./git-commit-message-rules.md#5-submodule-sync-commits-parent-repository).
 - **Remote Reconciliation**: Use `git pull` or `git pull --rebase` (with approval). **Never** `git reset` for sync.
 
 ---
@@ -49,7 +49,7 @@ head -n 80 output.xml # Review for context
 ```
 
 - Clean up temporary files after extraction.
-- For more, see: [PDF CLI Extraction Tool Guide](AI-Agent-Rules/docs/conversations/2025-12-26-pdf-cli-extraction-tool.md)
+- For more, see: [PDF CLI Extraction Tool Guide](./docs/conversations/2025-12-26-pdf-cli-extraction-tool.md)
 
 ---
 
@@ -66,10 +66,10 @@ head -n 80 output.xml # Review for context
 
 ## 4. References (Single Source of Truth)
 
-- [Git Commit Message Generation Rules](AI-Agent-Rules/Git-Commit-Message-rules.md)
-- [Git Submodule Management Rules](AI-Agent-Rules/Git-Submodule-rules.md)
-- [Git Operation Rules](AI-Agent-Rules/Git-Operation-rules.md)
-- [PDF CLI Extraction Tool Guide](AI-Agent-Rules/docs/conversations/2025-12-26-pdf-cli-extraction-tool.md)
+- [Git Commit Message Generation Rules](./git-commit-message-rules.md)
+- [Git Submodule Management Rules](./git-submodule-rules.md)
+- [Git Operation Rules](./git-operation-rules.md)
+- [PDF CLI Extraction Tool Guide](./docs/conversations/2025-12-26-pdf-cli-extraction-tool.md)
 
 ---
 

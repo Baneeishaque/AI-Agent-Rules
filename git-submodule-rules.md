@@ -31,7 +31,7 @@ When you need to add files, update rules, or modify content within a submodule:
     ```
 
 2.  **Arranged Commit Construction**:
-    - Follow the [Git-Atomic-Commit-Construction-rules.md](./Git-Atomic-Commit-Construction-rules.md) to group and stage related changes logically.
+    - Follow the [git-atomic-commit-construction-rules.md](./git-atomic-commit-construction-rules.md) to group and stage related changes logically.
 
 3.  **Commit in Submodule**:
     ```bash
