@@ -102,6 +102,11 @@ Follow the guidelines in:
 | [`GitHub-Actions-rules.md`](./GitHub-Actions-rules.md) | Rules for GitHub Actions workflows, covering trigger preferences, security, performance, and integrations. |
 | [`Render-Cloud-Application-Platform-rules.md`](./Render-Cloud-Application-Platform-rules.md) | Deployment configurations for Render, including environment variables and custom domains. |
 
+### Code Quality & Linting
+| Rule File | Purpose |
+|-----------|---------|
+| [`ShellCheck-Fixer-rules.md`](./ShellCheck-Fixer-rules.md) | Specialized rules for repairing shell scripts to meet ShellCheck standards. |
+
 ### Core Agent Behavior
 | Rule File | Purpose |
 |-----------|---------|

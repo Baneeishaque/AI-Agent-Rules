@@ -37,4 +37,5 @@ This file is a comprehensive, flat index of all rule files in this repository.
 | Rule Management Workflow | [Rule-Management-rules.md](./Rule-Management-rules.md) | Documentation sync and update workflow, including metadata management for rule indexing. |
 | Script Management | [Script-Management-rules.md](./Script-Management-rules.md) | Script standards, folder usage, and safeguards for helper scripts. |
 | Shell Execution | [Shell-Execution-rules.md](./Shell-Execution-rules.md) | Guidelines for shell command execution, ensuring transparency, user control, and adherence to security protocols. |
+| ShellCheck Fixer Agent | [ShellCheck-Fixer-rules.md](./ShellCheck-Fixer-rules.md) | Specialized rules for repairing shell scripts to meet ShellCheck standards. |
 | Warp | [Warp-rules.md](./Warp-rules.md) | Backup and reference for Warp AI Agent specific configurations. |
