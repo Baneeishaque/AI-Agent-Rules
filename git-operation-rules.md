@@ -40,3 +40,29 @@ category: Git & Repository Management
 - **Safety First (High-Risk Operations)**:
     - **`git reset`**: Strictly forbidden for synchronization or resolving conflicts. If unstaging is needed, use `git reset <file>`. Hard resets require explicit user confirmation after explaining the data loss risk.
     - **`git rebase`**: Requires explicit user confirmation.
+
+### 3. Stash Workflow for Rebase Operations
+
+When rebasing with unstaged changes, use `git stash` to temporarily save work.
+
+- **Stash Before Rebase**:
+  ```bash
+  git stash push -m "Descriptive message for stash"
+  git pull --rebase origin <branch>
+  ```
+
+- **Pop After Rebase**:
+  ```bash
+  git stash pop
+  ```
+
+- **Conflict Resolution**: If `git stash pop` creates conflicts, resolve them manually, then:
+  ```bash
+  git add <resolved-files>
+  git stash drop  # Remove the stash entry after manual resolution
+  ```
+
+- **List Stashes**: View all stashed changes:
+  ```bash
+  git stash list
+  ```
