@@ -127,16 +127,16 @@ Follow the guidelines in:
 ### Git & Repository Management
 | Rule File | Purpose |
 |-----------|---------|
-| [`Git-Atomic-Commit-Construction-rules.md`](./Git-Atomic-Commit-Construction-rules.md) | Authoritative protocol for analyzing, grouping, and arranging changes into logical, independent atomic units before execution. |
-| [`Git-Commit-Message-rules.md`](./Git-Commit-Message-rules.md) | Strict rules for generating git commit messages, enforcing Conventional Commits, contextual information in titles, and no redundancy between title and body. |
-| [`Git-Operation-rules.md`](./Git-Operation-rules.md) | Strict protocols for standard Git operations (commits & pushes), mandating explicit user requests and forbidding auto-actions. |
 | [`Git-Repo-Cloning-rules.md`](./Git-Repo-Cloning-rules.md) | CLI-based cloning protocols, supporting submodule initialization and directory management. |
 | [`Git-Repository-Indexing-rules.md`](./Git-Repository-Indexing-rules.md) | Rules for auto-indexing codebases within git repositories for improved agent context. |
 | [`Git-Repository-rules.md`](./Git-Repository-rules.md) | Standardized rules for creating new repositories, including naming conventions, essential file generation, and initial commit best practices. |
-| [`Git-Submodule-rules.md`](./Git-Submodule-rules.md) | Protocols for managing submodules, preventing detached HEAD states, proper branch tracking, and descriptive parent commit messages. |
 | [`GitHub-Pull-Request-Processing-rules.md`](./GitHub-Pull-Request-Processing-rules.md) | Sequential, CLI-first protocols for handling Pull Requests, emphasizing security for private repositories and explicit user handoff. |
 | [`GitHub-Repository-Metadata-Management-rules.md`](./GitHub-Repository-Metadata-Management-rules.md) | Ultra-Lean Industrial protocols for Metadata-as-Code (MaC), using README.md as the absolute Single Source of Truth with visible markers for automation. |
 | [`Repository-Search-rules.md`](./Repository-Search-rules.md) | Multi-platform repository discovery and smart cloning workflows. |
+| [`git-atomic-commit-construction-rules.md`](./git-atomic-commit-construction-rules.md) | Authoritative protocol for analyzing, grouping, and arranging changes into logical, independent atomic units before execution. |
+| [`git-commit-message-rules.md`](./git-commit-message-rules.md) | Strict rules for generating git commit messages, enforcing Conventional Commits, contextual information in titles, and no redundancy between title and body. |
+| [`git-operation-rules.md`](./git-operation-rules.md) | Strict protocols for standard Git operations (commits & pushes), mandating explicit user requests and forbidding auto-actions. |
+| [`git-submodule-rules.md`](./git-submodule-rules.md) | Protocols for managing submodules, preventing detached HEAD states, proper branch tracking, and descriptive parent commit messages. |
 
 ### GitHub Actions
 | Rule File | Purpose |
