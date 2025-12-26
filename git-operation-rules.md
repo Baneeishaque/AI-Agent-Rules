@@ -26,9 +26,17 @@ category: Git & Repository Management
 
 ### 2. Pushes and Synchronization
 
-- **Explicit Request Required**: Do NOT execute `git push` unless the user **explicitly** requests it.
-- **No Auto-Pushes**: Even if a commit is requested, do not chain a push command unless specifically told to "commit and push".
+- **Status Check First**: Always run `git status` before any fetch, pull, or push operation to understand the current state.
+- **Remote Check**: Use `git fetch --dry-run` or `git ls-remote` to check for remote changes WITHOUT fetching. Requires user confirmation.
+- **Fetch Protocol**: Do NOT execute `git fetch` without explicit user confirmation.
+- **Pull Protocol**: 
+    - **Timing**: Pull BEFORE making commits, not after.
+    - **Explicit Confirmation**: Always ask user before pulling.
+    - **Rebase Option**: `git pull --rebase` requires separate explicit confirmation.
+- **Push Protocol**:
+    - **Explicit Request Required**: Do NOT execute `git push` unless the user **explicitly** requests it.
+    - **No Auto-Pushes**: Even if a commit is requested, do not chain a push command unless specifically told to "commit and push".
+    - **Offer, Don't Execute**: After commits, OFFER the user to push. Wait for explicit "yes" or "push" command.
 - **Safety First (High-Risk Operations)**:
-    - **`git reset`**: Strictly forbidden for synchronization or resolving conflicts. If unstageing is needed, use `git reset <file>`. Hard resets require explicit user confirmation after explaining the data loss risk.
+    - **`git reset`**: Strictly forbidden for synchronization or resolving conflicts. If unstaging is needed, use `git reset <file>`. Hard resets require explicit user confirmation after explaining the data loss risk.
     - **`git rebase`**: Requires explicit user confirmation.
-    - **Preferred Method**: Always preference `git pull` or `git pull --rebase` (with approval) to incorporate latest remote changes.
