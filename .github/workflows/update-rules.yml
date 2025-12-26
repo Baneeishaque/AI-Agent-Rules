@@ -22,11 +22,11 @@ jobs:
       MISE_CONFIG_FILE: scripts/mise.toml
     steps:
       - name: Checkout code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v4.2.2
 
       - name: Set up and Verify Mise
         id: mise
-        uses: Baneeishaque/mise-setup-verification-action@9cb335bf029411f216320ecb8e6f6d038c5d444f
+        uses: Baneeishaque/mise-setup-verification-action@bca6635be4dd23f8b7d4a408b8f4ee33fbfb1343
         with:
           mise_version: '2025.12.9'
           working_directory: 'scripts'
@@ -59,7 +59,7 @@ jobs:
         run: ./scripts/run_gemini_commit.bash "mise exec -- python"
 
       - name: Commit and Push Changes
-        uses: stefanzweifel/git-auto-commit-action@v5
+        uses: stefanzweifel/git-auto-commit-action@v5.0.1
         if: steps.check_changes.outputs.has_changes == 'true'
         with:
           commit_message: ${{ env.COMMIT_MSG }}
