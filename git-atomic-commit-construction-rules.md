@@ -70,6 +70,7 @@ When a file contains mixed concerns, the agent MUST use interactive staging tool
 ### 4. Phase 4: Execution & Verification
 
 - **Step-by-Step**: Execute commits one-by-one according to the approved arrangement.
+- **Unstaged Changes During Rebase**: If rebase fails due to unstaged changes, use the stash workflow (see git-operation-rules.md Section 3).
 - **Pull Before Push**: Always `git pull` (or `git pull --rebase` upon explicit approval) before pushing to incorporate latest remote changes.
 - **Recovery**: If a mistake is made during staging, use `git reset <file>` to unstage, or `git checkout -p` to selectively discard. **WARNING**: Never use `git reset --hard` for synchronization; always prefer `git pull`.
 
