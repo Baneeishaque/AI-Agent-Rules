@@ -17,35 +17,20 @@ This document is a practical, example-driven workflow guide for managing file an
 
 ---
 
-## 1. Workflow Overview (Reference Steps)
+## 1. The Commit Compass: Reference Map
 
-1. **Detect changes**
-  - Use `git status --short` and `git diff --cached` to see staged/unstaged changes
-  - See: [Operational Protocol for Change Detection](AI-Agent-Rules/Git-Commit-Message-rules.md#0-operational-protocol-for-change-detection-and-commit-scope)
+This section provides a visual mapping of how to arrange commits using the cardinal directions of the **Commit Compass** (authoritative logic in [Git-Atomic-Commit-Construction-rules.md](./Git-Atomic-Commit-Construction-rules.md)).
 
-2. **If working in a submodule**
-  - Always check out the main branch and verify with `git status`
-  - See: [Submodule Management Rules](AI-Agent-Rules/Git-Submodule-rules.md#1-core-principle-branch-tracking)
+| Direction | Domain | Authoritative Rule |
+| :--- | :--- | :--- |
+| **North** | Architecture & Global Config | [Git-Operation-rules.md](./Git-Operation-rules.md) |
+| **East** | Logic & Feature Implementation | [Git-Atomic-Commit-Construction-rules.md](./Git-Atomic-Commit-Construction-rules.md) |
+| **West** | Verification & Automated Tests | [Git-Operation-rules.md](./Git-Operation-rules.md) |
+| **South** | Documentation & Rule Sync | [Git-Commit-Message-rules.md](./Git-Commit-Message-rules.md) |
 
-3. **Stage and commit changes**
-  - Only commit staged files (never assume unstaged changes)
-  - See: [Git Operation Rules](AI-Agent-Rules/Git-Operation-rules.md#1-commits)
-
-4. **Push submodule changes** (if authorized)
-  - See: [Git Operation Rules](AI-Agent-Rules/Git-Operation-rules.md#2-pushes)
-
-5. **Update parent repository**
-  - Move to parent repo root, use `git submodule status` to confirm submodule path
-  - Stage and commit the submodule pointer update
-  - See: [Submodule Sync Commits](AI-Agent-Rules/Git-Commit-Message-rules.md#5-submodule-sync-commits-parent-repository)
-
-6. **Generate commit messages**
-  - Follow Conventional Commits and all message rules
-  - See: [Commit Message Generation Rules](AI-Agent-Rules/Git-Commit-Message-rules.md)
-
-7. **Extract PDF/document context (if needed)**
-  - Use CLI tools (see below) to extract text for commit context
-  - See: [PDF CLI Extraction Tool Guide](AI-Agent-Rules/docs/conversations/2025-12-26-pdf-cli-extraction-tool.md)
+### Synchronization Workflows
+- **Submodule Pointer Sync**: Follow [Submodule Sync Commits](./Git-Commit-Message-rules.md#5-submodule-sync-commits-parent-repository).
+- **Remote Reconciliation**: Use `git pull` or `git pull --rebase` (with approval). **Never** `git reset` for sync.
 
 ---
 
