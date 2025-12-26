@@ -26,9 +26,34 @@ The agent must "arrange" the detected changes into a proposed sequence of commit
 
 - **Independence**: Each commit should be able to stand alone. If the repository were checked out at that commit, it should still build/function (or at least be logically coherent).
 - **Atomic Principle**: Never commit half of a logical change. If a file contains two unrelated changes, use **Hunk-Based Staging**.
-- **The Commit Preview**: Present the proposed "Arranged Commits" to the user for approval. Use a format similar to:
-    - **Commit 1**: `feat(scope): title` -> Files: `A`, `B` (hunk 1)
-    - **Commit 2**: `fix(scope): title` -> Files: `B` (hunk 2), `C`
+- **The Commit Preview (Mandatory Display)**:
+    - Present the proposed "Arranged Commits" to the user for approval using the following structured format:
+    ```markdown
+    ## Arranged Commits Preview
+    
+    ### Commit 1: [type] [title]
+    - **Files**: [file1.md], [file2.md]
+    - **Message**:
+      ```
+      [type](scope): [title]
+      
+      [Body line 1]
+      [Body line 2]
+      ```
+    
+    ### Commit 2: [type] [title]
+    - **Files**: [file3.md]
+    - **Message**:
+      ```
+      [type](scope): [title]
+      
+      [Body line 1]
+      ```
+    
+    ---
+    Please say "start" to begin the sequential execution of these atomic commits.
+    ```
+- **Start Trigger**: The agent MUST NOT proceed with any commit execution until the user explicitly says **"start"**.
 
 ***
 
