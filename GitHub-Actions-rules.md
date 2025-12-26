@@ -298,15 +298,22 @@ jobs:
     * Verify that **all** identified secrets (e.g., `SERVER_API_ADDRESS`, `GRADLE_CACHE_ENCRYPTION_KEY`) are correctly configured in the target repository. Do not assume any secret is pre-existing unless verified.
     * For new or missing secrets, follow the "Secret Creation (Non-Interactive)" protocol.
 * **Commit & Push Protocol**:
-    * **Commit Message**: MUST follow strict rules defined in `Git-Commit-Message-rules.md` (e.g., `ci(workflow): migrate Azure pipeline...`).
-    * **Action**: Commit and push changes *before* running verification to ensure the remote state matches the workflow being tested.
+    * **Compliance**: MUST obey strict rules defined in `Git-Commit-Message-rules.md` and `Git-Submodule-rules.md` before pushing. This ensures clean history and stable submodules.
+    * **Commit Message**: Use conventional commit format (e.g., `fix(ci): ...`).
+    * **Action**: Stage, commit, and push changes *before* proceeding to verification to ensure the remote state matches the workflow being tested.
 * **Automated Monitoring**:
-    * Use `gh run list` with JSON output to dynamically grab the Run ID and `gh run watch` to monitor execution.
+    * **Check for Auto-Trigger**: After pushing, first check if the push event already triggered the workflow using `gh run list --limit 1`.
+    * **Watch Existing Run**: If a relevant run is already in progress or queued, use `gh run watch <RUN_ID>` to monitor it instead of dispatching a new one.
+    * **Dispatch (Fallback)**: Use `gh workflow run <WORKFLOW_FILE>` ONLY if no run was triggered automatically or if a manual re-run is needed for specific state verification.
+    * **Dynamic Monitoring**: Use `gh run list` with JSON output to dynamically grab the Run ID and `gh run watch` to monitor execution.
     ```bash
-    # Trigger
+    # 1. Check for recent runs
+    gh run list --workflow <WORKFLOW_FILE> --limit 1
+
+    # 2. Trigger (Fallback: Only if no auto-run found)
     gh workflow run <WORKFLOW_FILE>
-    
-    # Monitor
+
+    # 3. Monitor (Grab latest Run ID and watch)
     RUN_ID=$(gh run list --workflow <WORKFLOW_FILE> -L 1 --json databaseId -q '.[0].databaseId')
     gh run watch $RUN_ID
     ```
