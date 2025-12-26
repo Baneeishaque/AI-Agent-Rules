@@ -127,6 +127,7 @@ Follow the guidelines in:
 ### Git & Repository Management
 | Rule File | Purpose |
 |-----------|---------|
+| [`Git-Atomic-Commit-Construction-rules.md`](./Git-Atomic-Commit-Construction-rules.md) | Authoritative protocol for analyzing, grouping, and arranging changes into logical, independent atomic units before execution. |
 | [`Git-Commit-Message-rules.md`](./Git-Commit-Message-rules.md) | Strict rules for generating git commit messages, enforcing Conventional Commits, contextual information in titles, and no redundancy between title and body. |
 | [`Git-Operation-rules.md`](./Git-Operation-rules.md) | Strict protocols for standard Git operations (commits & pushes), mandating explicit user requests and forbidding auto-actions. |
 | [`Git-Repo-Cloning-rules.md`](./Git-Repo-Cloning-rules.md) | CLI-based cloning protocols, supporting submodule initialization and directory management. |

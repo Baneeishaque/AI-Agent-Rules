@@ -22,6 +22,7 @@ This file is a comprehensive, flat index of all rule files in this repository.
 | Docker | [Docker-rules.md](./Docker-rules.md) | Guidelines for Docker containerization, best practices for Dockerfiles, and image optimization. |
 | Flutter Android App | [Flutter-Android-App-rules.md](./Flutter-Android-App-rules.md) | Specific guidelines for Android configurations within Flutter projects. |
 | Flutter App | [Flutter-App-rules.md](./Flutter-App-rules.md) | Rules for Flutter app development, including version pinning with `mise`, dependency management, and mandatory documentation. |
+| Git Atomic Commit Construction | [Git-Atomic-Commit-Construction-rules.md](./Git-Atomic-Commit-Construction-rules.md) | Authoritative protocol for analyzing, grouping, and arranging changes into logical, independent atomic units before execution. |
 | Git Commit Message Generation | [Git-Commit-Message-rules.md](./Git-Commit-Message-rules.md) | Strict rules for generating git commit messages, enforcing Conventional Commits, contextual information in titles, and no redundancy between title and body. |
 | Git Operation Rules | [Git-Operation-rules.md](./Git-Operation-rules.md) | Strict protocols for standard Git operations (commits & pushes), mandating explicit user requests and forbidding auto-actions. |
 | Git Repo Cloning | [Git-Repo-Cloning-rules.md](./Git-Repo-Cloning-rules.md) | CLI-based cloning protocols, supporting submodule initialization and directory management. |
