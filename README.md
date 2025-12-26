@@ -133,6 +133,7 @@ Follow the guidelines in:
 | [`Git-Repository-Indexing-rules.md`](./Git-Repository-Indexing-rules.md) | Rules for auto-indexing codebases within git repositories for improved agent context. |
 | [`Git-Repository-rules.md`](./Git-Repository-rules.md) | Standardized rules for creating new repositories, including naming conventions, essential file generation, and initial commit best practices. |
 | [`Git-Submodule-rules.md`](./Git-Submodule-rules.md) | Protocols for managing submodules, preventing detached HEAD states, proper branch tracking, and descriptive parent commit messages. |
+| [`GitHub-Pull-Request-Processing-rules.md`](./GitHub-Pull-Request-Processing-rules.md) | Sequential, CLI-first protocols for handling Pull Requests, emphasizing security for private repositories and explicit user handoff. |
 | [`GitHub-Repository-Metadata-Management-rules.md`](./GitHub-Repository-Metadata-Management-rules.md) | Ultra-Lean Industrial protocols for Metadata-as-Code (MaC), using README.md as the absolute Single Source of Truth with visible markers for automation. |
 | [`Repository-Search-rules.md`](./Repository-Search-rules.md) | Multi-platform repository discovery and smart cloning workflows. |
 
@@ -148,6 +149,11 @@ Follow the guidelines in:
 | [`Brew-Install-rules.md`](./Brew-Install-rules.md) | Prefer head/source builds and verbose logging for Homebrew installations. |
 | [`Brew-Upgrade-rules.md`](./Brew-Upgrade-rules.md) | Upgrade all packages except specified ones with explicit command generation. |
 | [`Mise-Plugin-Backend-Management-rules.md`](./Mise-Plugin-Backend-Management-rules.md) | Intelligent backend selection for mise plugin installations with fallback handling and user prompts. |
+
+### Rule-Management
+| Rule File | Purpose |
+|-----------|---------|
+| [`AI-Agent-Rule-Standard-Creation-rules.md`](./AI-Agent-Rule-Standard-Creation-rules.md) | Craftsmanship standards for developing "Ultra-Lean Industrial" AI Agent Rules, ensuring consistent formatting, structural hierarchy, and pedagogical clarity. |
 
 ### Tooling & Workflows
 | Rule File | Purpose |
