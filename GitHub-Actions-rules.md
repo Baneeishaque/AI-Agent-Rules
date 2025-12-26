@@ -31,6 +31,8 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 #### Triggers
 * **Event-Driven Priorities**:
     * The preferred trigger for complex, event-driven workflows is **Supabase Functions**, followed by **GitHub's native webhook triggers**. This allows for highly specific workflows not limited to standard events.
+* **Orchestration**: The deployment workflow follows the architectural pattern defined in `CI-CD-rules.md` (`Supabase → GitHub Actions → Render`).
+    * **Executor Role:** GitHub Actions receives the webhook payload from Supabase, runs the build/test jobs, and triggers the deployment upon success.
 * **Standard CI Triggers**:
     * `push`: Trigger on main branches (e.g., `master`, `main`).
     * `workflow_dispatch`: Always include for manual runs.
@@ -38,6 +40,8 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 #### Permissions
 * Define explicit permissions for the `GITHUB_TOKEN` to adhere to the principle of least privilege.
+* **OIDC Integration**: When integrating with cloud providers (AWS, GCP, Azure), use **OpenID Connect (OIDC)** instead of long-lived secrets. 
+    * **Requirement**: Must include `permissions: id-token: write` and `contents: read` at the job or workflow level.
 * Common requirements:
     * `contents: write` (Required for dependency submission and git operations).
     * `pull-requests: write` (Required for PR comments).
@@ -61,14 +65,32 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
         * **Encryption**: MUST use a GitHub Secret for `cache-encryption-key` (Input: `cache-encryption-key: ${{ secrets.GRADLE_CACHE_ENCRYPTION_KEY }}`).
 * **Reusable Workflows**: For common tasks (e.g., building an app, running a security scan), create reusable workflows to promote the **DRY (Don't Repeat Yourself)** principle and centralize logic.
 * **Docker Builds**: When building Docker images, explicitly write the build context in your scripts, especially in GitHub Actions.
+* **Conditional Step Execution**:
+    * **Strategy**: Use a helper script to detect file changes before running expensive steps (e.g., API calls, heavy builds).
+    * **Mechanism**: Use `git status --porcelain <files>` to check for modifications. If changes exist, set a step output or environment variable (e.g., `has_changes=true`).
+    * **Benefits**:
+        * **Performance**: Skips heavy dependency installation and API calls when unnecessary.
+        * **Efficiency**: Reduces CI/CD minutes usage.
+        * **Clean Logs**: Avoids "nothing to commit" noise or complex skip logic inside downstream actions.
+    * **Example**:
+      ```yaml
+      - name: Check for changes
+        id: check_changes
+        run: ./scripts/check_changes.bash
+      - name: Expensive Step
+        if: steps.check_changes.outputs.has_changes == 'true'
+        run: ...
+      ```
 
 ---
 
 ### 4. Security 🛡️
 
-* **Protected Branches**: All deployment branches (e.g., `main`) must be **protected**. This requires that status checks pass and that a minimum number of code reviews are completed before a merge is allowed. This prevents unvetted code from being deployed.
+* **Protected Branches**: All deployment branches (e.g., `main`, `store-guidelines-branches`) must be **protected**. This requires that status checks pass and that a minimum number of code reviews are completed before a merge is allowed. This prevents unvetted code from being deployed.
 * **Secrets Management**:
-    * All sensitive information, such as API keys and credentials, **must** be stored as encrypted GitHub Secrets and accessed via the `secrets` context. Do not hardcode secrets in workflow files or use environment variables in plain text.
+    * All sensitive information, such as API keys and credentials, **must** be stored as encrypted GitHub Secrets and accessed via the `secrets` context.
+    * **WARNING**: **Do NOT hardcode secrets** in YAML files or scripts, even for testing. This is a critical security violation.
+    * **Configuration Repo Strategy**: For complex environment management, use a private, secure configuration repository. The CI/CD pipeline should be configured via secrets to access this repo, pull environment-specific manifest files, and apply them.
 * **Permission Scopes**: Use the principle of least privilege. Grant workflows only the necessary permissions to complete their tasks by defining the `permissions` scope at the job or workflow level.
 * **Token Rotation**: Implement a regular, automated rotation policy for all credentials and secrets.
 
@@ -77,15 +99,27 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 ### 5. Integration with Other Rules 🔗
 
 * **Testing**: Workflows for applications (e.g., Flutter apps) must include steps to run `flutter analyze`, `dart format --set-exit-if-changed .`, and `flutter test` on every pull request. This enforces code quality before merging.
+* **GitHub Actions Workflow (Mobile)**: The workflow will be triggered on a push to the `main` branch or on a pull request. The workflow will run `flutter analyze` and `flutter test --coverage` to ensure code quality and test coverage.
 * **Mobile App Workflows**: For mobile apps, workflows should integrate with the `Android-App-Launch-rules.md` to automate emulator setup, testing, and deployment. Workflows for Android should also handle the fallback mechanism for `x86_64` architecture if ARM64 fails.
+* **Web Service Workflows (Render)**:
+    * **Deployment**: Use the Render CLI or API for triggering deployments. 
+    * **Synchronous Monitoring**: When using the CLI, always use the `--wait` flag to block the job until deployment completes or fails.
+    * **Error Handling**: Implement a `fail-fast` strategy. If a deployment fails, the workflow MUST fetch the latest logs from the Render API/CLI and post them to the PR or a dedicated channel for debugging.
 * **Logging**: All build and test commands in a workflow **MUST** include verbose logging flags (e.g., `--verbose`, `-v`, or `--info` for Gradle) where applicable to ensure maximum visibility into the build process and facilitate debugging.
+
+---
+
+### 5.1 Deployment Strategies 🏗️
+* **Implementation**: For mission-critical applications, implement **Canary** or **Blue/Green** deployments using GitHub Actions environments and deployment protections.
+* **Environment Gates**: Use manual approvals or "wait" timers for canary rollouts.
+* **Rollback Strategy**: Always include a "Rollback" workflow or a mechanism to trigger a fast-revert to the last known stable tag.
 
 ---
 
 ### 6. Java & Gradle Workflow Specifics ☕
 
 #### Runner & Environment
-* **Runner**: Use specific LTS versions (e.g., `ubuntu-24.04`) instead of `ubuntu-latest`.
+* **Runner**: Use specific LTS versions (e.g., `<LTS_VERSION>`) instead of `ubuntu-latest`.
 * **Java Setup (Conditional)**:
     * **Identify Version**: Extract the required JDK version from the source Azure pipeline (e.g., `JavaToolInstaller` step).
     * **Research Runners**: Always verify specific GitHub runner capabilities (e.g., Ubuntu 24.04) online to identify pre-installed JDKs and default `JAVA_HOME`. Do NOT rely on static or historical information.
@@ -103,7 +137,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
     - name: Install Java <VERSION>
       if: steps.java-setup.outputs.skipped == 'false'
-      uses: actions/setup-java@v4
+      uses: actions/setup-java@v4.x.x
       with:
         distribution: 'oracle' # First choice. Use 'temurin' only if Oracle misses the version.
         java-version: '<VERSION>'
@@ -139,6 +173,20 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
     * **PR Summaries**: Set `add-job-summary-as-pr-comment: 'always'`.
 * **Artifacts**: Upload build reports (e.g., `**/build/reports/**`, `**/build/test-results/**`, `**/build/jacoco/**`).
 
+---
+
+### 6.1 Release Workflow Standards 📦
+For stable releases and publishing (App Store, Web deployment), workflows MUST:
+* **Checklist**:
+    1.  Validate/Bump version tags.
+    2.  Build the application/service.
+    3.  Upload artifacts with the naming convention `client-name/version/environment`.
+    4.  Market stable builds as "Release" and test-only builds as "Pre-release".
+    5.  Trigger notifications (WhatsApp, Team Channels).
+    6.  Direct Message (DM) testers with pre-signed download links.
+* **Automated Workflow**: Implement the artifact management strategy from `CI-CD-rules.md`. Upload builds using `actions/upload-artifact`, generate pre-signed links for testers via CLI, and apply lifecycle policies.
+* **Automated Distribution**: Upon a successful release build, the artifact will be automatically uploaded to Firebase App Distribution using a dedicated GitHub Action (e.g., `willynohilly/firebase-app-distribution`). The pipeline will then notify a pre-defined group of internal testers, making new builds instantly available for testing. Sensitive credentials like the Google Service Account key (`${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}`) and Flutter signing keys (`${{ secrets.FLUTTER_SIGNING_KEYS }}`) will be securely stored as encrypted GitHub Secrets.
+
 ### 7. Workflow Verification & Linting 🔍
 
 *   **Static Analysis (Linting)**:
@@ -147,10 +195,26 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
     *   **Configuration**: Set `fail_level: error` to ensure the build fails on issues.
     ```yaml
     - name: Run actionlint
-      uses: reviewdog/action-actionlint@v1
+      uses: reviewdog/action-actionlint@v1.x.x
       with:
         fail_level: error
     ```
+
+#### 7.2 Quality Gates & Security Scans
+* **Security Scans**:
+    * **Application Scans**: Always include vulnerability checks for package managers:
+        * **Node.js**: Use `npm audit` on every build.
+        * **Maven**: Use the `maven-dependency-plugin` or similar to check for vulnerable dependencies.
+    * **Vulnerability Scanning**: Use **Snyk** as the primary security gate. 
+        * Use the official `snyk/actions` (e.g., `snyk/actions/node` or `snyk/actions/python-3.10`).
+        * Store the `SNYK_TOKEN` as a secure secret.
+* **Code Coverage**: 
+    * Integrate with **Codecov** or **Coveralls**.
+    * Use the respective GitHub Actions (e.g., `codecov/codecov-action`) to upload reports using a secret token.
+* **Static Analysis & Quality Gates**: Implement the quality gates strategy defined in `CI-CD-rules.md` directly within GitHub Actions.
+    * **Integration Choice**: 
+        * **Recommended**: Install the SonarQube GitHub App for organization-level integration and automatic PR decoration.
+        * **Alternative**: Use the `sonarsource/sonarqube-scan-action` if individual repository fine-tuning or a CLI-driven analyzer is required.
 
 ---
 
@@ -158,7 +222,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 #### Action
 * Use `jdx/mise-action@v3` to manage tool versions via mise.
-* **Version Pinning**: Always specify a mise version to avoid surprises (e.g., `version: '2025.12.9'`).
+* **Version Pinning**: Always specify a mise version to avoid surprises (e.g., `version: '<MISE_VERSION>'`).
 * **Explicit Install**: Set `install: true` explicitly for clarity.
 
 #### Configuration
@@ -173,32 +237,46 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
     * **Caution**: Avoid inline prefixes (e.g., `VAR=val cmd`) when the command is passed as a string variable in scripts, as bash may not interpret them correctly.
 * **Caching**: Enable `cache: true` for faster subsequent runs.
 
+#### 8.2 Platinum Mise Setup (Recommended)
+* **Action**: For robust tool verification, use `Baneeishaque/mise-setup-verification-action`.
+* **Benefits**: Combines setup and automated verification of the tool installation and versioning.
+* **Usage**:
+    ```yaml
+    - uses: Baneeishaque/mise-setup-verification-action@<COMMIT_SHA>
+      with:
+        mise_version: '<MISE_VERSION>'
+        working_directory: 'scripts'
+        tool_name: 'python'
+        version_command: 'python -V'
+    ```
+* **Note**: Always pin to a specific commit SHA for stability.
+
 #### Code Example
 ```yaml
 jobs:
-  update-rules:
+  <JOB_NAME>:
     runs-on: ubuntu-latest
     env:
-      MISE_CONFIG_FILE: scripts/mise.toml
+      MISE_CONFIG_FILE: <PATH_TO_MISE_TOML>
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.x.x
       - name: Set up tools with mise
         id: mise
-        uses: jdx/mise-action@v3
+        uses: jdx/mise-action@v3.x.x
         with:
-          version: '2025.12.9'
+          version: '<MISE_VERSION>'
           install: true
           cache: true
-          working_directory: scripts  # Context for installation
+          working_directory: <WORKING_DIRECTORY>  # Context for installation
 
       - name: Run script with mise
-        run: mise exec -- ./scripts/my-script.py
+        run: mise exec -- ./<PATH_TO_SCRIPT>
 ```
 
 *Example `mise.toml`:*
 ```toml
 [tools]
-python = "3.11"
+<TOOL_NAME> = "<VERSION>"
 ```
 
 ---
@@ -233,6 +311,20 @@ python = "3.11"
     gh run watch $RUN_ID
     ```
 
+* **Google Sheets Tracking**: A Google Sheets tracking system will be implemented to log key development events.
+    * **Implementation**: Use a specialized action (e.g., `google-github-actions/setup-gcloud` or a dedicated Sheets action) to fulfill the logging policy defined in `CI-CD-rules.md`.
+    * **Mechanism**: Using a service account JSON stored as a GitHub Secret (`${{ secrets.GOOGLE_SHEETS_SERVICE_ACCOUNT }}`), the Sheets API will be called from an action to append rows.
+    * **Idempotency**: Every row insertion MUST be keyed by a combination of `PR_NUMBER` and `COMMIT_SHA` to prevent duplicates.
+
+* **Notification Strategy**: Follow the categorization (Urgent vs Team) defined in `CI-CD-rules.md`.
+* **WhatsApp Notifications**:
+    * **Implementation**: Use a specialized action or `curl` to the WhatsApp Cloud API.
+    * **Trigger**: Failures or major releases.
+    * **Content**: Must include direct links to logs. Format must be clean: avoid `?mode` fragments in URLs and include the `<SOCIAL_HANDLE>` handle where required.
+* **Supabase Storage (Artifacts)**:
+    * **Naming Convention**: Artifacts must be tagged as `client-name/version/environment`.
+    * **Lifecycle**: Implement cleanup steps in the workflow to prune short-lived feature branch builds.
+
 ---
 
 ### 10. Platinum Standards for Application Workflows 💎
@@ -262,13 +354,13 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v4.x.x
       - name: Run ShellCheck
         uses: ludeeus/action-shellcheck@2.0.0
         with:
           scandir: './.github/scripts'
       - name: Run actionlint
-        uses: reviewdog/action-actionlint@v1
+        uses: reviewdog/action-actionlint@v1.x.x
         with:
           fail_level: error
 
@@ -276,4 +368,89 @@ jobs:
     needs: lint
     runs-on: ubuntu-latest
     # ...
+
+#### 10.5 AI-Assisted Code Review
+* **Requirement**: Implement a job that triggers on `pull_request` to:
+    1.  Summarize code changes using an AI model.
+    2.  Flag architectural risks or potential bugs.
+    3.  Post a structured comment (using `actions/github-script` or similar) with the summary.
+
+#### 10.6 Reviewer Assignment
+* **CODEOWNERS**: Always include a `.github/CODEOWNERS` file for automatic assignment based on file paths.
+* **Auto-Assignment**: For team-based or round-robin requests, use a GHA-based auto-assigner action to ensure no PR is left without a reviewer.
+
+#### 10.7 Release Automation & Conventional Commits
+* **Semantic Versioning**: Automate versioning and changelog generation using Conventional Commits.
+* **Tooling**: Use `semantic-release` or similar GHA-compatible tools to automatically create GitHub Releases, bump package versions, and publish artifacts upon merging to `main`.
+* **Standard Procedures**:
+    * **Always** use `fetch-depth: 1` for speed.
+    * **Always** pin actions to full semantic versions.
+
+#### 10.8 Web & Node.js Build Standards
+* **Unified Build**: Use a single `npm` command (e.g., `npm run build:all`) to orchestrate frontend and backend builds.
+* **Parallelism**: Use tools like `npm-run-all` or `concurrently` within your scripts to run build steps in parallel where dependencies allow, ensuring the frontend is correctly embedded in the backend's distribution folder before completion.
+
+---
+
+### 11. Troubleshooting & Fixer Persona 🛠️
+
+This section defines the persona and operating rules for the "GitHub Workflow Fixer Tool", an AI specialist dedicated to troubleshooting and repairing broken GitHub Action workflows.
+
+#### 11.1 Core Mandate 🎯
+The primary goal is to **restore green builds** by diagnosing failure logs, validating workflow syntax, and implementing fixes that align with best practices.
+*   **Log-Driven**: Base all decisions on actual failure logs (`gh run view --log-failed`).
+*   **Holistic Fixes**: Don't just patch the error; ensure the workflow structure is sound (e.g., correct `needs`, valid `if` conditions).
+*   **Verification**: Always verify fixes by triggering a run and watching the result.
+
+#### 11.2 operational protocol
+**0. Code Quality Standards 💎**
+When acting as a Fixer, ensure all workflows meet these baseline standards:
+*   **💎 Always Pin Everything**: Never use `@v1` or `@master`. Always use full semantic versions (e.g., `@v1.2.3`).
+*   **💎 Use ShellCheck**: Ensure all `.bash` scripts in `.github/scripts/` pass ShellCheck.
+*   **💎 Use Actionlint**: Ensure all YAML files pass `actionlint` with `fail_level: error`.
+*   **💎 Least Privilege**: Ensure `GITHUB_TOKEN` permissions are explicitly scoped.
+*   **💎 No Hardcoded Secrets**: Ensure all sensitive values are in `${{ secrets.X }}`.
+
+**1. Investigation Phase**
+*   **Pinpoint Latest Failure**: Avoid interactive prompts by grabbing the exact run ID.
+    ```bash
+    gh run list --limit 1 --json databaseId
+    ```
+*   **Fetch Logs**: Use the ID to view logs directly.
+    ```bash
+    gh run view <DATABASE_ID> --log-failed
+    ```
+*   **Examine Code**: Read the `.github/workflows/<file>.yml` to correlate the log error with the configuration.
+
+**2. Common Failure Patterns & Fixes**
+*   **Syntax Errors**: Run `actionlint` locally if available.
+*   **Missing Secrets**: Verify availability of secrets referenced in inputs/env.
+*   **Runner Issues**: Check if `runs-on` targets a valid runner image.
+*   **Shell Script Failures**: If a step running a script fails, inspect the script content and consider invoking the "ShellCheck Fixer Agent".
+
+**3. Fix & Verify**
+*   **Commit Message**: Use conventional commits (e.g., `fix(ci): ...`) following `Git-Commit-Message-rules.md`.
+*   **Trigger**: Use `gh workflow run <file>` or `git push` to trigger the workflow.
+*   **Watch**: Use `gh run watch` to monitor the new run until completion.
+
+#### 11.3 Specialized Tooling
+*   **GitHub CLI (`gh`)**: The primary tool for investigation and triggering.
+*   **Actionlint**: Standard linter for workflow files.
+*   **Local Simulation**: `act` (if available) for local testing; however, prefer actual GitHub runners for accurate environment reproduction.
+
+#### 11.4 Failure Handlers & Notifications 🚨
+When a workflow fails, the "Fixer" or "Ops" steps MUST execute the failure policy defined in `CI-CD-rules.md`:
+* **Implementation Steps**:
+    1.  **Direct Notification**: Use an action to send a WhatsApp message to the committer with direct log links.
+    2.  **Issue Creation**: Use `gh issue create` with `context`, `committer assignment`, and `failure label`.
+    3.  **PR Decoration**: Use `actions/github-script` or `gh pr comment` to post log links on the PR.
+* **VCS Issue Auto-creation**: A failure handler step will be configured to automatically create a GitHub issue with relevant context (commit SHA, branch name, error logs) and assign the committer. This ensures that every failure is immediately documented and assigned to the person who can most effectively resolve it. Ensure the `GITHUB_TOKEN` has `issues: write` and use the committer's handle for assignment to guarantee documentation.
+* **GitHub Issues**: Automatically create a new GitHub Issue if none exists for this failure.
+    * **Context**: Include Commit SHA, Branch Name, Job Name, and a link to the failed logs.
+    * **Assignment**: Assign the committer of the failed push to the issue.
+* **PR Feedback**: If the failure is in a Pull Request, post a structured comment with:
+    1.  A summary of the failed checks.
+    2.  Links to the build logs.
+    3.  Instructions or hints for fixing (if AI-assisted).
+* **Direct Notifications**: Send 1:1 WhatsApp messages to the committer and team list with direct log links.
 ```

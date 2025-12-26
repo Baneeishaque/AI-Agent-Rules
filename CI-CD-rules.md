@@ -12,10 +12,11 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
 
 ### General Principles & Environment Management
 
-* **Configuration Management:** All environment-specific variables and secrets will be stored in a private, secure repository. This configuration data will be consumed by the CI/CD pipeline using repository-level secrets, adhering to the principle of least privilege. This practice prevents sensitive information from being exposed in public repositories and provides a centralized, auditable location for all credentials.
-* **Protected Branches:** All deployment branches (e.g., `main`, `store-guidelines-branches`) must be **protected**. This protection includes requiring status checks to pass, mandating a minimum number of code reviews, and disallowing direct pushes. This ensures that only high-quality, fully vetted code can be merged and deployed.
-* **GitHub Actions Optimization:** To improve performance and reduce build times, all GitHub Actions workflows will use `actions/checkout` with `fetch-depth: 1` and, where applicable, `sparse-checkout`. These techniques minimize the amount of data downloaded from the repository, making the CI pipeline more efficient. **GitHub Actions is the preferred CI/CD platform** for all projects.
-* **Principle of Least Privilege:** All CI/CD processes must operate with the minimum level of access required to perform their tasks. **Never use a single, all-powerful personal access token (PAT).** Instead, use scoped tokens or, preferably, **OpenID Connect (OIDC)**, which allows GitHub Actions to obtain short-lived, verifiable credentials directly from a cloud provider (e.g., AWS, GCP). This eliminates the need to store long-lived secrets in GitHub.
+* **Reference Rulebook**: For specific implementation details on our primary platform, refer to `GitHub-Actions-rules.md`.
+* **Configuration Management:** All environment-specific variables and secrets will be stored in a private, secure repository or secret manager. This configuration data will be consumed by the CI/CD pipeline using repository-level secrets, adhering to the principle of least privilege. **Rationale:** Centralizing configuration ensures a single source of truth and full auditability of all changes to the build environment.
+* **Protected Branches:** All deployment branches (e.g., `main`) must be **protected**. This protection includes requiring status checks to pass, mandating a minimum number of code reviews, and disallowing direct pushes.
+* **Pipeline Optimization:** Pipelines should be optimized for speed. Techniques like shallow clones, caching dependencies, sparse checkouts, and **Conditional Step Execution** (skipping steps if relevant files haven't changed) should be employed where the CI provider supports them.
+* **Principle of Least Privilege:** All CI/CD processes must operate with the minimum level of access required. **Never use a single, all-powerful personal access token (PAT).** Instead, use scoped tokens or **OpenID Connect (OIDC)** to obtain short-lived credentials directly from cloud providers (e.g., AWS, GCP). **Rationale:** OIDC eliminates the need for long-lived, high-risk secrets by using verifiable, short-term identities.
 * **Environment Standardization:** The CI/CD environment must be reproducible. We will use tools like **Docker** to containerize the build environment, ensuring that the same set of tools and dependencies is used for every build, eliminating "works on my machine" issues.
 
 ---
@@ -25,9 +26,9 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
 * **Monorepo vs. Polyrepo:** We will maintain separate repositories for the NestJS API (`api`) and the React web client (`web`). This "polyrepo" approach provides a clear separation of concerns, simplifies access control, and allows for independent versioning. The two services are unified at build and deploy time, allowing them to be treated as a single, co-located application.
 * **Client Base URL:** The React client's base URL will be configured as `/` at build time. The API base URL will be set as an environment variable (`REACT_APP_API_BASE` or `VITE_API_BASE` for Vite projects) with the value `/api`. This strategy simplifies routing by ensuring the client always makes API requests relative to the web server's root, regardless of the deployment environment.
 * **Single Web Service Deployment:** The unified NestJS and React application will be deployed as a **single Node.js web service**. This simplifies the infrastructure, reduces hosting costs, and streamlines maintenance by managing a single process.
-* **Orchestration:** The deployment workflow is orchestrated using a `Supabase → GitHub Actions → Render` pattern.
+* **Orchestration:** The deployment workflow follows a `Supabase → Pipeline Executor → Render` pattern.
     * **Supabase:** Serves as the central router and orchestrator. A single Supabase webhook will be configured to listen for events from all relevant repositories (`api`, `web`, `app`). This centralizes configuration for routing, environments, and notification rules. It also prevents duplicate deployments by storing delivery IDs to avoid them.
-    * **GitHub Actions:** Acts as the executor. It receives the webhook payload from Supabase, runs the build and test jobs, and, upon success, triggers the deployment.
+    * **Pipeline Executor:** Receives the webhook payload from Supabase, runs the build and test jobs, and, upon success, triggers the deployment.
     * **Render:** Serves as the runtime environment. It hosts the unified Node.js application.
 * **Controlled Deployments:** The API will only be deployed when both the API and web-related criteria pass. This ensures that the frontend and backend are in a compatible state, preventing the deployment of a new API version that is not supported by the currently available web client.
 * **Render Cloud Application Platform:** The deployment process on Render will be automated via the Render API. The workflow is as follows: `Build → (optionally publish artifact) → Trigger Render deploy → Fail fast on errors → Post logs on failure`.
@@ -49,11 +50,11 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
 * **Artifact Management (Supabase Storage):**
     * **Short-Lived Testing:** For frequent feature branch builds, we will use Supabase Storage with a short retention policy to conserve storage space. A scheduled cleanup job will automatically prune old artifacts.
     * **Long-Term Versioning:** For stable releases, client-specific branches, or builds intended for the publishing process, artifacts will be stored long-term in Supabase Storage. Each artifact will be tagged with a consistent naming convention (e.g., `client-name/version/environment`) for easy identification and retrieval. Pre-release builds will be marked for tester-only channels.
-    * **Automated Workflow:** The CI/CD pipeline will automate the entire artifact management process: upload builds from GitHub Actions, generate pre-signed links for testers, and apply lifecycle policies to automatically expire old builds.
-* **GitHub Actions Workflow:** The workflow will be triggered on a push to the `main` branch or on a pull request. The workflow will run `flutter analyze` and `flutter test --coverage` to ensure code quality and test coverage.
-* **Automated Distribution:** Upon a successful release build, the artifact will be automatically uploaded to Firebase App Distribution using a dedicated GitHub Action. The pipeline will then notify a pre-defined group of internal testers, making new builds instantly available for testing. Sensitive credentials like the Google Service Account key and Flutter signing keys will be securely stored as encrypted GitHub Secrets.
+    * **Automated Workflow:** The CI/CD pipeline will automate the entire artifact management process: upload builds from the executor, generate pre-signed links for testers, and apply lifecycle policies to automatically expire old builds.
+* **CI/CD Strategy:** The pipeline should be triggered on code pushes to main branches or pull requests. It must run static analysis and tests (e.g., `flutter analyze` and `flutter test --coverage`) to ensure code quality and coverage.
+* **Automated Distribution:** Upon a successful release build, the artifact should be automatically uploaded to distribution platforms (e.g., Firebase App Distribution, TestFlight) using the pipeline. Sensitive credentials like signing keys must be securely stored as encrypted secrets within the platform.
 * **Automated Notifications:** Once a new build is ready for testing, the CI/CD pipeline will send an automated WhatsApp message to a designated group.
-    * **Format:** The message will follow a standardized format. The WhatsApp link will not contain the `?mode` portion, and the `@shelofficial__` Instagram handle will be included.
+    * **Format:** The message will follow a standardized format. The WhatsApp link will not contain the `?mode` portion, and the `<SOCIAL_HANDLE>` Instagram handle will be included.
 
 ---
 
@@ -68,7 +69,7 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
     3.  Comment on the associated pull request (if applicable) with a link to the issue and logs.
 * **VCS Issue Auto-creation:** A failure handler step will be configured to automatically create a GitHub issue with relevant context (commit SHA, branch name, error logs) and assign the committer. This ensures that every failure is immediately documented and assigned to the person who can most effectively resolve it.
 * **Google Sheets Tracking:** A Google Sheets tracking system will be implemented to log key development events.
-    * **Mechanism:** Using a service account JSON stored as a GitHub Secret, the Sheets API will be called from an action to append rows.
+    * **Mechanism:** Using a service account JSON stored as a secure pipeline secret, the Sheets API will be called from a pipeline step to append rows.
     * **Data Points:** Key events to track include PR opened, reviewer assigned, review outcome, requested changes, merge time, and release tags.
     * **Idempotency:** To prevent duplicate entries, each row will be keyed by a combination of the PR number and commit SHA.
     * **Centralized View:** A single "Ops" sheet with dedicated tabs for each repository provides a centralized, human-readable view of the development lifecycle.
@@ -81,8 +82,8 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
 * **Baseline Automation:** A standard set of automated checks will be run on every pull request to enforce code quality and security.
     * **Mandatory Checks:** Linting, formatting, unit tests, type checks, and security scans (`npm audit`, Snyk).
 * **Code Coverage:** Code coverage reports will be integrated with services like Codecov or Coveralls. Coverage will be uploaded using a token stored as a secret, and a badge will be displayed on the project's `README.md` file.
-* **Static Analysis & Quality Gates:** Static analysis tools like SonarQube will be used to enforce quality gates. This can be integrated by installing an organization/repository-level application or by running open-source analyzers directly within GitHub Actions.
-* **AI-Assisted Code Review:** An AI-powered job will run on every PR to:
+* **Static Analysis & Quality Gates:** Static analysis tools like SonarQube will be used to enforce quality gates. This can be integrated by installing an organization/repository-level application or by running open-source analyzers directly within the CI/CD pipeline.
+* **AI-Assisted Code Review:** An AI-powered job should run on every pull request to:
     1.  Summarize changes in a concise, human-readable format.
     2.  Flag potential risks or areas of concern.
     3.  Post a structured comment directly on the PR.
