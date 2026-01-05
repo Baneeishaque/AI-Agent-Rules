@@ -10,7 +10,7 @@ This document provides a comprehensive guide for an AI tool on how to implement 
 
 ---
 
-### 1. Core Principles 💡
+### 1. Core Principles
 
 The primary purpose of GitHub Actions is to automate tasks in the software development lifecycle. All workflows must adhere to these principles:
 
@@ -22,7 +22,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 ---
 
-### 2. Workflow Structure and Configuration ⚙️
+### 2. Workflow Structure and Configuration
 
 #### Workflow File Naming
 * All GitHub Actions workflow files must be located in the `.github/workflows/` directory.
@@ -53,7 +53,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 ---
 
-### 3. Optimization and Best Practices 🚀
+### 3. Optimization and Best Practices
 
 * **Checkout Action**: Always use `actions/checkout` with `fetch-depth: 1` (or sufficient depth for the task). This retrieves only the latest commit, significantly reducing the amount of data to download. Where applicable, use `sparse-checkout` to retrieve only necessary directories.
 * **Caching**:
@@ -94,7 +94,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 ---
 
-### 4. Security 🛡️
+### 4. Security
 
 * **Protected Branches**: All deployment branches (e.g., `main`, `store-guidelines-branches`) must be **protected**. This requires that status checks pass and that a minimum number of code reviews are completed before a merge is allowed. This prevents unvetted code from being deployed.
 * **Secrets Management**:
@@ -106,7 +106,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 ---
 
-### 5. Integration with Other Rules 🔗
+### 5. Integration with Other Rules
 
 * **Testing**: Workflows for applications (e.g., Flutter apps) must include steps to run `flutter analyze`, `dart format --set-exit-if-changed .`, and `flutter test` on every pull request. This enforces code quality before merging.
 * **GitHub Actions Workflow (Mobile)**: The workflow will be triggered on a push to the `main` branch or on a pull request. The workflow will run `flutter analyze` and `flutter test --coverage` to ensure code quality and test coverage.
@@ -119,14 +119,14 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 ---
 
-### 5.1 Deployment Strategies 🏗️
+### 5.1 Deployment Strategies
 * **Implementation**: For mission-critical applications, implement **Canary** or **Blue/Green** deployments using GitHub Actions environments and deployment protections.
 * **Environment Gates**: Use manual approvals or "wait" timers for canary rollouts.
 * **Rollback Strategy**: Always include a "Rollback" workflow or a mechanism to trigger a fast-revert to the last known stable tag.
 
 ---
 
-### 6. Java & Gradle Workflow Specifics ☕
+### 6. Java & Gradle Workflow Specifics
 
 #### Runner & Environment
 * **Runner**: Use specific LTS versions (e.g., `<LTS_VERSION>`) instead of `ubuntu-latest`.
@@ -184,7 +184,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 ---
 
-### 6.1 Release Workflow Standards 📦
+### 6.1 Release Workflow Standards
 For stable releases and publishing (App Store, Web deployment), workflows MUST:
 * **Checklist**:
     1.  Validate/Bump version tags.
@@ -196,7 +196,7 @@ For stable releases and publishing (App Store, Web deployment), workflows MUST:
 * **Automated Workflow**: Implement the artifact management strategy from `CI-CD-rules.md`. Upload builds using `actions/upload-artifact`, generate pre-signed links for testers via CLI, and apply lifecycle policies.
 * **Automated Distribution**: Upon a successful release build, the artifact will be automatically uploaded to Firebase App Distribution using a dedicated GitHub Action (e.g., `willynohilly/firebase-app-distribution`). The pipeline will then notify a pre-defined group of internal testers, making new builds instantly available for testing. Sensitive credentials like the Google Service Account key (`${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}`) and Flutter signing keys (`${{ secrets.FLUTTER_SIGNING_KEYS }}`) will be securely stored as encrypted GitHub Secrets.
 
-### 7. Workflow Verification & Linting 🔍
+### 7. Workflow Verification & Linting
 
 *   **Static Analysis (Linting)**:
     *   **Mandatory**: All repositories should implement **Actionlint** to catch syntax errors, missing keys, and security issues in workflow files *before* they fail at runtime.
@@ -227,7 +227,7 @@ For stable releases and publishing (App Store, Web deployment), workflows MUST:
 
 ---
 
-### 8. Mise Tool Management 🔧
+### 8. Mise Tool Management
 
 #### Action
 * Use `jdx/mise-action@v3` to manage tool versions via mise.
@@ -290,7 +290,7 @@ jobs:
 
 ---
 
-### 9. Migration, Verification & Secrets 🕵️
+### 9. Migration, Verification & Secrets
 
 #### Secret Management
 * **Secret Creation (Non-Interactive)**:
@@ -350,7 +350,7 @@ jobs:
 
 ---
 
-### 10. Platinum Standards for Application Workflows 💎
+### 10. Platinum Standards for Application Workflows
 
 For standard application repositories (not standalone Action repos), follow these "Platinum" practices:
 
@@ -415,11 +415,11 @@ jobs:
 
 ---
 
-### 11. Troubleshooting & Fixer Persona 🛠️
+### 11. Troubleshooting & Fixer Persona
 
 This section defines the persona and operating rules for the "GitHub Workflow Fixer Tool", an AI specialist dedicated to troubleshooting and repairing broken GitHub Action workflows.
 
-#### 11.1 Core Mandate 🎯
+#### 11.1 Core Mandate
 The primary goal is to **restore green builds** by diagnosing failure logs, validating workflow syntax, and implementing fixes that align with best practices.
 *   **Log-Driven**: Base all decisions on actual failure logs (`gh run view --log-failed`).
 *   **Holistic Fixes**: Don't just patch the error; ensure the workflow structure is sound (e.g., correct `needs`, valid `if` conditions).
@@ -461,7 +461,7 @@ When acting as a Fixer, ensure all workflows meet these baseline standards:
 *   **Actionlint**: Standard linter for workflow files.
 *   **Local Simulation**: `act` (if available) for local testing; however, prefer actual GitHub runners for accurate environment reproduction.
 
-#### 11.4 Failure Handlers & Notifications 🚨
+#### 11.4 Failure Handlers & Notifications
 When a workflow fails, the "Fixer" or "Ops" steps MUST execute the failure policy defined in `CI-CD-rules.md`:
 * **Implementation Steps**:
     1.  **Direct Notification**: Use an action to send a WhatsApp message to the committer with direct log links.
@@ -477,7 +477,7 @@ When a workflow fails, the "Fixer" or "Ops" steps MUST execute the failure polic
     3.  Instructions or hints for fixing (if AI-assisted).
 * **Direct Notifications**: Send 1:1 WhatsApp messages to the committer and team list with direct log links.
 
-#### 11.5 Handling Silent Failures & API Quotas 🗝️
+#### 11.5 Handling Silent Failures & API Quotas
 
 Critical for workflows relying on external AI APIs (e.g., Gemini) that may implement silent fallback mechanisms.
 

@@ -10,7 +10,7 @@ This document provides a comprehensive set of guidelines for an AI agent on the 
 
 -----
 
-### 1\. Core Principles of Shell Interaction 💡
+### 1\. Core Principles of Shell Interaction
 
 All shell command execution by the agent must be governed by these fundamental principles:
 
@@ -20,7 +20,7 @@ All shell command execution by the agent must be governed by these fundamental p
 
 -----
 
-### 2\. Mandatory Execution Protocol 📜
+### 2\. Mandatory Execution Protocol
 
 Every shell command execution must be integrated into the agent's overall planning framework and follow a structured protocol.
 
@@ -39,7 +39,7 @@ The agent must use background processes (via `&`) for commands that are not expe
 
 -----
 
-### 3\. Integration with the Overall System 🔗
+### 3\. Integration with the Overall System
 
 The shell execution rules are not isolated; they are a key part of a larger, integrated system.
 
