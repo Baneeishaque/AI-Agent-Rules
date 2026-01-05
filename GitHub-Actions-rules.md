@@ -146,7 +146,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
     - name: Install Java <VERSION>
       if: steps.java-setup.outputs.skipped == 'false'
-      uses: actions/setup-java@v4.x.x
+      uses: actions/setup-java@<LATEST_VERSION>
       with:
         distribution: 'oracle' # First choice. Use 'temurin' only if Oracle misses the version.
         java-version: '<VERSION>'
@@ -204,7 +204,7 @@ For stable releases and publishing (App Store, Web deployment), workflows MUST:
     *   **Configuration**: Set `fail_level: error` to ensure the build fails on issues.
     ```yaml
     - name: Run actionlint
-      uses: reviewdog/action-actionlint@v1.x.x
+      uses: reviewdog/action-actionlint@<LATEST_VERSION>
       with:
         fail_level: error
     ```
@@ -229,9 +229,14 @@ For stable releases and publishing (App Store, Web deployment), workflows MUST:
 
 ### 8. Mise Tool Management
 
-#### Action
-* Use `jdx/mise-action@v3` to manage tool versions via mise.
-* **Version Pinning**: Always specify a mise version to avoid surprises (e.g., `version: '<MISE_VERSION>'`).
+
+
+#### Action, Tool Version Pinning, and Execution (Strict)
+
+* Use `jdx/mise-action@<LATEST_VERSION>` to manage tool versions via mise.
+* **Mise Tool Version Pinning**: The `version:` input for the mise action **MUST** always be set to the latest stable release of the mise tool itself (not just the action). This version **MUST** be verified via live lookup (GitHub API, Marketplace, or `gh release list --repo jdx/mise`). Always specify a mise version to avoid surprises (e.g., `version: '<MISE_VERSION>'`).
+* **All Tool Execution via mise**: All CLI tool execution (e.g., pip, python, node, npm, etc.) in workflows **MUST** be performed using `mise exec -- <tool> ...` to guarantee environment consistency and reproducibility. Direct invocation of tools without mise is strictly prohibited.
+* **Mise Caching**: The `cache: true` input for the mise action **MUST** always be set, to enable caching of tool downloads and speed up workflow execution. This is required for all jobs using mise.
 * **Explicit Install**: Set `install: true` explicitly for clarity.
 
 #### Configuration
@@ -268,10 +273,10 @@ jobs:
     env:
       MISE_CONFIG_FILE: <PATH_TO_MISE_TOML>
     steps:
-      - uses: actions/checkout@v4.x.x
+      - uses: actions/checkout@<LATEST_VERSION>
       - name: Set up tools with mise
         id: mise
-        uses: jdx/mise-action@v3.x.x
+        uses: jdx/mise-action@<LATEST_VERSION>
         with:
           version: '<MISE_VERSION>'
           install: true
@@ -334,13 +339,13 @@ jobs:
     gh run watch $RUN_ID
     ```
 
-* **Google Sheets Tracking**: A Google Sheets tracking system will be implemented to log key development events.
+* **Google Sheets Tracking (Upon Explicit Request)**: A Google Sheets tracking system will be implemented to log key development events *only when explicitly requested*.
     * **Implementation**: Use a specialized action (e.g., `google-github-actions/setup-gcloud` or a dedicated Sheets action) to fulfill the logging policy defined in `CI-CD-rules.md`.
     * **Mechanism**: Using a service account JSON stored as a GitHub Secret (`${{ secrets.GOOGLE_SHEETS_SERVICE_ACCOUNT }}`), the Sheets API will be called from an action to append rows.
     * **Idempotency**: Every row insertion MUST be keyed by a combination of `PR_NUMBER` and `COMMIT_SHA` to prevent duplicates.
 
-* **Notification Strategy**: Follow the categorization (Urgent vs Team) defined in `CI-CD-rules.md`.
-* **WhatsApp Notifications**:
+* **Notification Strategy**: Follow the categorization (Urgent vs. Team) defined in `CI-CD-rules.md`.
+* **WhatsApp Notifications (Upon Explicit Request)**:
     * **Implementation**: Use a specialized action or `curl` to the WhatsApp Cloud API.
     * **Trigger**: Failures or major releases.
     * **Content**: Must include direct links to logs. Format must be clean: avoid `?mode` fragments in URLs and include the `<SOCIAL_HANDLE>` handle where required.
@@ -364,12 +369,14 @@ For standard application repositories (not standalone Action repos), follow thes
 * **Actionlint**: Required for workflow syntax, set to `fail_level: error`.
 * **Dependencies**: The primary `build` or `deploy` job MUST `need` the `lint` job to ensure quality before execution.
 
-#### 10.3 Version Pinning
-* **Mandatory Semantic Versioning**: All GitHub Actions (`uses: ...`) **MUST** be pinned to a specific, full semantic version (e.g., `@2.0.0`, `@v4.1.7`).
-* **Marketplace Discovery**: Before using any action, the AI Agent **MUST** visit the GitHub Marketplace to identify the absolute latest stable version/tag.
-* **Prohibited Tags**: Do **NOT** use mutable tags such as `@v2`, `@master`, or `@main`. This prevents unexpected breaks.
-* **Version Format**: Be aware that some actions (e.g., `ludeeus/action-shellcheck`) use semantic versions **without** the `v` prefix. Always verify the correct tag format on the Marketplace.
-* **Example**: `uses: actions/checkout@v4.1.7` (latest semantic) instead of `@v4`.
+
+### 10.3 Version Pinning (Strict & Live Verified)
+
+* **Mandatory Semantic Versioning**: All GitHub Actions (`uses: ...`) **MUST** be pinned to a specific, full semantic version (e.g., `@2.0.0`, `@v4.1.7`, `@v6.0.1`).
+* **Live Lookup Requirement**: Before using or updating any action, the AI Agent **MUST** perform a live lookup (using the GitHub Marketplace, GitHub API, or `gh release list`) to identify the absolute latest stable (non-draft, non-prerelease) version/tag. This lookup must be performed at the time of workflow creation or update, not based on cached or historical data.
+* **Prohibited Tags**: Do **NOT** use mutable tags such as `@v2`, `@master`, or `@main`. This prevents unexpected breaks and ensures reproducibility.
+* **Version Format**: Some actions (e.g., `ludeeus/action-shellcheck`) use semantic versions **without** the `v` prefix. Always verify the correct tag format on the Marketplace or via API.
+* **Example**: `uses: actions/checkout@v6.0.1` (latest semantic, as of 2026-01-06) instead of `@v4` or `@main`.
 
 #### 10.4 Configuration Example
 ```yaml
@@ -377,13 +384,13 @@ jobs:
   lint:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4.x.x
+      - uses: actions/checkout@<LATEST_VERSION>
       - name: Run ShellCheck
-        uses: ludeeus/action-shellcheck@2.0.0
+        uses: ludeeus/action-shellcheck@<LATEST_VERSION>
         with:
           scandir: './.github/scripts'
       - name: Run actionlint
-        uses: reviewdog/action-actionlint@v1.x.x
+        uses: reviewdog/action-actionlint@<LATEST_VERSION>
         with:
           fail_level: error
 
@@ -391,6 +398,7 @@ jobs:
     needs: lint
     runs-on: ubuntu-latest
     # ...
+```
 
 #### 10.5 AI-Assisted Code Review
 * **Requirement**: Implement a job that triggers on `pull_request` to:
@@ -412,6 +420,10 @@ jobs:
 #### 10.8 Web & Node.js Build Standards
 * **Unified Build**: Use a single `npm` command (e.g., `npm run build:all`) to orchestrate frontend and backend builds.
 * **Parallelism**: Use tools like `npm-run-all` or `concurrently` within your scripts to run build steps in parallel where dependencies allow, ensuring the frontend is correctly embedded in the backend's distribution folder before completion.
+
+#### 10.9 Communication & Transparency
+* **Marketplace Links**: The AI Agent **MUST** provide direct GitHub Marketplace links for every action used in the suggested workflow within the chat response. This ensures the user can verify the source and versioning.
+* **Latest Stable Versions**: When creating or updating workflows, the AI Agent **MUST** perform a live lookup (via search or documentation) to identify the current latest stable version for every action, replacing placeholders (e.g., `<VERSION>` or `v4.x.x`) with real values.
 
 ---
 
