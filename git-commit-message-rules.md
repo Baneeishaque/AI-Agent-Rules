@@ -32,6 +32,7 @@ The first line is the most important part of the commit message.
     -   **Hard Limit**: 72 characters.
 -   **Case**: Use the **Imperative Mood** (e.g., "add feature" not "added feature" or "adds feature").
 -   **Punctuation**: Do not end the title line with a period.
+-   **Reference Style**: When referring to documentation sections, use the **Section Title** instead of the Section Number (e.g., use "Refine Migration, Verification & Secrets protocol" instead of "Update Section 9").
 
 ---
 
@@ -45,7 +46,9 @@ The body provides the detailed context.
 -   **Content**:
     -   Focus on **What** changed and **Why**.
     -   Summarize the impact of the changes.
--   **No Redundancy**: Do not repeat information already stated in the title. Provide supplementary details only.
+-   **No Redundancy**: Do not repeat information already stated in the title. Provide supplementary details ONLY.
+-   **Meaningful Summaries**: Avoid exhaustive lists for repetitive changes (e.g., individual spell check words). Instead, provide a higher-level summary of the domain or impact (e.g., "Add 30+ project domain terms to workspace dictionary").
+-   **Self-Documenting Titles**: For standard style cleanups or simple deletions, the body MAY be omitted entirely if the title is exhaustive. Avoid adding "filler" or "gibberish" to satisfy a structure requirement.
 
 ---
 
