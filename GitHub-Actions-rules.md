@@ -476,4 +476,23 @@ When a workflow fails, the "Fixer" or "Ops" steps MUST execute the failure polic
     2.  Links to the build logs.
     3.  Instructions or hints for fixing (if AI-assisted).
 * **Direct Notifications**: Send 1:1 WhatsApp messages to the committer and team list with direct log links.
-```
+
+#### 11.5 Handling Silent Failures & API Quotas 🗝️
+
+Critical for workflows relying on external AI APIs (e.g., Gemini) that may implement silent fallback mechanisms.
+
+*   **Silent Failure Detection**:
+    *   **Anti-Pattern**: Relying solely on the global workflow status (green checkmark).
+    *   **Protocol**: Inspect logs even for "successful" runs if a known fallback-capable step is involved.
+    *   **Search Identifiers**: Scan logs for keywords indicating failure (e.g., `(AI generation failed)`, `Gemini API Error`, `429 Too Many Requests`).
+*   **Gemini API Quota Management**:
+    *   **Reset Time**: Midnight Pacific Time (PT).
+    *   **IST Conversion**: Approximately **01:30 PM IST** (variations possible due to DST).
+    *   **Debugging**: If "AI generation failed" appears consistently, suspect a quota outage.
+*   **Programmatic Log Inspection**:
+    *   Use `gh run list --workflow <file> --limit 5` to identify relevant recently "passed" runs.
+    *   Use `gh run view <RUN_ID> --log` to search for silent failure strings across all jobs.
+    ```bash
+    # Example: Grep for silent failure indicator in the latest run
+    gh run view $(gh run list --limit 1 --json databaseId -q '.[0].databaseId') --log | grep "AI generation failed"
+    ```
