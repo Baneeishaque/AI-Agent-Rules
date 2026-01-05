@@ -8,7 +8,7 @@ category: Git & Repository Management
 
 This document outlines the strict rules for generating Git commit messages. These rules ensure history is readable, automated tools can parse changes, and the intent of every change is clear.
 
-***
+---
 
 ### 1. Format Specification
 
@@ -19,7 +19,7 @@ This document outlines the strict rules for generating Git commit messages. Thes
     -   **No Markdown**: Do not use bold (`**`), italics (`*`), or code blocks (`` ` ``).
     -   **Allowed Symbols**: You MAY use standard punctuation and symbols for clarity (e.g., `-`, `:`, `()`, `[]`).
 
-***
+---
 
 ### 2. Title Line (Header)
 
@@ -33,7 +33,7 @@ The first line is the most important part of the commit message.
 -   **Case**: Use the **Imperative Mood** (e.g., "add feature" not "added feature" or "adds feature").
 -   **Punctuation**: Do not end the title line with a period.
 
-***
+---
 
 ### 3. Body (Description)
 
@@ -47,7 +47,7 @@ The body provides the detailed context.
     -   Summarize the impact of the changes.
 -   **No Redundancy**: Do not repeat information already stated in the title. Provide supplementary details only.
 
-***
+---
 
 ### 4. Example
 
