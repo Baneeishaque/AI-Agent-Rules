@@ -55,7 +55,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 ### 3. Optimization and Best Practices
 
-* **Checkout Action**: Always use `actions/checkout` with `fetch-depth: 1` (or sufficient depth for the task). This retrieves only the latest commit, significantly reducing the amount of data to download. Where applicable, use `sparse-checkout` to retrieve only necessary directories.
+* **Checkout Action**: Always use `actions/checkout` with `fetch-depth: 1` (or sufficient depth for the task). This retrieves only the latest commit, significantly reducing the amount of data to download. Where applicable, use `sparse-checkout` to retrieve only the necessary directories.
 * **Caching**:
     * Implement caching for dependencies (e.g., `pub cache` for Flutter, `npm cache` for Node.js) to drastically reduce build times. Caches should be configured to be invalidated when the dependency manifest file changes (`pubspec.lock`, `package-lock.json`).
     * **Gradle Caching**:
@@ -133,7 +133,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 * **Java Setup (Conditional)**:
     * **Identify Version**: Extract the required JDK version from the source Azure pipeline (e.g., `JavaToolInstaller` step).
     * **Research Runners**: Always verify specific GitHub runner capabilities (e.g., Ubuntu 24.04) online to identify pre-installed JDKs and default `JAVA_HOME`. Do NOT rely on static or historical information.
-    * **Strategy**: Use dynamic checks for the *specific* identified version environment variable. This approach offers significant advantages by ensuring robustness against runner environment changes and pre-installed JDK path variations. It provides time profit by reducing manual maintenance (especially when Java is already pre-installed, avoiding unnecessary installation time), preventing pipeline failures due to incorrect `JAVA_HOME` settings, and accelerating debugging of Java setup issues.
+    * **Strategy**: Use dynamic checks for the *specific* identified version environment variable. This approach offers significant advantages by ensuring robustness against runner environment changes and pre-installed JDK path variations. It provides time profit by reducing manual maintenance (especially when Java is already pre-installed, avoiding unnecessary installation time), preventing pipeline failures due to incorrect `JAVA_HOME` settings, and speeding up debugging of Java setup issues.
     * **Distribution**: Prefer `oracle` as the **primary choice**. Fall back to `temurin` ONLY if `oracle` does not support the required version. Always verify availability in `actions/setup-java` documentation.
     * **Code Example**:
     ```yaml
@@ -190,7 +190,7 @@ For stable releases and publishing (App Store, Web deployment), workflows MUST:
     1.  Validate/Bump version tags.
     2.  Build the application/service.
     3.  Upload artifacts with the naming convention `client-name/version/environment`.
-    4.  Market stable builds as "Release" and test-only builds as "Pre-release".
+    4.  Market stable builds as "Release" and test-only builds as "Pre-release."
     5.  Trigger notifications (WhatsApp, Team Channels).
     6.  Direct Message (DM) testers with pre-signed download links.
 * **Automated Workflow**: Implement the artifact management strategy from `CI-CD-rules.md`. Upload builds using `actions/upload-artifact`, generate pre-signed links for testers via CLI, and apply lifecycle policies.
@@ -238,13 +238,13 @@ For stable releases and publishing (App Store, Web deployment), workflows MUST:
 * **Config File**: Place `mise.toml` in the appropriate folder (project root, `scripts/`, or any relevant directory).
 * **Working Directory Context**:
     * The `working_directory` input in `jdx/mise-action` only applies to the **installation phase** of that specific action.
-    * It does **NOT** configure `mise` globally for subsequent steps in the same job.
+    * It does **NOT** configure `mise` globally for later steps in the same job.
 * **Environment Variable Block**:
-    * To use a non-root `mise.toml` in subsequent steps without changing the working directory, set `MISE_CONFIG_FILE: <path/to/mise.toml>` in the `env:` block (at the job or step level).
+    * To use a non-root `mise.toml` in later steps without changing the working directory, set `MISE_CONFIG_FILE: <path/to/mise.toml>` in the `env:` block (at the job or step level).
     * **Example**: See "Code Example" below for correct placement in `env:`.
     * This approach is preferred over using the `-C` or `--cd` flag of `mise exec` if the command being executed relies on the repository root context (e.g., finding project templates, metadata, or other rule files).
     * **Caution**: Avoid inline prefixes (e.g., `VAR=val cmd`) when the command is passed as a string variable in scripts, as bash may not interpret them correctly.
-* **Caching**: Enable `cache: true` for faster subsequent runs.
+* **Caching**: Enable `cache: true` for faster later runs.
 
 #### 8.2 Platinum Mise Setup (Recommended)
 * **Action**: For robust tool verification, use `Baneeishaque/mise-setup-verification-action`.
@@ -314,7 +314,7 @@ jobs:
     * Verify that **all** identified secrets (e.g., `SERVER_API_ADDRESS`, `GRADLE_CACHE_ENCRYPTION_KEY`) are correctly configured in the target repository. Do not assume any secret is pre-existing unless verified.
     * For new or missing secrets, follow the "Secret Creation (Non-Interactive)" protocol.
 * **Commit & Push Protocol**:
-    * **Compliance**: MUST obey strict rules defined in `Git-Commit-Message-rules.md` and `Git-Submodule-rules.md` before pushing. This ensures clean history and stable submodules.
+    * **Compliance**: MUST obey strict rules defined in `Git-Commit-Message-rules.md` and `Git-Submodule-rules.md` before pushing. This ensures a clean history and stable submodules.
     * **Commit Message**: Use conventional commit format (e.g., `fix(ci): ...`).
     * **Action**: Stage, commit, and push changes *before* proceeding to verification to ensure the remote state matches the workflow being tested.
 * **Automated Monitoring**:
@@ -417,7 +417,7 @@ jobs:
 
 ### 11. Troubleshooting & Fixer Persona
 
-This section defines the persona and operating rules for the "GitHub Workflow Fixer Tool", an AI specialist dedicated to troubleshooting and repairing broken GitHub Action workflows.
+This section defines the persona and operating rules for the "GitHub Workflow Fixer Tool," an AI specialist dedicated to troubleshooting and repairing broken GitHub Action workflows.
 
 #### 11.1 Core Mandate
 The primary goal is to **restore green builds** by diagnosing failure logs, validating workflow syntax, and implementing fixes that align with best practices.
@@ -431,7 +431,7 @@ When acting as a Fixer, ensure all workflows meet these baseline standards:
 *   **💎 Always Pin Everything**: Never use `@v1` or `@master`. Always use full semantic versions (e.g., `@v1.2.3`).
 *   **💎 Use ShellCheck**: Ensure all `.bash` scripts in `.github/scripts/` pass ShellCheck.
 *   **💎 Use Actionlint**: Ensure all YAML files pass `actionlint` with `fail_level: error`.
-*   **💎 Least Privilege**: Ensure `GITHUB_TOKEN` permissions are explicitly scoped.
+*   **💎 The Least Privilege**: Ensure `GITHUB_TOKEN` permissions are explicitly scoped.
 *   **💎 No Hardcoded Secrets**: Ensure all sensitive values are in `${{ secrets.X }}`.
 
 **1. Investigation Phase**
@@ -447,9 +447,9 @@ When acting as a Fixer, ensure all workflows meet these baseline standards:
 
 **2. Common Failure Patterns & Fixes**
 *   **Syntax Errors**: Run `actionlint` locally if available.
-*   **Missing Secrets**: Verify availability of secrets referenced in inputs/env.
+*   **Missing Secrets**: Verify the availability of secrets referenced in inputs/env.
 *   **Runner Issues**: Check if `runs-on` targets a valid runner image.
-*   **Shell Script Failures**: If a step running a script fails, inspect the script content and consider invoking the "ShellCheck Fixer Agent".
+*   **Shell Script Failures**: If a step running a script fails, inspect the script content and consider invoking the "ShellCheck Fixer Agent."
 
 **3. Fix & Verify**
 *   **Commit Message**: Use conventional commits (e.g., `fix(ci): ...`) following `Git-Commit-Message-rules.md`.
