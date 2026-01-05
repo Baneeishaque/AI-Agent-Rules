@@ -72,6 +72,16 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
         * **Performance**: Skips heavy dependency installation and API calls when unnecessary.
         * **Efficiency**: Reduces CI/CD minutes usage.
         * **Clean Logs**: Avoids "nothing to commit" noise or complex skip logic inside downstream actions.
+* **Complex Scripting**:
+    * **Mandatory**: Use **standalone Bash scripts** (must use `.bash` extension) instead of inline YAML logic for any complex logic, loops, or multi-line commands.
+    * **Location**: Store scripts in `.github/scripts/`.
+    * **Benefits**: Improves readability, enables ShellCheck verification, and allows for local testing of CI logic.
+    * **Example**:
+      ```yaml
+      - name: Preparation Step
+        run: ./.github/scripts/prepare-something.bash
+        shell: bash
+      ```
     * **Example**:
       ```yaml
       - name: Check for changes
@@ -124,7 +134,6 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
     * **Identify Version**: Extract the required JDK version from the source Azure pipeline (e.g., `JavaToolInstaller` step).
     * **Research Runners**: Always verify specific GitHub runner capabilities (e.g., Ubuntu 24.04) online to identify pre-installed JDKs and default `JAVA_HOME`. Do NOT rely on static or historical information.
     * **Strategy**: Use dynamic checks for the *specific* identified version environment variable. This approach offers significant advantages by ensuring robustness against runner environment changes and pre-installed JDK path variations. It provides time profit by reducing manual maintenance (especially when Java is already pre-installed, avoiding unnecessary installation time), preventing pipeline failures due to incorrect `JAVA_HOME` settings, and accelerating debugging of Java setup issues.
-    * **Scripting**: Use **standalone Bash scripts** (must use `.bash` extension) instead of inline YAML logic for complex checks. This improves readability and testability.
     * **Distribution**: Prefer `oracle` as the **primary choice**. Fall back to `temurin` ONLY if `oracle` does not support the required version. Always verify availability in `actions/setup-java` documentation.
     * **Code Example**:
     ```yaml
