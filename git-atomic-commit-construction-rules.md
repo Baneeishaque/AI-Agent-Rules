@@ -8,7 +8,7 @@ category: Git & Repository Management
 
 This document defines the mandatory protocol for creating "Arranged Commits"—logical, independent, and atomic units of change. This approach ensures high-quality history and minimizes regression risks.
 
-***
+---
 
 ### 1. Phase 1: Deep Change Analysis
 
@@ -18,7 +18,7 @@ Before staging any files, the agent MUST perform a dependency analysis of all mo
 - **Cross-File References**: If file A depends on a change in file B (e.g., an import or a link), they MUST be part of the same atomic commit.
 - **Categorical Alignment**: Group changes by their architectural layer (e.g., UI, Logic, Docs) unless they are functionally coupled.
 
-***
+---
 
 ### 2. Phase 2: Logical Grouping (Arrangement)
 
@@ -55,7 +55,7 @@ The agent must "arrange" the detected changes into a proposed sequence of commit
     ```
 - **Start Trigger**: The agent MUST NOT proceed with any commit execution until the user explicitly says **"start"**.
 
-***
+---
 
 ### 3. Phase 3: Interactive Hunk-Based Staging
 
@@ -67,7 +67,7 @@ When a file contains mixed concerns, the agent MUST use interactive staging tool
 - **Granular Hygiene**: If a grammatical fix is discovered while implementing a feature, it MUST be staged and committed separately (either before or after) unless it is part of the same logical chunk. Continuous use of `git add -p` ensures high-quality, noise-free history.
 - **Verification**: Run `git diff --cached` after staging each chunk to guarantee strictly atomic contents.
 
-***
+---
 
 ### 4. Phase 4: Execution & Verification
 
@@ -76,7 +76,7 @@ When a file contains mixed concerns, the agent MUST use interactive staging tool
 - **Pull Before Push**: Always `git pull` (or `git pull --rebase` upon explicit approval) before pushing to incorporate latest remote changes.
 - **Recovery**: If a mistake is made during staging, use `git reset <file>` to unstage, or `git checkout -p` to selectively discard. **WARNING**: Never use `git reset --hard` for synchronization; always prefer `git pull`.
 
-***
+---
 
 ### 5. The Commit Compass (GitKraken Philosophy)
 

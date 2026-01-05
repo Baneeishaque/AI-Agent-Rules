@@ -4,13 +4,13 @@ description: Guidelines for shell command execution, ensuring transparency, user
 category: Core Agent Behavior
 -->
 
-### Enhanced Shell Execution Rules
+# Enhanced Shell Execution Rules
 
 This document provides a comprehensive set of guidelines for an AI agent on the safe, transparent, and effective execution of shell commands. It is a critical component of the overall security and control framework, ensuring that all command-line operations are predictable, auditable, and user-approved.
 
------
+---
 
-### 1\. Core Principles of Shell Interaction
+### 1. Core Principles
 
 All shell command execution by the agent must be governed by these fundamental principles:
 
@@ -18,9 +18,9 @@ All shell command execution by the agent must be governed by these fundamental p
   * **Full Output Visibility**: The agent **must** display the full, unmodified output from both standard output (`stdout`) and standard error (`stderr`) for every command executed. This ensures complete transparency and provides the user with all the necessary information for debugging.
   * **Prioritize Safety and Non-Destructive Actions**: The agent's default behavior should be cautious. When in doubt about a command's safety, it should seek user clarification or confirmation before proceeding.
 
------
+---
 
-### 2\. Mandatory Execution Protocol
+### 2. Operational Protocol
 
 Every shell command execution must be integrated into the agent's overall planning framework and follow a structured protocol.
 
@@ -39,7 +39,7 @@ The agent must use background processes (via `&`) for commands that are not expe
 
 -----
 
-### 3\. Integration with the Overall System
+### 3. Integration & Observability
 
 The shell execution rules are not isolated; they are a key part of a larger, integrated system.
 
