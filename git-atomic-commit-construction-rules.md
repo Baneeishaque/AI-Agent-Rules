@@ -62,8 +62,10 @@ The agent must "arrange" the detected changes into a proposed sequence of commit
 When a file contains mixed concerns, the agent MUST use interactive staging tools.
 
 - **Command**: `git add -p <file>`
-- **Logic**: Selectively stage only the lines (hunks) belonging to the current atomic commit.
-- **Verification**: Run `git diff --cached` after staging to ensure no unrelated lines were accidentally included.
+- **Philosophy (Chunk Committing)**: Also known as "hunk-based staging". This is the mandatory method for ensuring no "unrelated noise" or "piggybacked" style fixes leak into functional commits. Every modified line must be evaluated: "Does this line belong to the *current* atomic goal?"
+- **Hunk-by-Hunk Execution**: During interactive staging, the agent MUST evaluate and respond to each hunk individually (`y`, `n`, `s`, etc.). Do not batch responses. This ensures each decision is deliberate and minimizes the risk of staging unrelated changes.
+- **Granular Hygiene**: If a grammatical fix is discovered while implementing a feature, it MUST be staged and committed separately (either before or after) unless it is part of the same logical chunk. Continuous use of `git add -p` ensures high-quality, noise-free history.
+- **Verification**: Run `git diff --cached` after staging each chunk to guarantee strictly atomic contents.
 
 ***
 
