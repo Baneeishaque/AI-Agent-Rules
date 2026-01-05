@@ -294,11 +294,18 @@ jobs:
 
 #### Secret Management
 * **Secret Creation (Non-Interactive)**:
-    * Use `openssl` and `gh secret set` with redirection to avoid interactive prompts and history leaks.
+    * Use `gh secret set <NAME> < <FILE>` with redirection to avoid interactive prompts and history leaks.
+    * **Note**: For encryption keys or other generated values, use tools like `openssl` to generate the file first.
     ```bash
+    # Example for GRADLE_CACHE_ENCRYPTION_KEY
     openssl rand -base64 16 > key.txt
     gh secret set GRADLE_CACHE_ENCRYPTION_KEY < key.txt
     rm key.txt
+
+    # Example for existing secret
+    echo "existing-secret-value" > secret.txt
+    gh secret set EXISTING_SECRET < secret.txt
+    rm secret.txt
     ```
 
 #### Verification Protocol
