@@ -10,7 +10,7 @@ This document defines the mandatory protocol for creating "Arranged Commits"—l
 
 ---
 
-### 1. Phase 1: Deep Change Analysis
+## 1. Phase 1: Deep Change Analysis
 
 Before staging any files, the agent MUST perform a dependency analysis of all modifications.
 
@@ -21,17 +21,18 @@ Before staging any files, the agent MUST perform a dependency analysis of all mo
 
 ---
 
-### 2. Phase 2: Logical Grouping (Arrangement)
+## 2. Phase 2: Logical Grouping (Arrangement)
 
 The agent must "arrange" the detected changes into a proposed sequence of commits.
 
 - **Independence**: Each commit should be able to stand alone. If the repository were checked out at that commit, it should still build/function (or at least be logically coherent).
 - **Atomic Principle**: Never commit half of a logical change. If a file contains two unrelated changes, use **Hunk-Based Staging**.
 - **The Commit Preview (Mandatory Verbose Display)**:
-    - Present the proposed "Arranged Commits" to the user for approval using a structured format that provides **maximum details**.
-    - For files with mixed concerns requiring hunk-based staging, the preview **MUST** include the specific **git hunks (diff blocks)** and a file preview for each logical unit.
-    - Format:
-    ```markdown
+  - Present the proposed "Arranged Commits" to the user for approval using a structured format that provides **maximum details**.
+  - For files with mixed concerns requiring hunk-based staging, the preview **MUST** include the specific **git hunks (diff blocks)** and a file preview for each logical unit.
+  - Format:
+
+    ````markdown
     ## Arranged Commits Preview
     
     ### Commit 1: [type](scope): [title]
@@ -39,7 +40,7 @@ The agent must "arrange" the detected changes into a proposed sequence of commit
     - **Message**:
       ```
       [type](scope): [title]
-      
+
       [Body line 1]
       [Body line 2]
       ...
@@ -50,6 +51,7 @@ The agent must "arrange" the detected changes into a proposed sequence of commit
       ```
 
     ### Commit 2: [type](scope): [title]
+
     - **Files**: [file3.md]
     - **Message**:
       ```
@@ -58,15 +60,17 @@ The agent must "arrange" the detected changes into a proposed sequence of commit
       [Body line 1]
       ...
       ```
-    
+
     ---
     Please say "start" to begin the sequential execution of these atomic commits.
-    ```
+
+    ````
+
 - **Commit Authorization**: The agent **MUST NOT** proceed with any commit execution until the user explicitly says **"start"**. Other triggers like "commit" or "go" are insufficient; strict authorization ensures the user has reviewed the verbose preview.
 
 ---
 
-### 3. Phase 3: Interactive Hunk-Based Staging
+## 3. Phase 3: Interactive Hunk-Based Staging
 
 When a file contains mixed concerns, the agent MUST use interactive staging tools.
 
@@ -78,7 +82,7 @@ When a file contains mixed concerns, the agent MUST use interactive staging tool
 
 ---
 
-### 4. Phase 4: Execution & Verification
+## 4. Phase 4: Execution & Verification
 
 - **Step-by-Step**: Execute commits one-by-one according to the approved arrangement.
 - **Unstaged Changes During Rebase**: If rebase fails due to unstaged changes, use the stash workflow (see git-operation-rules.md Section 3).
@@ -87,9 +91,10 @@ When a file contains mixed concerns, the agent MUST use interactive staging tool
 
 ---
 
-### 5. The Commit Compass (GitKraken Philosophy)
+## 5. The Commit Compass (GitKraken Philosophy)
 
 Imagine a compass where each cardinal direction is a logical area of the codebase.
+
 - **North**: Architectural/Schema changes.
 - **East**: Logic/Feature implementation.
 - **West**: Testing/Verification.
