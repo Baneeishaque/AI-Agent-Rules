@@ -87,6 +87,23 @@ When re-creating commits that originally had specific messages and timestamps, u
 git commit -C <original-hash>
 ```
 
+### 2.4 Sequential Integrity (Protocol Files)
+
+When refining history for documents containing numbered phases or state-dependent protocols (e.g., `git-atomic-commit-construction-rules.md`), the agent **MUST** maintain structural validity at *every* intermediate commit.
+
+- **The Valid-Sequence Rule**: Every commit in the refined history MUST result in a valid 1-N sequence of phases. No gaps, no duplicates, and no "broken" intermediate states.
+- **Micro-Renumbering**: If a commit adds Phases 4 and 5, and the original file already had a Phase 4 (now 6), the agent MUST renumber all subsequent phases within that same atomic unit to preserve immediate validity.
+
+### 2.5 Remote Baseline Reconciliation
+
+Before starting any history refinement, the agent MUST synchronize with the remote source of truth to prevent divergence.
+
+1. **Mandatory Fetch**: `git fetch origin <branch>`
+2. **Reconciliation**: If `origin/<branch>` contains commits not present in the local branch, the agent MUST:
+   - Identify the latest remote commit as the new "Refinement Baseline".
+   - Re-execute the reconstruction atop this reconciled baseline.
+3. **Submodule Awareness**: This protocol applies recursively to submodules. Never begin a submodule refinement without a `git -C <path> pull` or fetch.
+
 ---
 
 ## 3. Verification & Parity

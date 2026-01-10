@@ -118,7 +118,8 @@ When local and remote branches have diverged:
    - Remote ahead: `git log HEAD..origin/<branch> --oneline`
 4. **Resolve**:
    - **Independent changes**: `git pull --rebase origin <branch>`
-   - **Conflicting changes**: Manual merge or rebase with conflict resolution
+   - **Conflicting changes**: Manual merge or rebase with conflict resolution.
+   - **Structural/Atomic Fixes**: If the divergence involves non-atomic history that requires surgery, follow the **[Git History Refinement Rules](./git-history-refinement-rules.md)**.
 
 ### Stash vs. Commit Decision
 
