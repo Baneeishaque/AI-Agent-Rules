@@ -57,6 +57,7 @@ LinkedIn posts are primarily consumed as plain text. Markdown rendering is incon
 
 -   **NO Markdown Formatting**: Do not use bold (`**`), italics (`_`), or headers (`#`).
 -   **Capitalization for Emphasis**: Use **ALL CAPS** for section headers (e.g., `THE PROTOCOL`) to create visual hierarchy without markdown.
+-   **No Horizontal Lines**: Do NOT use `___`, `---`, or other ASCII dividers. They render unpredictably on mobile devices. Use whitespace (double line breaks) instead.
 -   **Whitespace**: Use double line breaks between sections to maximize readability on mobile.
 
 ---
