@@ -17,9 +17,14 @@ This document is a practical, example-driven workflow guide for managing file an
 
 ---
 
-## 1. The Commit Compass: Reference Map
+## 1. The Commit Compass & Operational Protocols
 
-This section provides a visual mapping of how to arrange commits using the cardinal directions of the **Commit Compass** (authoritative logic in [git-atomic-commit-construction-rules.md](./git-atomic-commit-construction-rules.md)).
+This section provides a visual mapping of how to arrange commits using the cardinal directions of the **Commit Compass** (authoritative logic in [git-atomic-commit-construction-rules.md](./git-atomic-commit-construction-rules.md)) and the mandatory operational sequences required before execution.
+
+### Operational Sequence (Mandatory)
+1.  **Workflow Finalization**: If changes impact CI/CD (workflows, scripts), fix and verify the logic **FIRST**.
+2.  **Verbose Preview**: Present the "Arranged Commits Preview" with maximum details (hunks/previews).
+3.  **Explicit Authorization**: Wait for the user to say **"commit"** before starting execution.
 
 | Direction | Domain | Authoritative Rule |
 | :--- | :--- | :--- |

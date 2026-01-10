@@ -17,6 +17,7 @@ Before staging any files, the agent MUST perform a dependency analysis of all mo
 - **Shared Identifiers**: Group changes that modify the same functions, classes, or constants across different files.
 - **Cross-File References**: If file A depends on a change in file B (e.g., an import or a link), they MUST be part of the same atomic commit.
 - **Categorical Alignment**: Group changes by their architectural layer (e.g., UI, Logic, Docs) unless they are functionally coupled.
+- **Workflow-First Priority**: If changes involve CI/CD workflows (GitHub Actions, scripts), the agent **MUST** fix, test, and verify the workflow functionality *before* arranging or executing commits. Functional stability of the CI pipeline takes precedence over documentation or stylistic refinements.
 
 ---
 
@@ -26,12 +27,14 @@ The agent must "arrange" the detected changes into a proposed sequence of commit
 
 - **Independence**: Each commit should be able to stand alone. If the repository were checked out at that commit, it should still build/function (or at least be logically coherent).
 - **Atomic Principle**: Never commit half of a logical change. If a file contains two unrelated changes, use **Hunk-Based Staging**.
-- **The Commit Preview (Mandatory Display)**:
-    - Present the proposed "Arranged Commits" to the user for approval using the following structured format:
+- **The Commit Preview (Mandatory Verbose Display)**:
+    - Present the proposed "Arranged Commits" to the user for approval using a structured format that provides **maximum details**.
+    - For files with mixed concerns requiring hunk-based staging, the preview **MUST** include the specific **git hunks (diff blocks)** and a file preview for each logical unit.
+    - Format:
     ```markdown
     ## Arranged Commits Preview
     
-    ### Commit 1: [type] [title]
+    ### Commit 1: [type](scope): [title]
     - **Files**: [file1.md], [file2.md]
     - **Message**:
       ```
@@ -39,21 +42,27 @@ The agent must "arrange" the detected changes into a proposed sequence of commit
       
       [Body line 1]
       [Body line 2]
+      ...
       ```
-    
-    ### Commit 2: [type] [title]
+    - **Hunks/Preview**:
+      ```diff
+      [Show actual hunks for this commit]
+      ```
+
+    ### Commit 2: [type](scope): [title]
     - **Files**: [file3.md]
     - **Message**:
       ```
       [type](scope): [title]
       
       [Body line 1]
+      ...
       ```
     
     ---
     Please say "start" to begin the sequential execution of these atomic commits.
     ```
-- **Start Trigger**: The agent MUST NOT proceed with any commit execution until the user explicitly says **"start"**.
+- **Commit Authorization**: The agent **MUST NOT** proceed with any commit execution until the user explicitly says **"start"**. Other triggers like "commit" or "go" are insufficient; strict authorization ensures the user has reviewed the verbose preview.
 
 ---
 

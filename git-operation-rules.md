@@ -13,7 +13,8 @@ category: Git & Repository Management
 - When asked to commit staged files, only consider files that are staged (use git diff --cached or git status --short).
 - Always respect the folder, repository, or submodule specified by the user. If not specified, use the workspace root or known repositories.
 - If the folder is a submodule, follow all submodule commit and branch management rules (see git-submodule-rules.md).
-- Do not manually scan or assume file changes; always rely on git for authoritative status.
+- Don't manually scan or assume file changes; always rely on git for authoritative status.
+- **Workflow-First Priority**: If changes involve CI/CD (workflows, scripts), fix and verify the logic **FIRST** before committing.
 
 ## Version Control Operations
 
@@ -21,6 +22,7 @@ category: Git & Repository Management
 
 - **Atomic Construction**: Before any commit operation, follow the [git-atomic-commit-construction-rules.md](./git-atomic-commit-construction-rules.md) to group and arrange changes.
 - **Explicit Request Required**: Do NOT generate commit messages or execute `git commit` unless the user **explicitly** requests it.
+- **Authorization Trigger**: The agent MUST NOT proceed with any commit until the user explicitly says **"start"**. Other commands like "commit" are insufficient.
 - **No Auto-Commits**: Never assume a task completion implies a commit. Always wait for instruction.
 - **Commit Messages**: When authorized, must strictly follow `git-commit-message-rules.md`.
 
