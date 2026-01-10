@@ -62,6 +62,6 @@ The content must balance conciseness with technical depth:
 
 Before finalizing a new rule:
 1. **Cross-Reference**: Check for existing rules to avoid duplication.
-2. **Lint Check**: Ensure all links to other rules are valid and formatting is consistent.
+2. **Lint Check**: Ensure all content complies with **[Markdown Generation Rules](./markdown-generation-rules.md)**.
 3. **Sync Trigger**: Remind the user to trigger the `agent-rules.md` update workflow.
 4. **Commit Message**: Use Conventional Commits (e.g., `feat: establish standard creation rules for AI agents`).
