@@ -157,6 +157,11 @@ Follow the guidelines in:
 |-----------|---------|
 | [`AI-Agent-Rule-Standard-Creation-rules.md`](./AI-Agent-Rule-Standard-Creation-rules.md) | Craftsmanship standards for developing "Ultra-Lean Industrial" AI Agent Rules, ensuring consistent formatting, structural hierarchy, and pedagogical clarity. |
 
+### Social Media & Branding
+| Rule File | Purpose |
+|-----------|---------|
+| [`linkedin-post-creation-rules.md`](./linkedin-post-creation-rules.md) | Protocol for crafting viral, professional, and accessible LinkedIn posts customized for Banee Ishaque K's persona, emphasizing plain-text optimization and human storytelling. |
+
 ### Tooling & Workflows
 | Rule File | Purpose |
 |-----------|---------|
