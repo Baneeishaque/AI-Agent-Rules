@@ -124,6 +124,11 @@ Follow the guidelines in:
 | [`NestJS-React-App-rules.md`](./NestJS-React-App-rules.md) | Guidelines for developing NestJS backends with React frontends. |
 | [`NestJS-React-App-with-Flutter-Client-rules.md`](./NestJS-React-App-with-Flutter-Client-rules.md) | Full-stack guidelines for NestJS/React web apps with an accompanying Flutter mobile client. |
 
+### Documentation & Standards
+| Rule File | Purpose |
+|-----------|---------|
+| [`markdown-generation-rules.md`](./markdown-generation-rules.md) | Standards for creating machine-parseable, lint-compliant markdown documents. |
+
 ### Git & Repository Management
 | Rule File | Purpose |
 |-----------|---------|
@@ -135,6 +140,8 @@ Follow the guidelines in:
 | [`Repository-Search-rules.md`](./Repository-Search-rules.md) | Multi-platform repository discovery and smart cloning workflows. |
 | [`git-atomic-commit-construction-rules.md`](./git-atomic-commit-construction-rules.md) | Authoritative protocol for analyzing, grouping, and arranging changes into logical, independent atomic units before execution. |
 | [`git-commit-message-rules.md`](./git-commit-message-rules.md) | Strict rules for generating git commit messages, enforcing Conventional Commits, contextual information in titles, and no redundancy between title and body. |
+| [`git-gitignore-handling-rules.md`](./git-gitignore-handling-rules.md) | Protocols for generating, maintaining, and customizing .gitignore files using standard APIs. |
+| [`git-history-refinement-rules.md`](./git-history-refinement-rules.md) | Protocols for refining existing commit history using backup branches, jq for JSON atomicity, and tree parity verification. |
 | [`git-operation-rules.md`](./git-operation-rules.md) | Strict protocols for standard Git operations (commits & pushes), mandating explicit user requests and forbidding auto-actions. |
 | [`git-submodule-rules.md`](./git-submodule-rules.md) | Protocols for managing submodules, preventing detached HEAD states, proper branch tracking, and descriptive parent commit messages. |
 | [`git-text-normalization-rules.md`](./git-text-normalization-rules.md) | Rules to ensure Git treats text files correctly across encodings and platforms, preventing binary diffs and EOL churn. |
