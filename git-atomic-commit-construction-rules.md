@@ -94,18 +94,45 @@ Tool configurations and metadata must be atomically linked to the documentation 
 - **Functional Pairing**: Updates to `.vscode/settings.json` (e.g., cSpell words), `.lintrc`, or other configuration files MUST be staged and committed alongside the functional changes that necessitate them.
 - **Example**: If adding a new rule file introduces new technical terms, the cSpell update for those terms MUST be part of the same atomic unit as the rule file addition.
 
+## 6. Phase 6: Submodule Synchronization Protocol
+
+When managing submodules, the main repository's history must remain descriptive and clear.
+
+- **Synchronized Commits**: Every functional update in a submodule requiring a pointer update in the main repo MUST be coupled with its relevant main-repo configuration changes (e.g., CI scripts or IDE settings).
+- **Descriptive Titles (Mandatory)**: Main repo sync commits MUST NOT use generic titles like `sync submodule`. They MUST provide a maximum-detail summary of the modular improvements contained within (e.g., `docs: sync rules submodule and update markdown generation standards`).
+
+## 7. Phase 7: Handling Generated Files vs. User Customization
+
+When a file (e.g., `.gitignore`) contains both standard API-generated content (e.g., from gitignore.io) and user-defined custom rules, these MUST be split into separate commits.
+
+- **Commit A (The Foundation)**: Commit **only** the standard, API-generated portion first.
+  - **Methodology**: Back up the full file, overwrite with the exact API content (or equivalent standard sections), and commit.
+  - **Rationale**: Establishes a clean, reproducible baseline.
+- **Commit B (The Customization)**: Commit the user-defined sections (patches/custom rules) in a subsequent commit.
+  - **Rationale**: Clearly distinguishes between "standard boilerplate" and "project-specific logic".
+- **Handling Modifications**: If the user has altered the API-generated portion, these alterations must also be separated from the raw API import if possible, or documented clearly as user-patches on top of the base.
+
+## 8. Phase 8: Commit Message Quality Standards
+
+- **Specificity Over Genericity**: Avoid generic titles like `os-specific`. Instead, list the specific components: `add linux, macos, and windows gitignore rules`.
+- **Anti-Repetition**: The commit body MUST NOT merely rephrase the title.
+  - **Bad**: Title: `add vscode gitignore rules`. Body: `Add VisualStudioCode exclusion rules`.
+  - **Good**: Title: `add vscode gitignore rules`. Body: `Sourced from gitignore.io to exclude editor artifacts`.
+- **Contextual Accuracy**: Ensure terms usage is precise (e.g., "Supabase project-specific" instead of generic "project-specific").
+
 ---
 
-## 6. Phase 6: Execution & Verification
+## 9. Phase 9: Execution & Verification
 
 - **Step-by-Step**: Execute commits one-by-one according to the approved arrangement.
+- **History Refinement**: If existing commits need to be split or refined (e.g., to fix non-atomic changes), follow the **[Git History Refinement Rules](./git-history-refinement-rules.md)**.
 - **Unstaged Changes During Rebase**: If rebase fails due to unstaged changes, use the stash workflow (see git-operation-rules.md Section 3).
 - **Pull Before Push**: Always `git pull` (or `git pull --rebase` upon explicit approval) before pushing to incorporate latest remote changes.
 - **Recovery**: If a mistake is made during staging, use `git reset <file>` to unstage, or `git checkout -p` to selectively discard. **WARNING**: Never use `git reset --hard` for synchronization; always prefer `git pull`.
 
 ---
 
-## 7. The Commit Compass (GitKraken Philosophy)
+## 10. The Commit Compass (GitKraken Philosophy)
 
 Imagine a compass where each cardinal direction is a logical area of the codebase.
 
