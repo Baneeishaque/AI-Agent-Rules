@@ -10,7 +10,16 @@ This document defines the craftsmanship standards for creating new AI Agent Rule
 
 ***
 
-### 1. File Naming & Meta-Data
+### 1. Preparation & Context Assembly (Crucial)
+
+Before drafting a rule file, the agent MUST:
+1.  **Assemble Conversation Points**: Review the entire conversation history to capture specific user preferences, edge cases discussed, and implied constraints (e.g., "plain text only", "no icons").
+2.  **Identify Edge Cases**: Explicitly document "what not to do" based on user feedback (e.g., "Articles don't support tags").
+3.  **Synthesize Limitations**: If a platform or tool has limitations (e.g., LinkedIn Article tags), the rule MUST address them.
+
+***
+
+### 2. File Naming & Meta-Data
 
 All rule files must be stored in the `AI-Agent-Rules` directory.
 
@@ -33,7 +42,8 @@ Rule files must follow a predictable, industrialized structure to maximize reada
 1.  **H1 Title**: Matches the YAML title but is more formal (e.g., `# Git Submodule Management Rules`).
 2.  **Scope Statement**: A brief paragraph defining *why* the rule exists and who the stakeholders are.
 3.  **Section Dividers**: Use `***` (horizontal rules) between major H3 sections.
-4.  **Numbered Sections**: Use H3 headers with sequential numbering (e.g., `### 1. Core Directives`).
+4.  **Numbered Sections**: Use H3 headers with sequential numbering (e.g., `### 1. Preparation & Context Assembly`).
+
 5.  **Sub-sections**: Use H4 for specific technical details (e.g., `#### 1.1 Command Syntax`).
 
 ***
