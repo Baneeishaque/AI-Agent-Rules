@@ -80,9 +80,23 @@ When a file contains mixed concerns, the agent MUST use interactive staging tool
 - **Granular Hygiene**: If a grammatical fix is discovered while implementing a feature, it MUST be staged and committed separately (either before or after) unless it is part of the same logical chunk. Continuous use of `git add -p` ensures high-quality, noise-free history.
 - **Verification**: Run `git diff --cached` after staging each chunk to guarantee strictly atomic contents.
 
+## 4. Phase 4: Formatting Consolidation & Noise Reduction
+
+To prevent stylistic changes from obscuring functional history, the agent MUST consolidate formatting fixes.
+
+- **Consolidation Rule**: If multiple files require stylistic, indentation, or header-level adjustments, these MUST be clubbed into a single, dedicated "formatting-only" commit.
+- **Zero Mixture**: Never mix a formatting-only hunk with a functional hunk in the same commit, even within the same file. Use `git add -p` to isolate them.
+
+## 5. Phase 5: Configuration Coupling
+
+Tool configurations and metadata must be atomically linked to the documentation or code they support.
+
+- **Functional Pairing**: Updates to `.vscode/settings.json` (e.g., cSpell words), `.lintrc`, or other configuration files MUST be staged and committed alongside the functional changes that necessitate them.
+- **Example**: If adding a new rule file introduces new technical terms, the cSpell update for those terms MUST be part of the same atomic unit as the rule file addition.
+
 ---
 
-## 4. Phase 4: Execution & Verification
+## 6. Phase 6: Execution & Verification
 
 - **Step-by-Step**: Execute commits one-by-one according to the approved arrangement.
 - **Unstaged Changes During Rebase**: If rebase fails due to unstaged changes, use the stash workflow (see git-operation-rules.md Section 3).
@@ -91,7 +105,7 @@ When a file contains mixed concerns, the agent MUST use interactive staging tool
 
 ---
 
-## 5. The Commit Compass (GitKraken Philosophy)
+## 7. The Commit Compass (GitKraken Philosophy)
 
 Imagine a compass where each cardinal direction is a logical area of the codebase.
 
