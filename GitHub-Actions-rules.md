@@ -373,7 +373,13 @@ For standard application repositories (not standalone Action repos), follow thes
 ### 10.3 Version Pinning (Strict & Live Verified)
 
 * **Mandatory Semantic Versioning**: All GitHub Actions (`uses: ...`) **MUST** be pinned to a specific, full semantic version (e.g., `@2.0.0`, `@v4.1.7`, `@v6.0.1`).
-* **Live Lookup Requirement**: Before using or updating any action, the AI Agent **MUST** perform a live lookup (using the GitHub Marketplace, GitHub API, or `gh release list`) to identify the absolute latest stable (non-draft, non-prerelease) version/tag. This lookup must be performed at the time of workflow creation or update, not based on cached or historical data.
+* **Live Lookup Requirement**: Before using or updating any action, the AI Agent **MUST** perform a live lookup to identify the absolute latest stable (non-draft, non-prerelease) version/tag.
+* **Tool Precedence**: Strictly follow this order for version lookups:
+    1.  **GitHub CLI (`gh`)**: Use `gh release list --repo <owner/repo>` or `gh api`.
+    2.  **GitHub API**: Use `curl` to the GitHub API endpoints.
+    3.  **Marketplace/Docs**: Use `curl` to raw Marketplace pages or documentation.
+    4.  **Browser**: Use the browser tool only as a last resort if all CLI/API methods fail.
+* **Timing**: This lookup must be performed at the time of workflow creation or update, not based on cached or historical data.
 * **Prohibited Tags**: Do **NOT** use mutable tags such as `@v2`, `@master`, or `@main`. This prevents unexpected breaks and ensures reproducibility.
 * **Version Format**: Some actions (e.g., `ludeeus/action-shellcheck`) use semantic versions **without** the `v` prefix. Always verify the correct tag format on the Marketplace or via API.
 * **Example**: `uses: actions/checkout@v6.0.1` (latest semantic, as of 2026-01-06) instead of `@v4` or `@main`.
