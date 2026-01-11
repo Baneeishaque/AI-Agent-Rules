@@ -186,3 +186,72 @@ The agent is **BLOCKED** from deleting backup branches automatically.
 
 - **Protocol**: Provide a walkthrough of the refined history.
 - **Authorization**: Request explicit user confirmation before deleting any backup branches created under Section 1. The agent is **PROHIBITED** from deleting these automatically.
+
+***
+
+## 2.9 Post-Refinement Remote Push Protocol
+
+After history refinement, if the remote has diverged, the agent MUST reconcile before pushing.
+
+### 2.9.1 Pre-Push Remote Backup (MANDATORY)
+
+Before any destructive operation (force-push), the agent MUST create a backup of the remote state.
+
+```bash
+git branch backup/pre-force-push-<n> origin/<branch>
+```
+
+1. **Naming**: Use incremental integers `<n>` to avoid overwriting existing backups.
+2. **Verification**: Confirm backup existence:
+   ```bash
+   git branch --list "backup/pre-force-push-*"
+   ```
+
+### 2.9.2 Remote Divergence Analysis
+
+Analyze the gap between the remote and the refined local history.
+
+```bash
+git fetch origin <branch>
+git log <refinement-baseline>..origin/<branch> --oneline --graph --decorate
+```
+
+### 2.9.3 Commit Categorization Protocol
+
+Assign every remote commit to exactly one category:
+
+| Category | Definition | Action |
+| :--- | :--- | :--- |
+| **New** | Truly unique logic, content, or manual fixes created after refinement started. | MUST Cherry-pick. |
+| **Covered** | Changes already present in refined history (renames, splits, formatting). | Skip (User approval required). |
+| **Regenerative**| Auto-generated files (e.g., `README.md`, `agent-rules.md`) synced by CI. | Skip (User approval required). |
+
+**Identifying Regenerative Files**:
+Check `.github/workflows/` or relevant scripts (e.g., `sync-rules.py`) to see if the file is a target of automated generation. If a commit ONLY modifies these files, it is **Regenerative**.
+
+### 2.9.4 Reconciliation Strategy
+
+1. **Present Categorized List**: Present all remote commits, grouped by their assigned categories, to the user.
+2. **Mandatory Approval**: The user MUST explicitly approve the categorization and the decision to skip "Covered" or "Regenerative" commits.
+3. **Cherry-Pick**: Apply only approved "New" commits onto the refined HEAD.
+   ```bash
+   git cherry-pick <hash>
+   ```
+
+### 2.9.5 Force Push Safety Protocol
+
+1. **Explicit Confirmation**: Request explicit user approval: "I understand that `origin/master` will be replaced. Proceed?"
+2. **Force with Lease**: Use the lease flag to prevent overwriting unexpected remote changes.
+   ```bash
+   git push --force-with-lease origin <branch>
+   ```
+
+### 2.9.6 Remote Rollback Procedure
+
+If the remote state is incorrect after push, restore it from the backup:
+
+```bash
+git push --force-with-lease origin backup/pre-force-push-<n>:<branch>
+```
+
+***
