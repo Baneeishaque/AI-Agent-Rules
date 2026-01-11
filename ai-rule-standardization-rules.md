@@ -1,5 +1,5 @@
 <!--
-title: AI Agent Rule Standard Creation
+title: AI Agent Rule Standardization Rules
 description: Craftsmanship standards for developing "Ultra-Lean Industrial" AI Agent Rules, ensuring consistent formatting, structural hierarchy, and pedagogical clarity.
 category: Rule-Management
 -->

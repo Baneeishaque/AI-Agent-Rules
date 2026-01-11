@@ -1,5 +1,5 @@
 <!--
-title: AI Agent Session Documentation
+title: AI Agent Session Documentation Rules
 description: Protocol for documenting AI agent sessions or conversations as Markdown, including file attachment references, structured data, and traceability.
 category: Core Agent Behavior
 -->

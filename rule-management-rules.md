@@ -26,7 +26,7 @@ The `README.md` and `agent-rules.md` files are **automatically generated** from 
     *   Regenerate `README.md` and `agent-rules.md`.
     *   Commit the changes automatically.
     *   **Fail** if metadata is invalid/missing (check Action logs).
-3.  **Craftsmanship Standards**: All new rules must adhere to the formatting and structural requirements defined in [AI-Agent-Rule-Standard-Creation-rules.md](./AI-Agent-Rule-Standard-Creation-rules.md).
+3.  **Craftsmanship Standards**: All new rules must adhere to the formatting and structural requirements defined in [ai-rule-standardization-rules.md](./ai-rule-standardization-rules.md).
 
 ## Manual Indexing (Legacy/Fallback)
 If automation fails or is incomplete, follow the legacy process below ONLY as a fallback.

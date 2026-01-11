@@ -1,5 +1,5 @@
 <!--
-title: Script Management
+title: Script Management Rules
 description: Script standards, folder usage, and safeguards for helper scripts.
 category: Tooling & Workflows
 -->

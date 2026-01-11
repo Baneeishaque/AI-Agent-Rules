@@ -57,7 +57,7 @@ The agent MUST ensure all generated Markdown passes standard linting rules.
 
 ### 2.1 Rule Metadata Standard
 
-Files serving as AI Agent Rules MUST include a specific YAML frontmatter block. The source of truth for this requirement is defined in **[AI-Agent-Rule-Standard-Creation-rules.md](./AI-Agent-Rule-Standard-Creation-rules.md#2-file-naming--meta-data)**.
+Files serving as AI Agent Rules MUST include a specific YAML frontmatter block. The source of truth for this requirement is defined in **[ai-rule-standardization-rules.md](./ai-rule-standardization-rules.md#2-file-naming--meta-data)**.
 
 ### 2.2 Section Dividers
 

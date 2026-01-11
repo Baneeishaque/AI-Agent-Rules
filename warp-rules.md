@@ -1,5 +1,5 @@
 <!--
-title: Warp
+title: Warp Rules
 description: Backup and reference for Warp AI Agent specific configurations.
 category: Tooling & Workflows
 -->

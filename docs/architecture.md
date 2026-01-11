@@ -100,7 +100,7 @@ We have successfully completed the following tasks:
     *   Permissions: `contents: write`.
 
 ### ✅ Documentation
-*   Updated `Rule-Management-rules.md` to document the new automated workflow.
+*   Updated `rule-management-rules.md` to document the new automated workflow.
 *   Explicitly clarified that category names are dynamic and not restricted to a fixed list.
 
 ---

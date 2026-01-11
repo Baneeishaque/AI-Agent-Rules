@@ -123,17 +123,17 @@ AI-Agent-Rules/
 │   ├── Git-Repository-rules.md         # Repo creation standards
 │   ├── Git-Repo-Cloning-rules.md       # Cloning protocols
 │   ├── Git-Repository-Indexing-rules.md
-│   └── Repository-Search-rules.md
+│   └── repo-search-rules.md
 │
 ├── 📦 Package & Script Management
 │   ├── Brew-Install-rules.md           # Homebrew installation
 │   ├── Brew-Upgrade-rules.md           # Package upgrades
-│   └── Script-Management-rules.md      # Script organization
+│   └── script-management-rules.md      # Script organization
 │
 ├── 🔧 Tooling
 │   ├── Android-App-Launch-rules.md     # Emulator management
-│   ├── Rule-Management-rules.md        # Documentation sync
-│   └── Warp-rules.md                   # Terminal configurations
+│   ├── rule-management-rules.md        # Documentation sync
+│   └── warp-rules.md                   # Terminal configurations
 │
 └── 📂 Configuration
     ├── .gitignore                      # Git ignore patterns
