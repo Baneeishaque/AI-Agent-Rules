@@ -131,6 +131,29 @@ For EVERY file rename operation, the agent MUST perform global link verification
 3. **Exclusion Protocol**: Exclude CI/CD-managed files (e.g., `README.md`, `agent-rules.md`) from manual edits if they are auto-generated.
 4. **Final Verification**: Before committing, re-run the grep check with `--exclude` flags for managed files to confirm cleanup.
 
+### 2.8 Preserving Dependent Commits (Cherry-Pick Protocol)
+
+When splitting a commit that has subsequent commits built on top of it, the agent MUST preserve those dependent commits.
+
+1. **Identify Dependents**: After splitting, list all commits created after the split commit:
+   ```bash
+   git log --oneline <split-commit>..HEAD
+   ```
+2. **Sequential Cherry-Pick**: Reapply each dependent commit in chronological order:
+   ```bash
+   git cherry-pick <commit-hash>
+   ```
+3. **Conflict Resolution**: If conflicts arise:
+   - Resolve them while preserving the original commit's intent
+   - Use `git show <original-hash>` to reference the original changes
+   - Mark conflicts as resolved: `git add <file>`
+   - Continue: `git cherry-pick --continue`
+4. **Verification**: After all cherry-picks, verify the final tree state matches the pre-refinement state:
+   ```bash
+   git diff HEAD <backup-branch>
+   ```
+   Expected: Empty diff (tree parity maintained).
+
 ***
 
 ## 3. Verification & Parity
