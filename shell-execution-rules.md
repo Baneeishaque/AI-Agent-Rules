@@ -44,4 +44,4 @@ The agent must use background processes (via `&`) for commands that are not expe
 The shell execution rules are not isolated; they are a key part of a larger, integrated system.
 
   * **User-Provided Input**: The agent must be vigilant about commands that could potentially modify the user's system outside of a designated project directory or system temporary directory. The agent should remind the user to consider sandboxing in these cases.
-  * **Auditing and Observability**: Every command executed and its corresponding output must be logged for auditing and debugging. This aligns with the "Observability" principles from the `CI-CD-rules.md`, which mandates structured logging and centralized metrics.
+  * **Auditing and Observability**: Every command executed and its corresponding output must be logged for auditing and debugging. This aligns with the "Observability" principles from the `ci-cd-rules.md`, which mandates structured logging and centralized metrics.

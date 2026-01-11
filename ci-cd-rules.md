@@ -1,5 +1,5 @@
 <!--
-title: CI/CD
+title: CI/CD Rules
 description: Principles and practices for CI/CD, including protected branches, security, observability, advanced deployment strategies, and automated rollbacks.
 category: CI/CD & DevOps
 -->
@@ -12,7 +12,7 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
 
 ### General Principles & Environment Management
 
-* **Reference Rulebook**: For specific implementation details on our primary platform, refer to `GitHub-Actions-rules.md`.
+* **Reference Rulebook**: For specific implementation details on our primary platform, refer to `github-actions-rules.md`.
 * **Configuration Management:** All environment-specific variables and secrets will be stored in a private, secure repository or secret manager. This configuration data will be consumed by the CI/CD pipeline using repository-level secrets, adhering to the principle of least privilege. **Rationale:** Centralizing configuration ensures a single source of truth and full auditability of all changes to the build environment.
 * **Protected Branches:** All deployment branches (e.g., `main`) must be **protected**. This protection includes requiring status checks to pass, mandating a minimum number of code reviews, and disallowing direct pushes.
 * **Pipeline Optimization:** Pipelines should be optimized for speed. Techniques like shallow clones, caching dependencies, sparse checkouts, and **Conditional Step Execution** (skipping steps if relevant files haven't changed) should be employed where the CI provider supports them.

@@ -7,9 +7,9 @@ category: GitHub Actions
 # GitHub Action Creation Rules
 
 > [!IMPORTANT]
-> These rules apply **ONLY** to repositories dedicated to creating and publishing **GitHub Actions** (Composite, Docker, or JavaScript actions) to the Marketplace. Standard application repositories using GitHub Actions workflows should follow `GitHub-Actions-rules.md`.
+> These rules apply **ONLY** to repositories dedicated to creating and publishing **GitHub Actions** (Composite, Docker, or JavaScript actions) to the Marketplace. Standard application repositories using GitHub Actions workflows should follow `github-actions-rules.md`.
 
-This document outlines the **Mandatory Standard Operating Procedure (SOP)** for creating new GitHub Actions. All Actions created by the AI Tool must follow this structure to ensure maintainability, extensibility, and Marketplace compatibility. General CI/CD strategy is governed by `CI-CD-rules.md`, and general workflow standards (pinning, linting) are governed by `GitHub-Actions-rules.md`.
+This document outlines the **Mandatory Standard Operating Procedure (SOP)** for creating new GitHub Actions. All Actions created by the AI Tool must follow this structure to ensure maintainability, extensibility, and Marketplace compatibility. General CI/CD strategy is governed by `ci-cd-rules.md`, and general workflow standards (pinning, linting) are governed by `github-actions-rules.md`.
 
 ---
 

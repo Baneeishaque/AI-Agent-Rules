@@ -1,12 +1,12 @@
 <!--
-title: GitHub Actions
+title: GitHub Actions Rules
 description: Rules for GitHub Actions workflows, covering trigger preferences, security, performance, and integrations.
 category: CI/CD & DevOps
 -->
 
 # Enhanced GitHub Actions Rules
 
-This document provides a comprehensive guide for an AI tool on how to implement and manage GitHub Actions workflows. It expands upon the core principles outlined in the `CI-CD-rules.md` file and serves as a foundational reference for automating development workflows, ensuring code quality, and streamlining the path from code to production.
+This document provides a comprehensive guide for an AI tool on how to implement and manage GitHub Actions workflows. It expands upon the core principles outlined in the `ci-cd-rules.md` file and serves as a foundational reference for automating development workflows, ensuring code quality, and streamlining the path from code to production.
 
 ---
 
@@ -31,7 +31,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 #### Triggers
 * **Event-Driven Priorities**:
     * The preferred trigger for complex, event-driven workflows is **Supabase Functions**, followed by **GitHub's native webhook triggers**. This allows for highly specific workflows not limited to standard events.
-* **Orchestration**: The deployment workflow follows the architectural pattern defined in `CI-CD-rules.md` (`Supabase → GitHub Actions → Render`).
+* **Orchestration**: The deployment workflow follows the architectural pattern defined in `ci-cd-rules.md` (`Supabase → GitHub Actions → Render`).
     * **Executor Role:** GitHub Actions receives the webhook payload from Supabase, runs the build/test jobs, and triggers the deployment upon success.
 * **Standard CI Triggers**:
     * `push`: Trigger on main branches (e.g., `master`, `main`).
@@ -193,7 +193,7 @@ For stable releases and publishing (App Store, Web deployment), workflows MUST:
     4.  Market stable builds as "Release" and test-only builds as "Pre-release."
     5.  Trigger notifications (WhatsApp, Team Channels).
     6.  Direct Message (DM) testers with pre-signed download links.
-* **Automated Workflow**: Implement the artifact management strategy from `CI-CD-rules.md`. Upload builds using `actions/upload-artifact`, generate pre-signed links for testers via CLI, and apply lifecycle policies.
+* **Automated Workflow**: Implement the artifact management strategy from `ci-cd-rules.md`. Upload builds using `actions/upload-artifact`, generate pre-signed links for testers via CLI, and apply lifecycle policies.
 * **Automated Distribution**: Upon a successful release build, the artifact will be automatically uploaded to Firebase App Distribution using a dedicated GitHub Action (e.g., `willynohilly/firebase-app-distribution`). The pipeline will then notify a pre-defined group of internal testers, making new builds instantly available for testing. Sensitive credentials like the Google Service Account key (`${{ secrets.GOOGLE_SERVICE_ACCOUNT_KEY }}`) and Flutter signing keys (`${{ secrets.FLUTTER_SIGNING_KEYS }}`) will be securely stored as encrypted GitHub Secrets.
 
 ### 7. Workflow Verification & Linting
@@ -220,7 +220,7 @@ For stable releases and publishing (App Store, Web deployment), workflows MUST:
 * **Code Coverage**: 
     * Integrate with **Codecov** or **Coveralls**.
     * Use the respective GitHub Actions (e.g., `codecov/codecov-action`) to upload reports using a secret token.
-* **Static Analysis & Quality Gates**: Implement the quality gates strategy defined in `CI-CD-rules.md` directly within GitHub Actions.
+* **Static Analysis & Quality Gates**: Implement the quality gates strategy defined in `ci-cd-rules.md` directly within GitHub Actions.
     * **Integration Choice**: 
         * **Recommended**: Install the SonarQube GitHub App for organization-level integration and automatic PR decoration.
         * **Alternative**: Use the `sonarsource/sonarqube-scan-action` if individual repository fine-tuning or a CLI-driven analyzer is required.
@@ -340,11 +340,11 @@ jobs:
     ```
 
 * **Google Sheets Tracking (Upon Explicit Request)**: A Google Sheets tracking system will be implemented to log key development events *only when explicitly requested*.
-    * **Implementation**: Use a specialized action (e.g., `google-github-actions/setup-gcloud` or a dedicated Sheets action) to fulfill the logging policy defined in `CI-CD-rules.md`.
+    * **Implementation**: Use a specialized action (e.g., `google-github-actions/setup-gcloud` or a dedicated Sheets action) to fulfill the logging policy defined in `ci-cd-rules.md`.
     * **Mechanism**: Using a service account JSON stored as a GitHub Secret (`${{ secrets.GOOGLE_SHEETS_SERVICE_ACCOUNT }}`), the Sheets API will be called from an action to append rows.
     * **Idempotency**: Every row insertion MUST be keyed by a combination of `PR_NUMBER` and `COMMIT_SHA` to prevent duplicates.
 
-* **Notification Strategy**: Follow the categorization (Urgent vs. Team) defined in `CI-CD-rules.md`.
+* **Notification Strategy**: Follow the categorization (Urgent vs. Team) defined in `ci-cd-rules.md`.
 * **WhatsApp Notifications (Upon Explicit Request)**:
     * **Implementation**: Use a specialized action or `curl` to the WhatsApp Cloud API.
     * **Trigger**: Failures or major releases.
@@ -480,7 +480,7 @@ When acting as a Fixer, ensure all workflows meet these baseline standards:
 *   **Local Simulation**: `act` (if available) for local testing; however, prefer actual GitHub runners for accurate environment reproduction.
 
 #### 11.4 Failure Handlers & Notifications
-When a workflow fails, the "Fixer" or "Ops" steps MUST execute the failure policy defined in `CI-CD-rules.md`:
+When a workflow fails, the "Fixer" or "Ops" steps MUST execute the failure policy defined in `ci-cd-rules.md`:
 * **Implementation Steps**:
     1.  **Direct Notification**: Use an action to send a WhatsApp message to the committer with direct log links.
     2.  **Issue Creation**: Use `gh issue create` with `context`, `committer assignment`, and `failure label`.

@@ -1,5 +1,5 @@
 <!--
-title: GitHub Repository Metadata Management
+title: GitHub Repo Metadata Rules
 description: Ultra-Lean Industrial protocols for Metadata-as-Code (MaC), using README.md as the absolute Single Source of Truth with visible markers for automation.
 category: Git & Repository Management
 -->
@@ -98,7 +98,7 @@ To implement this pattern, the AI agent must:
 3.  **Establish Automation**: Create and commit the `sync-metadata.yml` workflow.
 4.  **Commit**: Use strict [Git-Commit-Message-rules.md](./Git-Commit-Message-rules.md) (e.g., `docs: initialize automated metadata-as-code workflow`).
 5.  **Watch & Verify**: 
-    - Monitor the Action execution following [GitHub-Actions-rules.md](./GitHub-Actions-rules.md).
+    - Monitor the Action execution following [github-actions-rules.md](./github-actions-rules.md).
     - Once successful, perform a final, one-time verification of repository metadata via `gh repo view --json repositoryTopics,description`.
 
 *Updated: December 2025*

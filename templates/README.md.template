@@ -114,8 +114,8 @@ AI-Agent-Rules/
 │   └── NestJS-React-App-with-Flutter-Client-rules.md
 │
 ├── ⚙️ CI/CD & DevOps
-│   ├── CI-CD-rules.md                  # Pipeline principles
-│   ├── GitHub-Actions-rules.md         # Workflow configuration
+│   ├── ci-cd-rules.md                  # Pipeline principles
+│   ├── github-actions-rules.md         # Workflow configuration
 │   ├── Docker-rules.md                 # Container guidelines
 │   └── Render-Cloud-Application-Platform-rules.md
 │
@@ -218,7 +218,7 @@ lib/
 │   └── main.dart
 ```
 
-### CI/CD Best Practices (CI-CD-rules.md)
+### CI/CD Best Practices (ci-cd-rules.md)
 
 **GitHub Actions Optimization:**
 ```yaml
@@ -352,7 +352,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
         with:
-          fetch-depth: 1  # As per CI-CD-rules.md
+          fetch-depth: 1  # As per ci-cd-rules.md
 ```
 
 ---
