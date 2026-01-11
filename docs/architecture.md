@@ -79,7 +79,7 @@ We have successfully completed the following tasks:
 *   **Audit**: Analyzed all 33 existing rule files against the current README.
 *   **Injection**: successfully injected metadata headers into ALL 33 files.
     *   *Correction Reference*: Fixed an issue where `multi_replace` missed 5 core files (`AI-Tools`, `CI-CD`, etc.) by re-running targeted single-file replacements.
-    *   *Correction Reference*: Fixed corrupted headers in `Git-Repository-rules.md` and duplicated blocks in `flutter-app-rules.md`.
+    *   *Correction Reference*: Fixed corrupted headers in `Git-Repository-rules.md` and duplicated blocks in `flutter-app-development-rules.md`.
 
 ### ✅ Templates
 *   Created `templates/README.md.template`: Preserved the "Overview", "Key Features", and "Architecture" sections.

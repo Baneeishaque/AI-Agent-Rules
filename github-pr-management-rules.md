@@ -1,5 +1,5 @@
 <!--
-title: GitHub Pull Request Rules
+title: GitHub PR Management Rules
 description: Sequential, CLI-first protocols for handling Pull Requests, emphasizing security for private repositories and explicit user handoff.
 category: Git & Repository Management
 -->
@@ -35,7 +35,7 @@ To maintain focus and prevent technical drift, agents must handle PRs sequential
 Consistent with the "Project Architect" role, the agent must ensure a clean handoff.
 
 -   **Confirmation Workflow**: Upon completing a PR, notify the user. The agent is **Blocked** from proceeding to the next PR until the user explicitly confirms completion (e.g., "done", "next", or "approved").
--   **Documentation**: Ensure all PR-related edits (e.g., to README) follow the [github-repo-metadata-rules.md](./github-repo-metadata-rules.md).
+-   **Documentation**: Ensure all PR-related edits (e.g., to README) follow the [github-repo-metadata-management-rules.md](./github-repo-metadata-management-rules.md).
 -   **Commit Quality**: All PR-related commits must adhere to [Git-Commit-Message-rules.md](./Git-Commit-Message-rules.md).
 
 ***

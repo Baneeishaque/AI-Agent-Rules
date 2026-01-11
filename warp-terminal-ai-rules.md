@@ -1,5 +1,5 @@
 <!--
-title: Warp Rules
+title: Warp Terminal AI Rules
 description: Backup and reference for Warp AI Agent specific configurations.
 category: Tooling & Workflows
 -->

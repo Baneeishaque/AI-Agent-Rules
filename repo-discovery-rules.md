@@ -1,5 +1,5 @@
 <!--
-title: Repository Search Rules
+title: Repo Discovery Rules
 description: Multi-platform repository discovery and smart cloning workflows.
 category: Git & Repository Management
 -->

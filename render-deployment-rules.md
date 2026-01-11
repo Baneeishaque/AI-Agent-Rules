@@ -1,5 +1,5 @@
 <!--
-title: Render Cloud Application Platform
+title: Render Deployment Rules
 description: Deployment configurations for Render, including environment variables and custom domains.
 category: CI/CD & DevOps
 -->

@@ -108,22 +108,22 @@ AI-Agent-Rules/
 │   └── github-cli-permission-rules.md  # Permission protocols
 │
 ├── 📱 Development Frameworks
-│   ├── flutter-app-rules.md            # Flutter best practices
-│   ├── flutter-android-app-rules.md    # Flutter Android specific
+│   ├── flutter-app-development-rules.md            # Flutter best practices
+│   ├── flutter-android-rules.md    # Flutter Android specific
 │   ├── nestjs-react-app-rules.md       # NestJS + React
-│   └── nestjs-react-app-with-flutter-client-rules.md
+│   └── nestjs-react-flutter-stack-rules.md
 │
 ├── ⚙️ CI/CD & DevOps
 │   ├── ci-cd-rules.md                  # Pipeline principles
-│   ├── github-actions-rules.md         # Workflow configuration
+│   ├── github-actions-workflow-rules.md         # Workflow configuration
 │   ├── Docker-rules.md                 # Container guidelines
-│   └── Render-Cloud-Application-Platform-rules.md
+│   └── render-deployment-rules.md
 │
 ├── 🗃️ Repository Management
 │   ├── Git-Repository-rules.md         # Repo creation standards
 │   ├── Git-Repo-Cloning-rules.md       # Cloning protocols
 │   ├── Git-Repository-Indexing-rules.md
-│   └── repo-search-rules.md
+│   └── repo-discovery-rules.md
 │
 ├── 📦 Package & Script Management
 │   ├── Brew-Install-rules.md           # Homebrew installation
@@ -133,7 +133,7 @@ AI-Agent-Rules/
 ├── 🔧 Tooling
 │   ├── android-app-launch-rules.md     # Emulator management
 │   ├── rule-management-rules.md        # Documentation sync
-│   └── warp-rules.md                   # Terminal configurations
+│   └── warp-terminal-ai-rules.md                   # Terminal configurations
 │
 └── 📂 Configuration
     ├── .gitignore                      # Git ignore patterns
@@ -188,7 +188,7 @@ Core Principles:
 # Use background processes (&) for long-running tasks
 ```
 
-### Flutter Development (flutter-app-rules.md)
+### Flutter Development (flutter-app-development-rules.md)
 
 **Environment Setup:**
 ```bash
@@ -393,7 +393,7 @@ We welcome contributions! Please follow these guidelines:
 3. Update `agent-rules.md` description if needed
 4. Use conventional commits:
    ```bash
-   git commit -m "docs: Update flutter-app-rules.md with state management section"
+   git commit -m "docs: Update flutter-app-development-rules.md with state management section"
    ```
 
 ### Style Guidelines

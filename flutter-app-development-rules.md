@@ -1,5 +1,5 @@
 <!--
-title: Flutter App Rules
+title: Flutter App Development Rules
 description: Rules for Flutter app development, including version pinning with `mise`, dependency management, and mandatory documentation.
 category: Development Frameworks
 -->
@@ -170,7 +170,7 @@ This document outlines the rules and best practices for developing Flutter appli
           - name: Run Tests
             run: flutter test --coverage
     ```
-  - **Adherence:** The workflow must strictly follow the rules outlined in `ci-cd-rules.md` and `github-actions-rules.md` for environment setup, secrets management, and trigger mechanisms.
+  - **Adherence:** The workflow must strictly follow the rules outlined in `ci-cd-rules.md` and `github-actions-workflow-rules.md` for environment setup, secrets management, and trigger mechanisms.
 
 -----
 

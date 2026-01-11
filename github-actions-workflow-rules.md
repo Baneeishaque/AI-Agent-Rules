@@ -1,5 +1,5 @@
 <!--
-title: GitHub Actions Rules
+title: GitHub Actions Workflow Rules
 description: Rules for GitHub Actions workflows, covering trigger preferences, security, performance, and integrations.
 category: CI/CD & DevOps
 -->
