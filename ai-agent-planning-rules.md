@@ -61,6 +61,12 @@ The initial plan is a blueprint, not an unbreakable contract. For complex, long-
     *   **Commands:** meaningful CLI commands must be written out exactly as they will be executed (e.g., `git mv old.md new.md`, `sed -i '' ...`).
     *   **Verifications:** Explicitly state how each step will be verified (e.g., "Run `grep` to confirm no broken links").
 *   **Pre-Plan Context Gathering:** Information gathering (reading files, `git diff`, `ls`) must happen **BEFORE** the plan is finalized. A plan based on assumptions is a failed plan.
+*   **Task Artifact Synchronization:** When using `task.md` to track multi-step work:
+    *   **Initial Creation**: Create `task.md` at the start of planning with all top-level items.
+    *   **Incremental Updates**: Update `task.md` after completing each significant milestone or logical grouping of steps (e.g., after each atomic commit in a sequence, after each phase in a multi-phase plan).
+    *   **Status Markers**: Use `[ ]` for pending, `[/]` for in-progress, and `[x]` for completed items.
+    *   **Frequency**: Update at natural breakpoints (e.g., after commits, after file groups, after verification steps) to provide real-time progress visibility.
+    *   **Final Update**: Mark all items complete at task conclusion.
 *   **Propose a Plan Revision:** When a change is required, the agent must immediately pause execution and present a revised plan to the user.
 *   **Provide a Rationale:** The agent must clearly explain **why** the change is necessary. This includes detailing what new information was discovered or what obstacle was encountered that requires an update to the original strategy.
 *   **Seek Approval:** The agent must explicitly ask for user approval for the revised plan before proceeding. This final check ensures the new direction aligns with the user's updated expectations.
