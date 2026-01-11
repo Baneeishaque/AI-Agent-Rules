@@ -254,4 +254,14 @@ If the remote state is incorrect after push, restore it from the backup:
 git push --force-with-lease origin backup/pre-force-push-<n>:<branch>
 ```
 
+### 2.9.7 Backup Cleanup (After Verification)
+
+Once the user has manually verified the remote state is correct, the backup branch SHOULD be deleted to maintain repository hygiene.
+
+```bash
+git branch -D backup/pre-force-push-<n>
+```
+
+**CRITICAL**: The agent is **PROHIBITED** from executing this step automatically. It MUST remain a manual instruction or require separate, explicit authorization.
+
 ***
