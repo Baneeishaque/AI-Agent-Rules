@@ -104,6 +104,33 @@ Before starting any history refinement, the agent MUST synchronize with the remo
    - Re-execute the reconstruction atop this reconciled baseline.
 3. **Submodule Awareness**: This protocol applies recursively to submodules. Never begin a submodule refinement without a `git -C <path> pull` or fetch.
 
+### 2.6 Pre-Execution Analysis (Mandatory)
+
+Commit messages and change descriptions MUST be derived from actual file analysis, not assumptions.
+
+1. **Read Before Writing**: Before finalizing any commit message, the agent MUST:
+   - Read the current state of affected files (`git show <base-commit>:<file>`)
+   - Read the target state of affected files (from backup or target branch)
+   - Perform explicit `git diff` comparisons to identify exact changes
+2. **Evidence-Based Messages**: Commit messages must reflect ACTUAL changes observed, not planned or assumed changes.
+3. **No Placeholder Content**: Never use generic descriptions like "update metadata" without specifying which metadata fields were changed and how.
+
+### 2.7 Link Verification (Mandatory)
+
+For EVERY file rename operation, the agent MUST perform global link verification to prevent broken references.
+
+1. **Immediate Grep Check**: After each `git mv` operation, run:
+   ```bash
+   grep -r "Old-Filename.md" . --exclude-dir=.git
+   ```
+2. **Update All References**: Use `sed` or manual edits to update ALL discovered references, including:
+   - Internal documentation links
+   - Template files (e.g., `templates/README.md.template`)
+   - Architecture documents
+   - Rule cross-references
+3. **Exclusion Protocol**: Exclude CI/CD-managed files (e.g., `README.md`, `agent-rules.md`) from manual edits if they are auto-generated.
+4. **Final Verification**: Before committing, re-run the grep check with `--exclude` flags for managed files to confirm cleanup.
+
 ***
 
 ## 3. Verification & Parity
