@@ -8,7 +8,7 @@ category: Git & Repository Management
 
 This document defines the mandatory protocol for creating "Arranged Commits"—logical, independent, and atomic units of change. This approach ensures high-quality history and minimizes regression risks.
 
----
+***
 
 ## 1. Phase 1: Deep Change Analysis
 
@@ -19,7 +19,7 @@ Before staging any files, the agent MUST perform a dependency analysis of all mo
 - **Categorical Alignment**: Group changes by their architectural layer (e.g., UI, Logic, Docs) unless they are functionally coupled.
 - **Workflow-First Priority**: If changes involve CI/CD workflows (GitHub Actions, scripts), the agent **MUST** fix, test, and verify the workflow functionality *before* arranging or executing commits. Functional stability of the CI pipeline takes precedence over documentation or stylistic refinements.
 
----
+***
 
 ## 2. Phase 2: Logical Grouping (Arrangement)
 
@@ -68,7 +68,7 @@ The agent must "arrange" the detected changes into a proposed sequence of commit
 
 - **Commit Authorization**: The agent **MUST NOT** proceed with any commit execution until the user explicitly says **"start"**. Other triggers like "commit" or "go" are insufficient; strict authorization ensures the user has reviewed the verbose preview.
 
----
+***
 
 ## 3. Phase 3: Interactive Hunk-Based Staging
 
@@ -120,7 +120,7 @@ When a file (e.g., `.gitignore`) contains both standard API-generated content (e
   - **Good**: Title: `add vscode gitignore rules`. Body: `Sourced from gitignore.io to exclude editor artifacts`.
 - **Contextual Accuracy**: Ensure terms usage is precise (e.g., "Supabase project-specific" instead of generic "project-specific").
 
----
+***
 
 ## 9. Phase 9: Execution & Verification
 
@@ -130,7 +130,7 @@ When a file (e.g., `.gitignore`) contains both standard API-generated content (e
 - **Pull Before Push**: Always `git pull` (or `git pull --rebase` upon explicit approval) before pushing to incorporate latest remote changes.
 - **Recovery**: If a mistake is made during staging, use `git reset <file>` to unstage, or `git checkout -p` to selectively discard. **WARNING**: Never use `git reset --hard` for synchronization; always prefer `git pull`.
 
----
+***
 
 ## 10. The Commit Compass (GitKraken Philosophy)
 

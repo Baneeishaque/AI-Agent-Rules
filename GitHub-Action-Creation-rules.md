@@ -11,7 +11,7 @@ category: GitHub Actions
 
 This document outlines the **Mandatory Standard Operating Procedure (SOP)** for creating new GitHub Actions. All Actions created by the AI Tool must follow this structure to ensure maintainability, extensibility, and Marketplace compatibility. General CI/CD strategy is governed by `ci-cd-rules.md`, and general workflow standards (pinning, linting) are governed by `github-actions-rules.md`.
 
----
+***
 
 ### 1. Naming Conventions
 
@@ -22,7 +22,7 @@ This document outlines the **Mandatory Standard Operating Procedure (SOP)** for 
 -   **Usage**: `uses: <owner>/<repo-name>@<full-semantic-version>` (e.g., `@2.0.0`, `@v1.0.0`).
 -   **Discovery**: Always check the Marketplace for the latest stable version before implementation.
 
----
+***
 
 ### 2. Industrial Directory Structure
 
@@ -46,7 +46,7 @@ The repository **MUST** follow this structure. Do not dump scripts in the root.
 └── .gitignore              # Generated via gitignore.io
 ```
 
----
+***
 
 ### 3. Essential File Standards
 
@@ -74,7 +74,7 @@ The repository **MUST** follow this structure. Do not dump scripts in the root.
 -   **Job**: Must actually run the action locally (`uses: ./`) and verify output.
 -   **Purpose**: Ensures the action is broken before release.
 
----
+***
 
 ### 4. Platinum Linting Standards 💎
 
@@ -107,7 +107,7 @@ jobs:
     # ... test steps
 ```
 
----
+***
 
 ### 5. Creation & Publishing Workflow
 
@@ -153,7 +153,7 @@ Follow this sequence strictly.
         4.  **Select Categories**: (As suggested above).
         5.  **Accept Terms**: Required for the first release of any account.
 
----
+***
 
 ### 6. Maintenance
 -   **Refactoring**: If moving files, ensure `action.yml` paths are updated.

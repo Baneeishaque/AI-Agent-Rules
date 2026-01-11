@@ -8,7 +8,7 @@ category: CI/CD & DevOps
 
 This document outlines the Continuous Integration and Continuous Deployment (CI/CD) rules and best practices for our projects. It serves as a comprehensive guide for automating development workflows, ensuring code quality, and streamlining the path from code commit to production.
 
----
+***
 
 ### General Principles & Environment Management
 
@@ -19,7 +19,7 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
 * **Principle of Least Privilege:** All CI/CD processes must operate with the minimum level of access required. **Never use a single, all-powerful personal access token (PAT).** Instead, use scoped tokens or **OpenID Connect (OIDC)** to obtain short-lived credentials directly from cloud providers (e.g., AWS, GCP). **Rationale:** OIDC eliminates the need for long-lived, high-risk secrets by using verifiable, short-term identities.
 * **Environment Standardization:** The CI/CD environment must be reproducible. We will use tools like **Docker** to containerize the build environment, ensuring that the same set of tools and dependencies is used for every build, eliminating "works on my machine" issues.
 
----
+***
 
 ### NestJS & React Application Architecture and Deployment
 
@@ -39,7 +39,7 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
 * **Containerization:** The entire application will be built into a single Docker image. This guarantees a consistent environment from development to production.
 * **Unified Build:** A single `npm` command will orchestrate the build process for both the frontend and backend. We will use `npm-run-all` or `concurrently` to run scripts in parallel or sequence, ensuring the frontend is built before being embedded in the backend's distribution folder.
 
----
+***
 
 ### Mobile Application (Flutter) CI/CD
 
@@ -56,7 +56,7 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
 * **Automated Notifications:** Once a new build is ready for testing, the CI/CD pipeline will send an automated WhatsApp message to a designated group.
     * **Format:** The message will follow a standardized format. The WhatsApp link will not contain the `?mode` portion, and the `<SOCIAL_HANDLE>` Instagram handle will be included.
 
----
+***
 
 ### Notifications & Issue Tracking
 
@@ -75,7 +75,7 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
     * **Centralized View:** A single "Ops" sheet with dedicated tabs for each repository provides a centralized, human-readable view of the development lifecycle.
 * **Webhooks:** We will use webhooks to automate real-time notifications for critical CI/CD events.
 
----
+***
 
 ### Code Review & Quality Automation
 
@@ -91,7 +91,7 @@ This document outlines the Continuous Integration and Continuous Deployment (CI/
 * **Automated Reviewer Assignment:** We will implement logic to automatically request reviews from team members based on pre-defined rules (e.g., code ownership, round-robin assignments).
 * **Conventional Commits:** We will adopt **Conventional Commits** for all new projects. This enables automated changelog generation and semantic versioning based on commit messages, which streamlines the release process.
 
----
+***
 
 ### Advanced Practices
 

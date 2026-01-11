@@ -8,7 +8,7 @@ category: Social Media & Branding
 
 This document defines the mandatory protocol for creating LinkedIn posts for Banee Ishaque K. The focus is on "viral optimization," "human-readable structure," and "plain-text compatibility" to ensure maximum reach and engagement without robotic formatting artifacts.
 
----
+***
 
 ### 1. Persona & Tone
 
@@ -21,7 +21,7 @@ The agent must adopt the following persona for all generated content:
     -   **Human**: Avoid robotic labels like `HEADLINE:` or `SOLUTION:`. Use natural transitions.
     -   **Viral**: Design hooks that stop the scroll (e.g., questions, relatable pain points).
 
----
+***
 
 ### 2. Structural Directives
 
@@ -49,7 +49,7 @@ The agent must adopt the following persona for all generated content:
     -   **Path Accuracy**: Verify the full file path relative to the repository root.
     -   **Link Stability**: Default to the permalink (specific commit hash? No, user prefers branch usually, but ensure it's the *correct* branch) or the active branch.
 
----
+***
 
 ### 3. Plain Text Optimization
 
@@ -60,7 +60,7 @@ LinkedIn posts are primarily consumed as plain text. Markdown rendering is incon
 -   **No Horizontal Lines**: Do NOT use `___`, `---`, or other ASCII dividers. They render unpredictably on mobile devices. Use whitespace (double line breaks) instead.
 -   **Whitespace**: Use double line breaks between sections to maximize readability on mobile.
 
----
+***
 
 ### 4. Tagging Strategy
 
@@ -70,7 +70,7 @@ LinkedIn posts are primarily consumed as plain text. Markdown rendering is incon
     -   *Example*: `#SoftwareEngineering` (Broad) -> `#Git` (Specific) -> `#GitTips` (Niche).
     -   **Forbidden**: Generic/Cliché tags unrelated to the specific topic (e.g., `#Motivation` for a technical post).
 
----
+***
 
 ### 5. Verification Checklist
 
@@ -81,7 +81,7 @@ Before presenting the draft, the agent must verify:
 -   [ ] **Link Check**: Do repo links point to `master`?
 -   [ ] **Persona Check**: Does it sound like an authoritative Consultant/Mentor?
 
----
+***
 
 ### 6. Format Selection (Post vs. Article)
 
@@ -90,7 +90,7 @@ Before presenting the draft, the agent must verify:
 -   **Avoid Articles**: Do NOT use LinkedIn Articles for these updates.
     -   *Reason*: Articles require a click-through (high friction), and hashtags in the body text are **not clickable/indexed** by the feed algorithm.
 
----
+***
 
 ### 7. Visual Asset Standards
 

@@ -8,7 +8,7 @@ category: CI/CD & DevOps
 
 This document provides a comprehensive guide for an AI tool on how to implement and manage GitHub Actions workflows. It expands upon the core principles outlined in the `ci-cd-rules.md` file and serves as a foundational reference for automating development workflows, ensuring code quality, and streamlining the path from code to production.
 
----
+***
 
 ### 1. Core Principles
 
@@ -20,7 +20,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 * **Performance**: Workflows should be optimized for speed and efficiency to minimize feedback loops and resource consumption.
 * **Verbosity by Default**: All execution commands in workflows **MUST** include verbose flags (e.g., `--verbose`, `-v`, or `--info` for Gradle) to facilitate debugging and ensure maximum transparency. AI Agents **MUST** also use these flags during local verification *before* applying changes to the codebase.
 
----
+***
 
 ### 2. Workflow Structure and Configuration
 
@@ -51,7 +51,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 * **Steps**: Steps within a job execute commands or run actions. All steps must be clearly named.
 * **Matrix Strategy**: For running jobs across multiple versions or environments (e.g., Node.js versions, OS), use a matrix strategy to avoid code duplication.
 
----
+***
 
 ### 3. Optimization and Best Practices
 
@@ -92,7 +92,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
         run: ...
       ```
 
----
+***
 
 ### 4. Security
 
@@ -104,7 +104,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 * **Permission Scopes**: Use the principle of least privilege. Grant workflows only the necessary permissions to complete their tasks by defining the `permissions` scope at the job or workflow level.
 * **Token Rotation**: Implement a regular, automated rotation policy for all credentials and secrets.
 
----
+***
 
 ### 5. Integration with Other Rules
 
@@ -117,14 +117,14 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
     * **Error Handling**: Implement a `fail-fast` strategy. If a deployment fails, the workflow MUST fetch the latest logs from the Render API/CLI and post them to the PR or a dedicated channel for debugging.
 * **Logging**: All build and test commands in a workflow **MUST** include verbose logging flags (e.g., `--verbose`, `-v`, or `--info` for Gradle) where applicable to ensure maximum visibility into the build process and facilitate debugging.
 
----
+***
 
 ### 5.1 Deployment Strategies
 * **Implementation**: For mission-critical applications, implement **Canary** or **Blue/Green** deployments using GitHub Actions environments and deployment protections.
 * **Environment Gates**: Use manual approvals or "wait" timers for canary rollouts.
 * **Rollback Strategy**: Always include a "Rollback" workflow or a mechanism to trigger a fast-revert to the last known stable tag.
 
----
+***
 
 ### 6. Java & Gradle Workflow Specifics
 
@@ -182,7 +182,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
     * **PR Summaries**: Set `add-job-summary-as-pr-comment: 'always'`.
 * **Artifacts**: Upload build reports (e.g., `**/build/reports/**`, `**/build/test-results/**`, `**/build/jacoco/**`).
 
----
+***
 
 ### 6.1 Release Workflow Standards
 For stable releases and publishing (App Store, Web deployment), workflows MUST:
@@ -225,7 +225,7 @@ For stable releases and publishing (App Store, Web deployment), workflows MUST:
         * **Recommended**: Install the SonarQube GitHub App for organization-level integration and automatic PR decoration.
         * **Alternative**: Use the `sonarsource/sonarqube-scan-action` if individual repository fine-tuning or a CLI-driven analyzer is required.
 
----
+***
 
 ### 8. Mise Tool Management
 
@@ -293,7 +293,7 @@ jobs:
 <TOOL_NAME> = "<VERSION>"
 ```
 
----
+***
 
 ### 9. Migration, Verification & Secrets
 
@@ -353,7 +353,7 @@ jobs:
     * **Naming Convention**: Artifacts must be tagged as `client-name/version/environment`.
     * **Lifecycle**: Implement cleanup steps in the workflow to prune short-lived feature branch builds.
 
----
+***
 
 ### 10. Platinum Standards for Application Workflows
 
@@ -431,7 +431,7 @@ jobs:
 * **Marketplace Links**: The AI Agent **MUST** provide direct GitHub Marketplace links for every action used in the suggested workflow within the chat response. This ensures the user can verify the source and versioning.
 * **Latest Stable Versions**: When creating or updating workflows, the AI Agent **MUST** perform a live lookup (via search or documentation) to identify the current latest stable version for every action, replacing placeholders (e.g., `<VERSION>` or `v4.x.x`) with real values.
 
----
+***
 
 ### 11. Troubleshooting & Fixer Persona
 

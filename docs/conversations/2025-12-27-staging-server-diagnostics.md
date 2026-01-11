@@ -4,7 +4,7 @@
 **Objective:** Diagnose system resources (disk space, RAM usage) on staging Linux server.  
 **System:** Linux staging environment (remote)
 
----
+***
 
 ## 1. Request
 
@@ -17,7 +17,7 @@ Analyzed system output:
 - **RAM Usage:** 81% utilized (~13GB of 16GB). Only 1.5GB free, with ~2.9GB available (including cache). No swap configured. Status: Tight, potential OOM risk under heavy load.
 - **CPU:** Idle (0% utilization).
 
----
+***
 
 ### User Query 2: /mnt Filesystem & RAM Analysis
 > Can /mnt filesystem be used for general-purpose storage? Why is RAM tight with standard stack (Django, Nginx, PostgreSQL, Celery, Redis)?
@@ -37,13 +37,13 @@ ps aux | grep postgres | head -5
 redis-cli INFO memory
 ```
 
----
+***
 
 ## 2. References
 
 - **Rule Reference:** [AI-Agent-Session-Documentation-rules.md](../../../../AI-Agent-Rules/AI-Agent-Session-Documentation-rules.md) – Protocol for documenting AI agent sessions with structured metadata and traceability.
 
----
+***
 
 ## 3. Structured Data
 
@@ -69,7 +69,7 @@ ps aux | grep postgres | head -5
 redis-cli INFO memory
 ```
 
----
+***
 
 ## 4. Summary
 

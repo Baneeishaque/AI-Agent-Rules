@@ -8,7 +8,7 @@ category: Git & Repository Management
 
 This document defines the mandatory protocol for refining or reconstructing existing git commit history. This is used when commits contain mixed concerns (e.g., non-atomic JSON changes) that need to be split or re-ordered while preserving history quality and tree integrity.
 
----
+***
 
 ## 1. Safety First: The Backup Protocol
 
@@ -24,7 +24,7 @@ To prevent overwriting existing backups and to maintain a trail of refinement at
 4. **Workspace Preservation**: Before creating the branch, stage all local changes and create a temporary "state preservation" commit. This ensures the backup captures the exact state of the workspace including uncommitted changes.
 5. **Creation**: Create the branch using `git branch <name>`. **DO NOT** use `-f` to force-move a branch.
 
----
+***
 
 ## 2. Methodology: Reconstruction via Extraction
 
@@ -104,7 +104,7 @@ Before starting any history refinement, the agent MUST synchronize with the remo
    - Re-execute the reconstruction atop this reconciled baseline.
 3. **Submodule Awareness**: This protocol applies recursively to submodules. Never begin a submodule refinement without a `git -C <path> pull` or fetch.
 
----
+***
 
 ## 3. Verification & Parity
 
@@ -128,7 +128,7 @@ git diff <current-branch> <backup-branch>
 
 **Constraint**: The diff MUST be empty. Any discrepancy indicates a regression introduced during the refinement process.
 
----
+***
 
 ## 4. Finalization
 

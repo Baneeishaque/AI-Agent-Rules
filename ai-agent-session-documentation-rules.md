@@ -48,7 +48,7 @@ Regardless of whether the document is public or private, do not include any unre
 **Date:** 2025-12-27  
 **Objective:** <Session Objective>
 
----
+***
 
 ## 1. Request
 > <User's question or request, with sensitive info replaced by [REDACTED] if needed>
@@ -56,22 +56,22 @@ Regardless of whether the document is public or private, do not include any unre
 ### Agent Response
 <Agent's answer, including any actions taken or recommendations, with sensitive info redacted.>
 
----
+***
 
 ## 2. Analysis & Planning
 <Agent's analysis, plan, and any user approvals, with only session-relevant, non-sensitive content.>
 
----
+***
 
 ## 3. Execution
 - [Summary of actions taken, omitting unrelated or sensitive details.]
 
----
+***
 
 ## 4. Confirmation & Outcome
 - [Session-relevant summary and follow-up actions.]
 
----
+***
 
 ## 5. Attachments & References
 
@@ -81,7 +81,7 @@ Regardless of whether the document is public or private, do not include any unre
 
 - Related Rule: [ai-agent-planning-rules.md](../ai-agent-planning-rules.md)
 
----
+***
 
 ## 6. Structured Data
 
@@ -91,12 +91,12 @@ Regardless of whether the document is public or private, do not include any unre
 |-------------|----------------|-----------|
 | ...         | ...            | ...       |
 
----
+***
 
 ## 7. Summary
 <Concise, session-relevant summary. Sensitive or unrelated next steps omitted.>
 ```
 
----
+***
 
 This enhanced rule incorporates all best practices observed in your attached session logs, including explicit problem/solution documentation, structured data, artifact tracking, and rule compliance. It ensures every session is fully auditable, reproducible, and reference-friendly for future agents and users.

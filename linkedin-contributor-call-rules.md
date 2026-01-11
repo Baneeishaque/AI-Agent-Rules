@@ -8,7 +8,7 @@ category: Social Media & Branding
 
 This document defines the mandatory protocol for creating "Call for Contributors" posts. Unlike standard educational posts, these are recruitment-focused and follow a specific "Mission-First" structure.
 
----
+***
 
 ### 1. Preparation & Context Assembly
 
@@ -17,7 +17,7 @@ Before drafting, the agent MUST:
 2.  **Identify the Pain Point**: Who suffers? (e.g., "Contractors tracking billable hours").
 3.  **Clarify the Tech Stance**: emphasize "Labor-Rich" and "Voting-Based" decisions over hype.
 
----
+***
 
 ### 2. Structural Directives
 
@@ -51,7 +51,7 @@ The post MUST follow this strict section order:
 -   **DM Only**: "DM me your preferred stack."
 -   **No Comments**: Polite instruction ("Please do not comment") to manage workflow efficiency.
 
----
+***
 
 ### 3. Formatting Standards
 
@@ -60,7 +60,7 @@ The post MUST follow this strict section order:
 -   **No Underlines**: Do NOT use `___` or `---` dividers.
 -   **Bullets**: Use standard dashes `-` or bullets `•`.
 
----
+***
 
 ### 4. Visual Asset Standards (Architecture)
 

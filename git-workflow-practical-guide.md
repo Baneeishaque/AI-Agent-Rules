@@ -15,7 +15,7 @@ This document is a practical, example-driven workflow guide for managing file an
 - Practical examples and new guidance (e.g., PDF extraction for commit context)
 - Troubleshooting and best practices
 
----
+***
 
 ## 1. The Commit Compass & Operational Protocols
 
@@ -37,7 +37,7 @@ This section provides a visual mapping of how to arrange commits using the cardi
 - **Submodule Pointer Sync**: Follow [Submodule Sync Commits](./git-commit-message-rules.md#5-submodule-sync-commits-parent-repository).
 - **Remote Reconciliation**: Use `git pull` or `git pull --rebase` (with approval). **Never** `git reset` for sync.
 
----
+***
 
 ## 2. Case-Sensitive File Renaming (macOS & Windows)
 
@@ -84,7 +84,7 @@ git mv temp-operation.md git-operation-rules.md
 git mv temp-submodule.md git-submodule-rules.md
 ```
 
----
+***
 
 ## 3. PDF Context Extraction for Commit Messages (Practical Example)
 
@@ -103,7 +103,7 @@ head -n 80 output.xml # Review for context
 - Clean up temporary files after extraction.
 - For more, see: [PDF CLI Extraction Tool Guide](./docs/conversations/2025-12-26-pdf-cli-extraction-tool.md)
 
----
+***
 
 ## 4. Troubleshooting & Best Practices
 
@@ -136,7 +136,7 @@ When local and remote branches have diverged:
 - Use extracted document content and folder structure for maximum commit clarity.
 - Clean up any temporary files created during PDF extraction.
 
----
+***
 
 ## 5. References (Single Source of Truth)
 
@@ -145,6 +145,6 @@ When local and remote branches have diverged:
 - [Git Operation Rules](./git-operation-rules.md)
 - [PDF CLI Extraction Tool Guide](./docs/conversations/2025-12-26-pdf-cli-extraction-tool.md)
 
----
+***
 
 **This document is a workflow and example guide. For all authoritative rules, always refer to the referenced documents above.**

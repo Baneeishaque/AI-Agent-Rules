@@ -8,7 +8,7 @@ category: Core Agent Behavior
 
 This document provides a comprehensive set of guidelines for an AI agent on the safe, transparent, and effective execution of shell commands. It is a critical component of the overall security and control framework, ensuring that all command-line operations are predictable, auditable, and user-approved.
 
----
+***
 
 ### 1. Core Principles
 
@@ -18,7 +18,7 @@ All shell command execution by the agent must be governed by these fundamental p
   * **Full Output Visibility**: The agent **must** display the full, unmodified output from both standard output (`stdout`) and standard error (`stderr`) for every command executed. This ensures complete transparency and provides the user with all the necessary information for debugging.
   * **Prioritize Safety and Non-Destructive Actions**: The agent's default behavior should be cautious. When in doubt about a command's safety, it should seek user clarification or confirmation before proceeding.
 
----
+***
 
 ### 2. Operational Protocol
 

@@ -10,7 +10,7 @@ category: Android Development
 
 This document provides a robust, automated protocol for configuring, launching, and deploying an Android application for development and testing. This process is optimized for command-line execution on Apple Silicon (M2) machines.
 
----
+***
 
 ### 1. Pre-Flight Check: Verify Java JDK ☕
 
@@ -20,7 +20,7 @@ Before running any Android SDK command-line tools, it is crucial to ensure a com
 * **Verification:** Run `java -version` to confirm the installed version.
 * **User Instruction:** If Java is not found or is outdated, the user must install a compatible JDK (e.g., OpenJDK 17) and set the `JAVA_HOME` and `PATH` environment variables. For instance, on a modern shell, this could be: `export JAVA_HOME=/path/to/your/jdk && export PATH=$PATH:$JAVA_HOME/bin`.
 
----
+***
 
 ### 2. Check Existing AVD Status & System Image and AVD Creation 🔎
 
@@ -37,7 +37,7 @@ The first step is to check if a suitable Android Virtual Device (AVD) already ex
     * **Name:** The AVD will be named consistently as `Android_API_[XX]_ARM64_Phone`, where `[XX]` is the API level. This naming convention makes it easy to identify and manage different AVDs.
     * **Flag:** The `--force` flag will **not** be used to prevent accidental overwrites of existing AVDs.
 
----
+***
 
 ### 3. Emulator Launch Configuration & Application Launch 🚀
 
@@ -54,7 +54,7 @@ Once an AVD is ready, the emulator is launched with optimized settings. After th
     * For **Native Android apps**, `./gradlew installDebug` is executed to build and install the debug version of the application, which will automatically launch upon successful installation.
     * The protocol also applies to other frameworks like **React Native**, where a similar `npx react-native run-android` command would be used to install and launch the app.
 
----
+***
 
 ### 4. Debugging & Fallback Protocol 🔄
 
@@ -66,7 +66,7 @@ A systematic approach to debugging is essential for productivity. In the event o
 * **Architecture Fallback:** If the ARM64 setup fails, the system will automatically fall back to using an `x86_64` architecture. While slower due to binary translation, it provides a reliable backup.
 * **Device Fallback:** If the `medium_phone` profile fails, the system will try a known-good device profile like `pixel_4` or `pixel_5`.
 
----
+***
 
 ### 5. Additional Considerations
 
@@ -74,7 +74,7 @@ A systematic approach to debugging is essential for productivity. In the event o
 * **CI/CD Integration:** This protocol is perfectly suited for use in a CI/CD environment like GitHub Actions. The scripts can be easily integrated into a workflow to automatically run tests on a freshly provisioned emulator, ensuring consistent and reliable results.
 * **Snapshotting:** For further performance optimization, a future enhancement could involve creating and using **emulator snapshots**. This would allow the emulator to boot almost instantly from a pre-saved state, bypassing the lengthy cold-boot process. This is a game-changer for CI/CD pipelines where multiple emulator launches are required.
 
----
+***
 
 ### 6. General Guidelines
 

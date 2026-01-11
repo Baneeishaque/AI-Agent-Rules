@@ -12,7 +12,7 @@
 
 </div>
 
----
+***
 
 ## 📋 Table of Contents
 
@@ -28,7 +28,7 @@
 - [Development Setup](#-development-setup)
 - [License](#-license)
 
----
+***
 
 ## 🎯 Overview
 
@@ -41,7 +41,7 @@
 
 The repository provides a modular, extensible rule system that can be adopted by AI coding assistants, development tools, and automated workflows to establish a trustworthy and effective interaction model.
 
----
+***
 
 ## ✨ Key Features
 
@@ -54,7 +54,7 @@ The repository provides a modular, extensible rule system that can be adopted by
 | 🔄 **CI/CD Ready** | Rules designed to integrate with GitHub Actions and deployment pipelines |
 | 📱 **Multi-Platform** | Covers Flutter, NestJS, React, Docker, and more |
 
----
+***
 
 ## 🚀 Quick Start
 
@@ -85,13 +85,13 @@ Follow the guidelines in:
 - shell-execution-rules.md for command-line operations
 ```
 
----
+***
 
 ## 📚 Rule Categories
 
 <!-- RULES_README -->
 
----
+***
 
 ## 🏗️ Architecture
 
@@ -142,7 +142,7 @@ AI-Agent-Rules/
         └── extensions.json             # Recommended extensions
 ```
 
----
+***
 
 ## 📖 Detailed Rule Reference
 
@@ -241,7 +241,7 @@ Supabase → GitHub Actions → Render
   Router     Executor      Runtime
 ```
 
----
+***
 
 ## 💡 Usage Examples
 
@@ -291,7 +291,7 @@ Do you approve this command? Yes/No
 brew upgrade --greedy --verbose gh node ollama discord@ptb postman
 ```
 
----
+***
 
 ## 🔌 Integration Guide
 
@@ -355,7 +355,7 @@ jobs:
           fetch-depth: 1  # As per ci-cd-rules.md
 ```
 
----
+***
 
 ## 🤝 Contributing
 
@@ -416,7 +416,7 @@ We welcome contributions! Please follow these guidelines:
 
 Please tag your PR/Repository with relevant topics. See [GITHUB_TOPICS.md](./GITHUB_TOPICS.md) for the complete list and guidelines.
 
----
+***
 
 ## 🛠️ Development Setup
 
@@ -459,7 +459,7 @@ The repository includes pre-configured settings:
 | `.vscode/extensions.json` | Recommended extensions |
 | `.gitignore` | Git ignore patterns |
 
----
+***
 
 ## 📊 Rule Statistics
 
@@ -476,7 +476,7 @@ The repository includes pre-configured settings:
 
 > **Note**: Some rule files are placeholders awaiting documentation. Check the rule categories table for current status.
 
----
+***
 
 ## 🔗 Related Resources
 
@@ -486,13 +486,13 @@ The repository includes pre-configured settings:
 - [Mise Version Manager](https://mise.jdx.dev/)
 - [Warp Terminal](https://www.warp.dev/)
 
----
+***
 
 ## 📄 License
 
 This project is open source. License information will be added soon.
 
----
+***
 
 <div align="center">
 

@@ -154,6 +154,6 @@ Consider updating the repository description to:
 
 > A comprehensive collection of AI agent rules and guidelines for various AI coding assistants including Warp, GitHub Copilot, Cursor, and Claude Code. Covers Flutter, CI/CD, DevOps, Git workflows, and development best practices.
 
----
+***
 
 *Last updated: 2025-11-26*

@@ -8,7 +8,7 @@ category: Git & Repository Management
 
 This document defines the mandatory protocol for managing `.gitignore` files. The goal is to separate standard, auto-generated exclusions (OS, IDE, Language) from project-specific custom rules using a "Generated Foundation + User Delta" approach.
 
----
+***
 
 ## 1. Source of Truth: The API
 
@@ -18,7 +18,7 @@ Whenever standardized gitignore rules are required (e.g., for Linux, macOS, Wind
 - **Example**: `https://www.toptal.com/developers/gitignore/api/linux,macos,windows`
 - **Reference list**: `https://docs.gitignore.io/use/api#get-all-templates`
 
----
+***
 
 ## 2. Workflow: Generated vs. Custom Separation
 
@@ -60,7 +60,7 @@ When processing a `.gitignore` file that contains both standard and custom rules
     - **Title Format**: `feat(git): add project-specific gitignore rules` or `config(<scope>): add custom ignore rules`
     - **Body**: Describe the specific custom rules being added.
 
----
+***
 
 ## 3. Rule Specificity & Standards
 
