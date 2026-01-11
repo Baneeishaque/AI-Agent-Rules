@@ -80,9 +80,9 @@ Reference specific rule files in your AI assistant's context or system prompt:
 
 ```markdown
 Follow the guidelines in:
-- AI-Agent-rules.md for planning protocols
-- AI-Tools-rules.md for tool execution guidelines
-- Shell-Execution-rules.md for command-line operations
+- ai-agent-planning-rules.md for planning protocols
+- ai-tools-rules.md for tool execution guidelines
+- shell-execution-rules.md for command-line operations
 ```
 
 ---
@@ -100,12 +100,12 @@ AI-Agent-Rules/
 ├── 📄 agent-rules.md                    # Central index (start here!)
 │
 ├── 🧠 Core Agent Rules
-│   ├── AI-Agent-rules.md               # Planning & workflow protocols
-│   ├── AI-Tools-rules.md               # Tool execution guidelines
-│   └── Shell-Execution-rules.md        # Command-line safety
+│   ├── ai-agent-planning-rules.md               # Planning & workflow protocols
+│   ├── ai-tools-rules.md               # Tool execution guidelines
+│   └── shell-execution-rules.md        # Command-line safety
 │
 ├── 🔐 Security & Permissions
-│   └── GitHub-CLI-Permission-rules.md  # Permission protocols
+│   └── github-cli-permission-rules.md  # Permission protocols
 │
 ├── 📱 Development Frameworks
 │   ├── Flutter-App-rules.md            # Flutter best practices
@@ -146,7 +146,7 @@ AI-Agent-Rules/
 
 ## 📖 Detailed Rule Reference
 
-### Core Planning Protocol (AI-Agent-rules.md)
+### Core Planning Protocol (ai-agent-planning-rules.md)
 
 The foundational rule that all agents must follow:
 
@@ -164,7 +164,7 @@ The foundational rule that all agents must follow:
 - ✅ Support iterative plan revisions
 - ✅ Handle ambiguous requests with clarification
 
-### Tool Execution Protocol (AI-Tools-rules.md)
+### Tool Execution Protocol (ai-tools-rules.md)
 
 ```markdown
 Core Principles:
@@ -179,7 +179,7 @@ Core Principles:
 - GitHub CLI commands
 - Any destructive operations
 
-### Shell Execution Guidelines (Shell-Execution-rules.md)
+### Shell Execution Guidelines (shell-execution-rules.md)
 
 ```bash
 # Always explain critical commands before execution
@@ -329,7 +329,7 @@ Include rule files in your system prompt or context:
 
 ```python
 # Example: Loading rules into context
-with open('AI-Agent-rules.md', 'r') as f:
+with open('ai-agent-planning-rules.md', 'r') as f:
     agent_rules = f.read()
     
 system_prompt = f"""

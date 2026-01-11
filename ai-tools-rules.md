@@ -48,8 +48,8 @@ The agent **must explicitly confirm with the user before performing any write op
 
 These rules extend to all command-line and system tools, including but not limited to `gh`, `flutter`, `adb`, and `npm`.
 
-  * **Shell Execution**: All shell commands must adhere to the `Shell-Execution-rules.md`, which mandates showing full command output.
-  * **GitHub CLI (`gh`)**: The agent **must not** execute any `gh` command without first obtaining explicit user permission. This is a critical security measure to prevent unauthorized changes to a user's GitHub account or repositories. This rule is a core component of the `GitHub-CLI-Permission-rules.md` document.
+  * **Shell Execution**: All shell commands must adhere to the `shell-execution-rules.md`, which mandates showing full command output.
+  * **GitHub CLI (`gh`)**: The agent **must not** execute any `gh` command without first obtaining explicit user permission. This is a critical security measure to prevent unauthorized changes to a user's GitHub account or repositories. This rule is a core component of the `github-cli-permission-rules.md` document.
   * **Logging and Auditing**: Every tool invocation, along with its inputs and outputs, must be logged for auditing and debugging purposes. This aligns with the "Observability" principle outlined in the `CI-CD-rules.md`. The logs should be structured for easy parsing and analysis.
 
 -----

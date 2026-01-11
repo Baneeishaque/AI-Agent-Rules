@@ -26,7 +26,7 @@ Every shell command execution must be integrated into the agent's overall planni
 
 #### 2.1 Plan Before Action
 
-As mandated by the `AI-Agent-rules.md` document, all shell commands must be part of an explicit, user-approved plan. This prevents the agent from executing commands in an ad-hoc or unapproved manner.
+As mandated by the `ai-agent-planning-rules.md` document, all shell commands must be part of an explicit, user-approved plan. This prevents the agent from executing commands in an ad-hoc or unapproved manner.
 
 #### 2.2 Interactive Commands
 

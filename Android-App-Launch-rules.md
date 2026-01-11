@@ -76,4 +76,4 @@ A systematic approach to debugging is essential for productivity. In the event o
 
 ### 6. General Guidelines
 
-* **General Adherence:** Adhere to all general rule documents, including `AI-Agent-rules.md`, `AI-Tools-rules.md`, and `Shell-Execution-rules.md`, to ensure a unified and secure development environment.
+* **General Adherence:** Adhere to all general rule documents, including `ai-agent-planning-rules.md`, `ai-tools-rules.md`, and `shell-execution-rules.md`, to ensure a unified and secure development environment.

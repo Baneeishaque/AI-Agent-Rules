@@ -54,7 +54,7 @@ This document outlines the rules and best practices for developing Flutter appli
         ```
   - **GitHub Integration:**
       - **Detail:** If using `gh` (GitHub CLI) for repository management, ensure all operations comply with internal security protocols.
-      - **Adherence:** Adhere to the `GitHub-CLI-Permission-rules.md` document, which mandates explicit user permission before executing any command that could alter a repository or expose sensitive data.
+      - **Adherence:** Adhere to the `github-cli-permission-rules.md` document, which mandates explicit user permission before executing any command that could alter a repository or expose sensitive data.
 
 -----
 
@@ -250,7 +250,7 @@ Effective dependency management is a cornerstone of a healthy Flutter project:
   - **Tooling:**
       - **Context7:** Use `context7` for comprehensive information about the project's tooling, including `mise`, `flutter`, `dart`, and GitHub Actions.
       - **AgentQL, Firecrawl, GitHub MCPs:** Utilize these Multi-Capability Platforms for advanced tasks such as data extraction, web scraping, or GitHub API interactions when necessary.
-  - **Adherence to General Rules:** The team is expected to adhere to all general rule documents, including `AI-Agent-rules.md`, `AI-Tools-rules.md`, and `Shell-Execution-rules.md`, to ensure a unified and secure development environment.
+  - **Adherence to General Rules:** The team is expected to adhere to all general rule documents, including `ai-agent-planning-rules.md`, `ai-tools-rules.md`, and `shell-execution-rules.md`, to ensure a unified and secure development environment.
 
   - **Sensitive Information:** **Never** store sensitive data (API keys, tokens, credentials) directly in the codebase. Use environment variables, secure storage solutions (e.g., `flutter_secure_storage`), or a backend service for secure access.
 

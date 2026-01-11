@@ -79,7 +79,7 @@ Regardless of whether the document is public or private, do not include any unre
 |---------------|------|-------------|
 | [REDACTED]    | [REDACTED] | [REDACTED] |
 
-- Related Rule: [AI-Agent-rules.md](../AI-Agent-rules.md)
+- Related Rule: [ai-agent-planning-rules.md](../ai-agent-planning-rules.md)
 
 ---
 
