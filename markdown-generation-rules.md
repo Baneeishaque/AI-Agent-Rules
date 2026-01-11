@@ -61,13 +61,13 @@ Files serving as AI Agent Rules MUST include a specific YAML frontmatter block. 
 
 ### 2.2 Section Dividers
 
-Use horizontal rules (`---`) to separate major sections for visual distinction.
+Use horizontal rules (`***`) to separate major sections for visual distinction.
 
 ***
 
-## 3. Validation Rules (Markdownlint)
+## 3. Validation Rules (markdownlint-cli2)
 
-Before finalizing any Markdown file, the agent MUST validate against the following `markdownlint` rules, aliases, and tags.
+Before finalizing any Markdown file, the agent MUST validate against the following rules using `markdownlint-cli2`.
 
 ### 3.1 Common Rules & Aliases
 
