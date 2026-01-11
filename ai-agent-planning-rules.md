@@ -55,6 +55,12 @@ The initial plan is a blueprint, not an unbreakable contract. For complex, long-
 
 **Iterative Planning** is the process of updating a plan based on new findings or changes in a task's requirements. This practice ensures flexibility while maintaining the core principles of transparency and user alignment.
 
-*   **Propose a Plan Revision:** When a change is required, the agent must immediately pause execution and present a revised plan to the user. This new version should be clearly labeled (e.g., "Plan Revision," "Plan V2").
+*   **Plan Versioning:** All plans must be explicitly versioned (e.g., `implementation_plan_v1.md`, `implementation_plan_v2.md`). Do not overwrite the original plan if fundamental strategy changes; create a new version to preserve the decision history.
+*   **Maximum Structured Detail:** Plans must be exhaustive.
+    *   **Files:** Explicitly list every file to be created, modified, or deleted.
+    *   **Commands:** meaningful CLI commands must be written out exactly as they will be executed (e.g., `git mv old.md new.md`, `sed -i '' ...`).
+    *   **Verifications:** Explicitly state how each step will be verified (e.g., "Run `grep` to confirm no broken links").
+*   **Pre-Plan Context Gathering:** Information gathering (reading files, `git diff`, `ls`) must happen **BEFORE** the plan is finalized. A plan based on assumptions is a failed plan.
+*   **Propose a Plan Revision:** When a change is required, the agent must immediately pause execution and present a revised plan to the user.
 *   **Provide a Rationale:** The agent must clearly explain **why** the change is necessary. This includes detailing what new information was discovered or what obstacle was encountered that requires an update to the original strategy.
 *   **Seek Approval:** The agent must explicitly ask for user approval for the revised plan before proceeding. This final check ensures the new direction aligns with the user's updated expectations.
