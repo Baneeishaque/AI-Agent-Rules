@@ -1,5 +1,5 @@
 <!--
-title: Flutter App
+title: Flutter App Rules
 description: Rules for Flutter app development, including version pinning with `mise`, dependency management, and mandatory documentation.
 category: Development Frameworks
 -->

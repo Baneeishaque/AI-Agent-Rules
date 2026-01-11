@@ -1,5 +1,5 @@
 <!--
-title: NestJS React App with Flutter Client
+title: NestJS React App with Flutter Client Rules
 description: Full-stack guidelines for NestJS/React web apps with an accompanying Flutter mobile client.
 category: Development Frameworks
 -->

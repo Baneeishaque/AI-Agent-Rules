@@ -108,10 +108,10 @@ AI-Agent-Rules/
 │   └── github-cli-permission-rules.md  # Permission protocols
 │
 ├── 📱 Development Frameworks
-│   ├── Flutter-App-rules.md            # Flutter best practices
-│   ├── Flutter-Android-App-rules.md    # Flutter Android specific
-│   ├── NestJS-React-App-rules.md       # NestJS + React
-│   └── NestJS-React-App-with-Flutter-Client-rules.md
+│   ├── flutter-app-rules.md            # Flutter best practices
+│   ├── flutter-android-app-rules.md    # Flutter Android specific
+│   ├── nestjs-react-app-rules.md       # NestJS + React
+│   └── nestjs-react-app-with-flutter-client-rules.md
 │
 ├── ⚙️ CI/CD & DevOps
 │   ├── ci-cd-rules.md                  # Pipeline principles
@@ -188,7 +188,7 @@ Core Principles:
 # Use background processes (&) for long-running tasks
 ```
 
-### Flutter Development (Flutter-App-rules.md)
+### Flutter Development (flutter-app-rules.md)
 
 **Environment Setup:**
 ```bash
@@ -393,7 +393,7 @@ We welcome contributions! Please follow these guidelines:
 3. Update `agent-rules.md` description if needed
 4. Use conventional commits:
    ```bash
-   git commit -m "docs: Update Flutter-App-rules.md with state management section"
+   git commit -m "docs: Update flutter-app-rules.md with state management section"
    ```
 
 ### Style Guidelines

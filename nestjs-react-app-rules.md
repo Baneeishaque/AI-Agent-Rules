@@ -1,5 +1,5 @@
 <!--
-title: NestJS React App
+title: NestJS React App Rules
 description: Guidelines for developing NestJS backends with React frontends.
 category: Development Frameworks
 -->
