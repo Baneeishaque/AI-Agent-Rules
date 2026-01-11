@@ -110,7 +110,7 @@ The primary purpose of GitHub Actions is to automate tasks in the software devel
 
 * **Testing**: Workflows for applications (e.g., Flutter apps) must include steps to run `flutter analyze`, `dart format --set-exit-if-changed .`, and `flutter test` on every pull request. This enforces code quality before merging.
 * **GitHub Actions Workflow (Mobile)**: The workflow will be triggered on a push to the `main` branch or on a pull request. The workflow will run `flutter analyze` and `flutter test --coverage` to ensure code quality and test coverage.
-* **Mobile App Workflows**: For mobile apps, workflows should integrate with the `Android-App-Launch-rules.md` to automate emulator setup, testing, and deployment. Workflows for Android should also handle the fallback mechanism for `x86_64` architecture if ARM64 fails.
+* **Mobile App Workflows**: For mobile apps, workflows should integrate with the `android-app-launch-rules.md` to automate emulator setup, testing, and deployment. Workflows for Android should also handle the fallback mechanism for `x86_64` architecture if ARM64 fails.
 * **Web Service Workflows (Render)**:
     * **Deployment**: Use the Render CLI or API for triggering deployments. 
     * **Synchronous Monitoring**: When using the CLI, always use the `--wait` flag to block the job until deployment completes or fails.

@@ -131,7 +131,7 @@ AI-Agent-Rules/
 │   └── script-management-rules.md      # Script organization
 │
 ├── 🔧 Tooling
-│   ├── Android-App-Launch-rules.md     # Emulator management
+│   ├── android-app-launch-rules.md     # Emulator management
 │   ├── rule-management-rules.md        # Documentation sync
 │   └── warp-rules.md                   # Terminal configurations
 │
